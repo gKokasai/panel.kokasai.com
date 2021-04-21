@@ -49,6 +49,7 @@ const useAuthCtx = (): authContextType => {
     const result = api.login(user?.inputId, user?.inputPassWord)
       .then((res) => {
         setUser({ ...user, isLoading: false, isLoggedIn: true });
+        document.cookie = `auth=${res.data.auth}`;
         console.log(res);
       })
       .catch((err) => { console.log(err); });

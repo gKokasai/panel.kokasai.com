@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Button, CircularProgress, TextField } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
+import * as api from '../../api';
 import { useAuth } from '../../contexts/UserContext';
 
 const Login: FC = () => {
@@ -32,7 +33,22 @@ const Login: FC = () => {
   };
 
   console.log(auth.user?.isLoading, auth.user?.postedId);
-
+  let isLoggedIn = auth.user?.isLoggedIn === true;
+  if (!isLoggedIn) {
+    const cookie = document.cookie.split(';').find((line: string) => line.startsWith('auth='));
+    if (cookie) {
+      const checkSession = async () => {
+        const result = await api.getAuth(cookie);
+        if (result.status === 200) {
+          auth.setUser({ ...auth.user, isLoggedIn: true });
+          isLoggedIn = true;
+        } else if (result.status === 401) {
+          document.cookie = 'auth=; max-age=0';
+        }
+      };
+      checkSession();
+    }
+  }
   if (auth.user?.isLoading === true) {
     return (
       <CircularProgress />
@@ -44,7 +60,7 @@ const Login: FC = () => {
         <Button onClick={handleIdFormSubmit} variant="contained" color="primary">メールを送る</Button>
       </form>
     );
-  } if (auth.user?.isLoggedIn === true) {
+  } if (isLoggedIn) {
     return (
       <Redirect to="/Account" />
     );

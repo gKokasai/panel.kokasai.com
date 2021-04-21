@@ -18,6 +18,8 @@ export const login = (id?: string, pass?: string) => {
   return axios.post(`${URL}/auth`, null, { headers: header });
 };
 
+export const getAuth = (cookie: string) => axios.get(`${URL}/auth`, { headers: { cookie } });
+
 export const logout = () => axios.post(`${URL}/logout`);
 
 export const getFile = (path: string) => axios.get(`${URL}/file/${path}`);
