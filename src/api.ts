@@ -3,7 +3,7 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
-const URL = 'https://api.kokasai.com';
+export const URL = 'https://api.kokasai.com';
 
 export const getToken = (id?: string) => axios.post(`${URL}/login`,
   { id });
