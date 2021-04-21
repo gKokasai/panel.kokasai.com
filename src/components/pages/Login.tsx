@@ -31,11 +31,9 @@ const Login: FC = () => {
     event.preventDefault();
     auth.getToken();
   };
-
-  console.log(auth.user?.isLoading, auth.user?.postedId);
   let isLoggedIn = auth.user?.isLoggedIn === true;
   if (!isLoggedIn) {
-    const cookie = document.cookie.split(';').find((line: string) => line.startsWith('auth='));
+    const cookie = document.cookie.split('; ').find((line: string) => line.startsWith('auth='));
     if (cookie) {
       const checkSession = async () => {
         const result = await api.getAuth(cookie);
