@@ -56966,10 +56966,10 @@ __webpack_require__.r(__webpack_exports__);
 var URL = 'https://api.kokasai.com';
 var getToken = function (id) { return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/login", { id: id }); };
 var login = function (id, pass) {
-    var headers = {
+    var header = {
         Authorization: "Basic " + js_base64__WEBPACK_IMPORTED_MODULE_0__.Base64.encode(id + ":" + pass),
     };
-    return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/auth", null, { headers: headers });
+    return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/auth", null, { headers: header });
 };
 var logout = function () { return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/logout"); };
 var getFile = function (path) { return axios__WEBPACK_IMPORTED_MODULE_1___default().get(URL + "/file/" + path); };
@@ -57159,19 +57159,22 @@ var _a = createCtx(), useAuth = _a[0], SetAuthProvider = _a[1];
 var useAuthCtx = function () {
     var _a = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), user = _a[0], setUser = _a[1];
     var getToken = function () {
-        var result = _api__WEBPACK_IMPORTED_MODULE_2__.getToken(user === null || user === void 0 ? void 0 : user.inputId).then(function () { setUser({ postedId: true }); });
-        console.log(result, setUser);
+        var result = _api__WEBPACK_IMPORTED_MODULE_2__.getToken(user === null || user === void 0 ? void 0 : user.inputId)
+            .then(function () { setUser(__assign(__assign({}, user), { postedId: true })); })
+            .catch(function (res) { console.log(res); });
+        console.log(result);
     };
     var login = function () {
-        setUser({ isLoading: true });
+        setUser(__assign(__assign({}, user), { isLoading: true }));
         var result = _api__WEBPACK_IMPORTED_MODULE_2__.login(user === null || user === void 0 ? void 0 : user.inputId, user === null || user === void 0 ? void 0 : user.inputPassWord)
-            .then(function () { setUser(__assign(__assign({}, user), { isLoading: false })); });
+            .then(function () { setUser(__assign(__assign({}, user), { isLoading: false })); })
+            .catch(function (err) { console.log(err); });
         console.log(result);
     };
     var logout = function () {
         setUser({ isLoading: true });
         var result = _api__WEBPACK_IMPORTED_MODULE_2__.logout()
-            .then(function () { setUser({ isLoading: false, isLoggedIn: false }); });
+            .then(function () { setUser(__assign(__assign({}, user), { isLoading: false, isLoggedIn: false })); });
         console.log(result);
     };
     return {
