@@ -56947,6 +56947,7 @@ function warning(condition, message) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "URL": function() { return /* binding */ URL; },
 /* harmony export */   "getToken": function() { return /* binding */ getToken; },
 /* harmony export */   "login": function() { return /* binding */ login; },
 /* harmony export */   "logout": function() { return /* binding */ logout; },
@@ -57136,7 +57137,7 @@ var Account = function () {
         }); };
         asyncGet().then().catch();
     }, []);
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (_b = (_a = auth.user) === null || _a === void 0 ? void 0 : _a.documentList) === null || _b === void 0 ? void 0 : _b.map(function (d) { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", { children: d }, void 0)); }) }, void 0));
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (_b = (_a = auth.user) === null || _a === void 0 ? void 0 : _a.documentList) === null || _b === void 0 ? void 0 : _b.map(function (name) { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", __assign({ href: _api__WEBPACK_IMPORTED_MODULE_3__.URL + "/document/" + name }, { children: name }), void 0) }, void 0)); }) }, void 0));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Account);
 
