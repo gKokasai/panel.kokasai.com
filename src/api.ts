@@ -1,6 +1,8 @@
 import { Base64 } from 'js-base64';
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 const URL = 'https://api.kokasai.com';
 
 export const getToken = (id?: string) => axios.post(`${URL}/login`,
@@ -8,10 +10,9 @@ export const getToken = (id?: string) => axios.post(`${URL}/login`,
 
 export const login = (id?: string, pass?: string) => {
   const header:{
-        [key: string]: string | boolean;
+        [key: string]: string | boolean ;
     } = {
       Authorization: `Basic ${Base64.encode(`${id}:${pass}`)}`,
-      withCredentials: true,
     };
 
   return axios.post(`${URL}/auth`, null, { headers: header });
