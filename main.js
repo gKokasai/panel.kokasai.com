@@ -57128,13 +57128,14 @@ var Account = function () {
                     case 0: return [4 /*yield*/, _api__WEBPACK_IMPORTED_MODULE_3__.getAccessibleDocumentList()];
                     case 1:
                         result = _a.sent();
+                        console.log(result);
                         auth.setUser(__assign(__assign({}, auth.user), { documentList: result.data.document }));
                         return [2 /*return*/];
                 }
             });
         }); };
         asyncGet().then().catch();
-    }, [auth]);
+    }, []);
     return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (_b = (_a = auth.user) === null || _a === void 0 ? void 0 : _a.documentList) === null || _b === void 0 ? void 0 : _b.map(function (d) { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", { children: d }, void 0)); }) }, void 0));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Account);
