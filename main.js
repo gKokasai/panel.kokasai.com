@@ -56968,6 +56968,7 @@ var getToken = function (id) { return axios__WEBPACK_IMPORTED_MODULE_1___default
 var login = function (id, pass) {
     var header = {
         Authorization: "Basic " + js_base64__WEBPACK_IMPORTED_MODULE_0__.Base64.encode(id + ":" + pass),
+        withCredentials: true,
     };
     return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/auth", null, { headers: header });
 };
@@ -57062,8 +57063,18 @@ var App = function () { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api */ "./src/api.ts");
 
-var Account = function () { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: "\u30A2\u30AB\u30A6\u30F3\u30C8" }, void 0)); };
+
+
+var Account = function () {
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+        var result = _api__WEBPACK_IMPORTED_MODULE_2__.getAccessibleDocumentList();
+        console.log(result);
+    }, []);
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: "Account Page" }, void 0));
+};
 /* harmony default export */ __webpack_exports__["default"] = (Account);
 
 
