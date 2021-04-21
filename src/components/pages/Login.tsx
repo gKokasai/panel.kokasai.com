@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Button, CircularProgress, TextField } from '@material-ui/core';
+import { Redirect } from 'react-router-dom';
 import { useAuth } from '../../contexts/UserContext';
 
 const Login: FC = () => {
@@ -42,6 +43,10 @@ const Login: FC = () => {
         <TextField type="text" onChange={handleIdForm} />
         <Button onClick={handleIdFormSubmit} variant="contained" color="primary">メールを送る</Button>
       </form>
+    );
+  } if (auth.user?.isLoggedIn === true) {
+    return (
+      <Redirect to="/Account" />
     );
   }
   return (

@@ -46,7 +46,7 @@ const useAuthCtx = (): authContextType => {
   const login = () => {
     setUser({ ...user, isLoading: true });
     const result = api.login(user?.inputId, user?.inputPassWord)
-      .then(() => { setUser({ ...user, isLoading: false }); })
+      .then(() => { setUser({ ...user, isLoading: false, isLoggedIn: true }); })
       .catch((err) => { console.log(err); });
     console.log(result);
   };
