@@ -18,10 +18,8 @@ const Account = (): JSX.Element => {
   return (
     <div>
       {auth.user?.documentList?.map(
-        (d) => (
-          <li>
-            {d}
-          </li>
+        (name) => (
+          <li><a href={`${api.URL}/document/${name}`}>{name}</a></li>
         ),
       )}
     </div>
