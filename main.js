@@ -57214,7 +57214,7 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 var Login = function () {
-    var _a, _b, _c, _d, _e, _f;
+    var _a, _b, _c, _d;
     var auth = (0,_contexts_UserContext__WEBPACK_IMPORTED_MODULE_2__.useAuth)();
     var handleIdForm = function (event) {
         console.log(event.target.value);
@@ -57234,10 +57234,9 @@ var Login = function () {
         event.preventDefault();
         auth.getToken();
     };
-    console.log((_a = auth.user) === null || _a === void 0 ? void 0 : _a.isLoading, (_b = auth.user) === null || _b === void 0 ? void 0 : _b.postedId);
-    var isLoggedIn = ((_c = auth.user) === null || _c === void 0 ? void 0 : _c.isLoggedIn) === true;
+    var isLoggedIn = ((_a = auth.user) === null || _a === void 0 ? void 0 : _a.isLoggedIn) === true;
     if (!isLoggedIn) {
-        var cookie_1 = document.cookie.split(';').find(function (line) { return line.startsWith('auth='); });
+        var cookie_1 = document.cookie.split('; ').find(function (line) { return line.startsWith('auth='); });
         if (cookie_1) {
             var checkSession = function () { return __awaiter(void 0, void 0, void 0, function () {
                 var result;
@@ -57260,17 +57259,17 @@ var Login = function () {
             checkSession();
         }
     }
-    if (((_d = auth.user) === null || _d === void 0 ? void 0 : _d.isLoading) === true) {
+    if (((_b = auth.user) === null || _b === void 0 ? void 0 : _b.isLoading) === true) {
         return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__.default, {}, void 0));
     }
-    if (((_e = auth.user) === null || _e === void 0 ? void 0 : _e.postedId) === undefined) {
+    if (((_c = auth.user) === null || _c === void 0 ? void 0 : _c.postedId) === undefined) {
         return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: "login", onSubmit: handleIdFormSubmit }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, { type: "text", onChange: handleIdForm }, void 0),
                 (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, __assign({ onClick: handleIdFormSubmit, variant: "contained", color: "primary" }, { children: "\u30E1\u30FC\u30EB\u3092\u9001\u308B" }), void 0)] }), void 0));
     }
     if (isLoggedIn) {
         return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Redirect, { to: "/Account" }, void 0));
     }
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: "login" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, { type: "text", onChange: handleIdForm, defaultValue: (_f = auth.user) === null || _f === void 0 ? void 0 : _f.inputId }, void 0),
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: "login" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, { type: "text", onChange: handleIdForm, defaultValue: (_d = auth.user) === null || _d === void 0 ? void 0 : _d.inputId }, void 0),
             (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, { type: "text", onChange: handlePassWordForm }, void 0),
             (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, __assign({ onClick: handleLoginFormSubmit, variant: "contained", color: "primary" }, { children: "\u30ED\u30B0\u30A4\u30F3\u3059\u308B" }), void 0)] }), void 0));
 };
