@@ -56992,11 +56992,12 @@ var getAccessibleDocumentList = function () { return axios__WEBPACK_IMPORTED_MOD
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _pages_Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/Login */ "./src/components/pages/Login.tsx");
-/* harmony import */ var _contexts_UserContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../contexts/UserContext */ "./src/contexts/UserContext.tsx");
-/* harmony import */ var _App_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App.scss */ "./src/components/App.scss");
+/* harmony import */ var _pages_Account__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Account */ "./src/components/pages/Account.tsx");
+/* harmony import */ var _contexts_UserContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../contexts/UserContext */ "./src/contexts/UserContext.tsx");
+/* harmony import */ var _App_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./App.scss */ "./src/components/App.scss");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -57024,29 +57025,46 @@ var __rest = (undefined && undefined.__rest) || function (s, e) {
 
 
 
+
 var PrivateRoute = function (_a) {
     var _b;
     var props = __rest(_a, []);
-    var auth = (0,_contexts_UserContext__WEBPACK_IMPORTED_MODULE_2__.useAuth)();
+    var auth = (0,_contexts_UserContext__WEBPACK_IMPORTED_MODULE_3__.useAuth)();
     if ((_b = auth.user) === null || _b === void 0 ? void 0 : _b.isLoggedIn) {
         // eslint-disable-next-line react/jsx-props-no-spreading
-        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, __assign({}, props), void 0);
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, __assign({}, props), void 0);
     }
-    return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Redirect, { to: "/login" }, void 0);
+    return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Redirect, { to: "/login" }, void 0);
 };
 var UnAuthRoute = function (_a) {
     var _b;
     var props = __rest(_a, []);
-    var auth = (0,_contexts_UserContext__WEBPACK_IMPORTED_MODULE_2__.useAuth)();
+    var auth = (0,_contexts_UserContext__WEBPACK_IMPORTED_MODULE_3__.useAuth)();
     if ((_b = auth.user) === null || _b === void 0 ? void 0 : _b.isLoggedIn) {
-        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Redirect, { to: "/" }, void 0);
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Redirect, { to: "/" }, void 0);
     }
     // eslint-disable-next-line react/jsx-props-no-spreading
-    return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, __assign({}, props), void 0);
+    return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, __assign({}, props), void 0);
 };
-var App = function () { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_contexts_UserContext__WEBPACK_IMPORTED_MODULE_2__.AuthProvider, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "app" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Switch, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(UnAuthRoute, { exact: true, path: "/login", component: _pages_Login__WEBPACK_IMPORTED_MODULE_1__.default }, void 0),
-                        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PrivateRoute, { exact: true, path: "/" }, void 0)] }, void 0) }, void 0) }, void 0) }), void 0) }, void 0)); };
+var App = function () { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_contexts_UserContext__WEBPACK_IMPORTED_MODULE_3__.AuthProvider, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "app" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Switch, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(UnAuthRoute, { exact: true, path: "/login", component: _pages_Login__WEBPACK_IMPORTED_MODULE_1__.default }, void 0),
+                        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PrivateRoute, { exact: true, path: "/", component: _pages_Account__WEBPACK_IMPORTED_MODULE_2__.default }, void 0)] }, void 0) }, void 0) }, void 0) }), void 0) }, void 0)); };
 /* harmony default export */ __webpack_exports__["default"] = (App);
+
+
+/***/ }),
+
+/***/ "./src/components/pages/Account.tsx":
+/*!******************************************!*\
+  !*** ./src/components/pages/Account.tsx ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var Account = function () { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: "\u30A2\u30AB\u30A6\u30F3\u30C8" }, void 0)); };
+/* harmony default export */ __webpack_exports__["default"] = (Account);
 
 
 /***/ }),
@@ -57063,6 +57081,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/CircularProgress/CircularProgress.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/TextField/TextField.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _contexts_UserContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../contexts/UserContext */ "./src/contexts/UserContext.tsx");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -57078,8 +57097,9 @@ var __assign = (undefined && undefined.__assign) || function () {
 
 
 
+
 var Login = function () {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d, _e, _f;
     var auth = (0,_contexts_UserContext__WEBPACK_IMPORTED_MODULE_1__.useAuth)();
     var handleIdForm = function (event) {
         console.log(event.target.value);
@@ -57107,7 +57127,10 @@ var Login = function () {
         return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: "login", onSubmit: handleIdFormSubmit }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__.default, { type: "text", onChange: handleIdForm }, void 0),
                 (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, __assign({ onClick: handleIdFormSubmit, variant: "contained", color: "primary" }, { children: "\u30E1\u30FC\u30EB\u3092\u9001\u308B" }), void 0)] }), void 0));
     }
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: "login" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__.default, { type: "text", onChange: handleIdForm, defaultValue: (_e = auth.user) === null || _e === void 0 ? void 0 : _e.inputId }, void 0),
+    if (((_e = auth.user) === null || _e === void 0 ? void 0 : _e.isLoggedIn) === true) {
+        return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Redirect, { to: "/Account" }, void 0));
+    }
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: "login" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__.default, { type: "text", onChange: handleIdForm, defaultValue: (_f = auth.user) === null || _f === void 0 ? void 0 : _f.inputId }, void 0),
             (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__.default, { type: "text", onChange: handlePassWordForm }, void 0),
             (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, __assign({ onClick: handleLoginFormSubmit, variant: "contained", color: "primary" }, { children: "\u30ED\u30B0\u30A4\u30F3\u3059\u308B" }), void 0)] }), void 0));
 };
@@ -57167,7 +57190,7 @@ var useAuthCtx = function () {
     var login = function () {
         setUser(__assign(__assign({}, user), { isLoading: true }));
         var result = _api__WEBPACK_IMPORTED_MODULE_2__.login(user === null || user === void 0 ? void 0 : user.inputId, user === null || user === void 0 ? void 0 : user.inputPassWord)
-            .then(function () { setUser(__assign(__assign({}, user), { isLoading: false })); })
+            .then(function () { setUser(__assign(__assign({}, user), { isLoading: false, isLoggedIn: true })); })
             .catch(function (err) { console.log(err); });
         console.log(result);
     };
