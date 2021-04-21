@@ -12,7 +12,7 @@ const Account = (): JSX.Element => {
         auth.setUser({ ...auth.user, documentList: result.data.document });
       };
       asyncGet().then().catch();
-    }, [auth],
+    }, [],
   );
 
   return (
