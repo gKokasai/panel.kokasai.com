@@ -7,13 +7,13 @@ export const getToken = (id?: string) => axios.post(`${URL}/login`,
   { id });
 
 export const login = (id?: string, pass?: string) => {
-  const headers:{
+  const header:{
         [key: string]: string;
     } = {
       Authorization: `Basic ${Base64.encode(`${id}:${pass}`)}`,
     };
 
-  return axios.post(`${URL}/auth`, null, { headers });
+  return axios.post(`${URL}/auth`, null, { headers: header });
 };
 
 export const logout = () => axios.post(`${URL}/logout`);
