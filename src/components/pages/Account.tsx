@@ -8,6 +8,7 @@ const Account = (): JSX.Element => {
     () => {
       const asyncGet = async () => {
         const result = await api.getAccessibleDocumentList();
+        console.log(result);
         auth.setUser({ ...auth.user, documentList: result.data.document });
       };
       asyncGet().then().catch();
