@@ -8,9 +8,10 @@ export const getToken = (id?: string) => axios.post(`${URL}/login`,
 
 export const login = (id?: string, pass?: string) => {
   const header:{
-        [key: string]: string;
+        [key: string]: string | boolean;
     } = {
       Authorization: `Basic ${Base64.encode(`${id}:${pass}`)}`,
+      withCredentials: true,
     };
 
   return axios.post(`${URL}/auth`, null, { headers: header });
