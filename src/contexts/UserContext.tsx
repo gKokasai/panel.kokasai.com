@@ -7,6 +7,7 @@ type User = {
   isLoggedIn?: boolean;
   isLoading?: boolean;
   postedId?: boolean;
+  documentList?: [string];
 }
 
 type authContextType = {
@@ -49,7 +50,6 @@ const useAuthCtx = (): authContextType => {
       .then((res) => {
         setUser({ ...user, isLoading: false, isLoggedIn: true });
         console.log(res);
-        document.cookie = res.headers.setCookie;
       })
       .catch((err) => { console.log(err); });
     console.log(result);
