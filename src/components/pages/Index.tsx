@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Account = (): JSX.Element => (
+const Index = (): JSX.Element => (
   <>
     アカウント
   </>
 );
 
-export default Account;
+export default Index;

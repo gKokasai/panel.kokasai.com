@@ -46,7 +46,7 @@ const Login: FC = () => {
     );
   } if (auth.user?.isLoggedIn === true) {
     return (
-      <Redirect to="/Account" />
+      <Redirect to="/" />
     );
   }
   return (
