@@ -56963,12 +56963,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 
 
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.withCredentials) = true;
 var URL = 'https://api.kokasai.com';
 var getToken = function (id) { return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/login", { id: id }); };
 var login = function (id, pass) {
     var header = {
         Authorization: "Basic " + js_base64__WEBPACK_IMPORTED_MODULE_0__.Base64.encode(id + ":" + pass),
-        withCredentials: true,
     };
     return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/auth", null, { headers: header });
 };
@@ -57201,7 +57201,11 @@ var useAuthCtx = function () {
     var login = function () {
         setUser(__assign(__assign({}, user), { isLoading: true }));
         var result = _api__WEBPACK_IMPORTED_MODULE_2__.login(user === null || user === void 0 ? void 0 : user.inputId, user === null || user === void 0 ? void 0 : user.inputPassWord)
-            .then(function () { setUser(__assign(__assign({}, user), { isLoading: false, isLoggedIn: true })); })
+            .then(function (res) {
+            setUser(__assign(__assign({}, user), { isLoading: false, isLoggedIn: true }));
+            console.log(res);
+            document.cookie = res.headers.setCookie;
+        })
             .catch(function (err) { console.log(err); });
         console.log(result);
     };
