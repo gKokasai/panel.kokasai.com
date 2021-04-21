@@ -44,6 +44,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./static/index.html",
         }),
+        new HtmlWebpackPlugin({
+            filename: "404.html",
+            template: "./static/404.html",
+            inject: false
+        }),
         new CnameWebpackPlugin({
             domain:"panel.kokasai.com"
         })
