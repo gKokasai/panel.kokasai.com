@@ -7,6 +7,7 @@ type User = {
   isLoggedIn?: boolean;
   isLoading?: boolean;
   postedId?: boolean;
+  statusCode?: { [key: string]: number };
   documentList?: [string];
 }
 
@@ -40,7 +41,11 @@ const useAuthCtx = (): authContextType => {
   const getToken = () => {
     const result = api.getToken(user?.inputId)
       .then(() => { setUser({ ...user, postedId: true }); })
-      .catch((res) => { console.log(res); });
+      .catch(
+        (err) => {
+          setUser({ ...user, isLoading: false, statusCode: { login: err.response.status } });
+        },
+      );
     console.log(result);
   };
 
@@ -48,11 +53,15 @@ const useAuthCtx = (): authContextType => {
     setUser({ ...user, isLoading: true });
     const result = api.login(user?.inputId, user?.inputPassWord)
       .then((res) => {
-        setUser({ ...user, isLoading: false, isLoggedIn: true });
+        setUser({
+          ...user, isLoading: false, isLoggedIn: true, statusCode: { login: res.status },
+        });
         document.cookie = `auth=${res.data.auth}`;
         console.log(res);
       })
-      .catch((err) => { console.log(err); });
+      .catch((err) => {
+        setUser({ ...user, isLoading: false, statusCode: { login: err.response.status } });
+      });
     console.log(result);
   };
 
