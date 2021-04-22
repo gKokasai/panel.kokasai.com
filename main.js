@@ -57925,17 +57925,18 @@ function warning(condition, message) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "URL": function() { return /* binding */ URL; },
-/* harmony export */   "getToken": function() { return /* binding */ getToken; },
-/* harmony export */   "login": function() { return /* binding */ login; },
 /* harmony export */   "getAuth": function() { return /* binding */ getAuth; },
-/* harmony export */   "logout": function() { return /* binding */ logout; },
+/* harmony export */   "postAuth": function() { return /* binding */ postAuth; },
+/* harmony export */   "postLogin": function() { return /* binding */ postLogin; },
+/* harmony export */   "postLogout": function() { return /* binding */ postLogout; },
 /* harmony export */   "getFile": function() { return /* binding */ getFile; },
 /* harmony export */   "getDocument": function() { return /* binding */ getDocument; },
 /* harmony export */   "getGroupDocumentList": function() { return /* binding */ getGroupDocumentList; },
-/* harmony export */   "changeGroupDocumentList": function() { return /* binding */ changeGroupDocumentList; },
-/* harmony export */   "getListOfUsersBelongingGroup": function() { return /* binding */ getListOfUsersBelongingGroup; },
-/* harmony export */   "changeListOfUsersBelongingGroup": function() { return /* binding */ changeListOfUsersBelongingGroup; },
-/* harmony export */   "getAccessibleDocumentList": function() { return /* binding */ getAccessibleDocumentList; }
+/* harmony export */   "postGroupDocumentList": function() { return /* binding */ postGroupDocumentList; },
+/* harmony export */   "getGroupUserList": function() { return /* binding */ getGroupUserList; },
+/* harmony export */   "postGroupUserList": function() { return /* binding */ postGroupUserList; },
+/* harmony export */   "getUserDocumentList": function() { return /* binding */ getUserDocumentList; },
+/* harmony export */   "getUserGroupList": function() { return /* binding */ getUserGroupList; }
 /* harmony export */ });
 /* harmony import */ var js_base64__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-base64 */ "./node_modules/js-base64/base64.mjs");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -57944,22 +57945,83 @@ __webpack_require__.r(__webpack_exports__);
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.withCredentials) = true;
 var URL = 'https://api.kokasai.com';
-var getToken = function (id) { return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/login", { id: id }); };
-var login = function (id, pass) {
+/**
+ * ログイン認証されているか取得する。
+ * [GET /auth](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-auth)
+ * @param cookie セッションのCookie
+ */
+var getAuth = function (cookie) { return axios__WEBPACK_IMPORTED_MODULE_1___default().get(URL + "/auth", { headers: { cookie: cookie } }); };
+/**
+ * ログイン認証する。
+ * [POST /auth](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#post-auth)
+ * @param id 学籍番号
+ * @param pass パスワード
+ */
+var postAuth = function (id, pass) {
     var header = {
         Authorization: "Basic " + js_base64__WEBPACK_IMPORTED_MODULE_0__.Base64.encode(id + ":" + pass),
     };
     return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/auth", null, { headers: header });
 };
-var getAuth = function (cookie) { return axios__WEBPACK_IMPORTED_MODULE_1___default().get(URL + "/auth", { headers: { cookie: cookie } }); };
-var logout = function () { return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/logout"); };
+/**
+ * ログイン用のパスワードを発行する。
+ * [POST /login](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#post-login)
+ * @param id ログインする学籍番号
+ */
+var postLogin = function (id) { return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/login", { id: id }); };
+/**
+ * ログアウトする。
+ * [POST /logout](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#post-logout)
+ */
+var postLogout = function () { return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/logout"); };
+/**
+ * 公開されているファイルを取得する。
+ * [GET /file](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-filepath)
+ * @param path 取得するファイルのパス
+ */
 var getFile = function (path) { return axios__WEBPACK_IMPORTED_MODULE_1___default().get(URL + "/file/" + path); };
+/**
+ * ドキュメントファイルを取得する。
+ * [GET /document](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-documentname)
+ * @param documentName 取得するドキュメントの名前
+ */
 var getDocument = function (documentName) { return axios__WEBPACK_IMPORTED_MODULE_1___default().get(URL + "/document/" + documentName); };
+/**
+ * グループに紐づけられているドキュメントファイル一覧を取得する。
+ * [GET /group/document/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-groupdocumentlistname)
+ * @param groupName 取得するグループの名前
+ */
 var getGroupDocumentList = function (groupName) { return axios__WEBPACK_IMPORTED_MODULE_1___default().get(URL + "/group/document/list/" + groupName); };
-var changeGroupDocumentList = function (groupName, changedDocumentList) { return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/group/document/list/" + groupName, changedDocumentList); };
-var getListOfUsersBelongingGroup = function (groupName) { return axios__WEBPACK_IMPORTED_MODULE_1___default().get(URL + "/group/user/list/" + groupName); };
-var changeListOfUsersBelongingGroup = function (groupName, changedUsersList) { return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/group/user/list/" + groupName, changedUsersList); };
-var getAccessibleDocumentList = function () { return axios__WEBPACK_IMPORTED_MODULE_1___default().get(URL + "/user/document/list"); };
+/**
+ * グループに紐づけられているドキュメントファイル一覧を変更する。
+ * [POST /group/document/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#post-groupdocumentlistname)
+ * @param groupName 変更するグループの名前
+ * @param list 変更後の一覧
+ */
+var postGroupDocumentList = function (groupName, list) { return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/group/document/list/" + groupName, list); };
+/**
+ * グループに属するユーザー一覧を取得する。
+ * [GET /group/user/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-groupuserlistname)
+ * @param groupName 取得するグループの名前
+ */
+var getGroupUserList = function (groupName) { return axios__WEBPACK_IMPORTED_MODULE_1___default().get(URL + "/group/user/list/" + groupName); };
+/**
+ * グループに属するユーザー一覧を変更する。
+ * [POST /group/user/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#post-groupuserlistname)
+ * @param groupName 変更するグループの名前
+ * @param list 変更後の一覧
+ */
+var postGroupUserList = function (groupName, list) { return axios__WEBPACK_IMPORTED_MODULE_1___default().post(URL + "/group/user/list/" + groupName, list); };
+/**
+ * ユーザーがアクセスできるドキュメントファイルの一覧を取得する。
+ * [GET /user/document/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-userdocumentlist)
+ */
+var getUserDocumentList = function () { return axios__WEBPACK_IMPORTED_MODULE_1___default().get(URL + "/user/document/list"); };
+/**
+ * ユーザーが属しているグループ一覧を取得する。
+ * [GET /user/group/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-usergrouplist)
+ */
+var getUserGroupList = function () { return axios__WEBPACK_IMPORTED_MODULE_1___default().get(URL + "/user/group/list"); };
 
 
 /***/ }),
@@ -58402,7 +58464,7 @@ var _a = createCtx(), useAuth = _a[0], SetAuthProvider = _a[1];
 var useAuthCtx = function () {
     var _a = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), user = _a[0], setUser = _a[1];
     var getToken = function () {
-        var result = _api__WEBPACK_IMPORTED_MODULE_2__.getToken(user === null || user === void 0 ? void 0 : user.inputId)
+        var result = _api__WEBPACK_IMPORTED_MODULE_2__.postLogin(user === null || user === void 0 ? void 0 : user.inputId)
             .then(function () { setUser(__assign(__assign({}, user), { postedId: true })); })
             .catch(function (err) {
             setUser(__assign(__assign({}, user), { isLoading: false, statusCode: { login: err.response.status } }));
@@ -58411,7 +58473,7 @@ var useAuthCtx = function () {
     };
     var login = function () {
         setUser(__assign(__assign({}, user), { isLoading: true }));
-        var result = _api__WEBPACK_IMPORTED_MODULE_2__.login(user === null || user === void 0 ? void 0 : user.inputId, user === null || user === void 0 ? void 0 : user.inputPassWord)
+        var result = _api__WEBPACK_IMPORTED_MODULE_2__.postAuth(user === null || user === void 0 ? void 0 : user.inputId, user === null || user === void 0 ? void 0 : user.inputPassWord)
             .then(function (res) {
             setUser(__assign(__assign({}, user), { isLoading: false, isLoggedIn: true, statusCode: { login: res.status } }));
             document.cookie = "auth=" + res.data.auth;
@@ -58424,7 +58486,7 @@ var useAuthCtx = function () {
     };
     var logout = function () {
         setUser({ isLoading: true });
-        var result = _api__WEBPACK_IMPORTED_MODULE_2__.logout()
+        var result = _api__WEBPACK_IMPORTED_MODULE_2__.postLogout()
             .then(function () { setUser(__assign(__assign({}, user), { isLoading: false, isLoggedIn: false })); });
         console.log(result);
     };
