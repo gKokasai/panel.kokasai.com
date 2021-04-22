@@ -1,8 +1,12 @@
-import React, { FC } from 'react';
-import { Button, CircularProgress, TextField } from '@material-ui/core';
+import React, { FC, useEffect } from 'react';
+import {
+  CircularProgress,
+} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import * as api from '../../api';
 import { useAuth } from '../../contexts/UserContext';
+import IdForm from '../molecules/IdForm';
+import LoginForm from '../molecules/LoginForm';
 
 const Login: FC = () => {
   const auth = useAuth();
@@ -31,44 +35,47 @@ const Login: FC = () => {
     event.preventDefault();
     auth.getToken();
   };
-  let isLoggedIn = auth.user?.isLoggedIn === true;
-  if (!isLoggedIn) {
-    const cookie = document.cookie.split('; ').find((line: string) => line.startsWith('auth='));
-    if (cookie) {
-      const checkSession = async () => {
-        const result = await api.getAuth(cookie);
-        if (result.status === 200) {
-          auth.setUser({ ...auth.user, isLoggedIn: true });
-          isLoggedIn = true;
-        } else if (result.status === 401) {
-          document.cookie = 'auth=; max-age=0';
+
+  useEffect(
+    () => {
+      let isLoggedIn = auth.user?.isLoggedIn === true;
+      if (!isLoggedIn) {
+        const cookie = document.cookie.split('; ').find((line: string) => line.startsWith('auth='));
+        if (cookie) {
+          const checkSession = async () => {
+            const result = await api.getAuth(cookie);
+            if (result.status === 200) {
+              auth.setUser({ ...auth.user, isLoggedIn: true });
+              isLoggedIn = true;
+            } else if (result.status === 401) {
+              document.cookie = 'auth=; max-age=0';
+            }
+          };
+          checkSession();
         }
-      };
-      checkSession();
-    }
-  }
+      }
+    }, [],
+  );
   if (auth.user?.isLoading === true) {
     return (
       <CircularProgress />
     );
-  } if (auth.user?.postedId === undefined) {
+  } if (auth.user?.postedId === undefined || auth.user?.postedId === false) {
     return (
-      <form className="login" onSubmit={handleIdFormSubmit}>
-        <TextField type="text" onChange={handleIdForm} />
-        <Button onClick={handleIdFormSubmit} variant="contained" color="primary">メールを送る</Button>
-      </form>
+      <IdForm handleIdForm={handleIdForm} handleIdFormSubmit={handleIdFormSubmit} />
     );
-  } if (isLoggedIn) {
+  } if (auth.user?.isLoggedIn) {
     return (
       <Redirect to="/Account" />
     );
   }
   return (
-    <form className="login">
-      <TextField type="text" onChange={handleIdForm} defaultValue={auth.user?.inputId} />
-      <TextField type="text" onChange={handlePassWordForm} />
-      <Button onClick={handleLoginFormSubmit} variant="contained" color="primary">ログインする</Button>
-    </form>
+    <LoginForm
+      handleIdForm={handleIdForm}
+      handlePassWordForm={handlePassWordForm}
+      handleLoginFormSubmit={handleLoginFormSubmit}
+      defaultId={auth.user.inputId}
+    />
   );
 };
 export default Login;
