@@ -58441,18 +58441,22 @@ var useAuthCtx = function () {
     var getToken = function () {
         var result = _api__WEBPACK_IMPORTED_MODULE_2__.getToken(user === null || user === void 0 ? void 0 : user.inputId)
             .then(function () { setUser(__assign(__assign({}, user), { postedId: true })); })
-            .catch(function (res) { console.log(res); });
+            .catch(function (err) {
+            setUser(__assign(__assign({}, user), { isLoading: false, statusCode: { login: err.response.status } }));
+        });
         console.log(result);
     };
     var login = function () {
         setUser(__assign(__assign({}, user), { isLoading: true }));
         var result = _api__WEBPACK_IMPORTED_MODULE_2__.login(user === null || user === void 0 ? void 0 : user.inputId, user === null || user === void 0 ? void 0 : user.inputPassWord)
             .then(function (res) {
-            setUser(__assign(__assign({}, user), { isLoading: false, isLoggedIn: true }));
+            setUser(__assign(__assign({}, user), { isLoading: false, isLoggedIn: true, statusCode: { login: res.status } }));
             document.cookie = "auth=" + res.data.auth;
             console.log(res);
         })
-            .catch(function (err) { console.log(err); });
+            .catch(function (err) {
+            setUser(__assign(__assign({}, user), { isLoading: false, statusCode: { login: err.response.status } }));
+        });
         console.log(result);
     };
     var logout = function () {
