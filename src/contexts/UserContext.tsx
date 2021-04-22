@@ -39,7 +39,7 @@ const useAuthCtx = (): authContextType => {
   const [user, setUser] = useState<User | null>(null);
 
   const getToken = () => {
-    const result = api.getToken(user?.inputId)
+    const result = api.postLogin(user?.inputId)
       .then(() => { setUser({ ...user, postedId: true }); })
       .catch(
         (err) => {
@@ -51,7 +51,7 @@ const useAuthCtx = (): authContextType => {
 
   const login = () => {
     setUser({ ...user, isLoading: true });
-    const result = api.login(user?.inputId, user?.inputPassWord)
+    const result = api.postAuth(user?.inputId, user?.inputPassWord)
       .then((res) => {
         setUser({
           ...user, isLoading: false, isLoggedIn: true, statusCode: { login: res.status },
@@ -67,7 +67,7 @@ const useAuthCtx = (): authContextType => {
 
   const logout = () => {
     setUser({ isLoading: true });
-    const result = api.logout()
+    const result = api.postLogout()
       .then(() => { setUser({ ...user, isLoading: false, isLoggedIn: false }); });
     console.log(result);
   };
