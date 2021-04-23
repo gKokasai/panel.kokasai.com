@@ -27,6 +27,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          external_repository: gKokasai/dev.panel.kokasai.com
+          external_repository: gKokasai/dev-panel.kokasai.com
           publish_dir: ./dist
-          cname: dev.panel.kokasai.com
+          cname: dev-panel.kokasai.com
