@@ -1,6 +1,5 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CnameWebpackPlugin = require("cname-webpack-plugin");
 
 module.exports = {
     mode: "development",
@@ -48,9 +47,6 @@ module.exports = {
             filename: "404.html",
             template: "./static/404.html",
             inject: false
-        }),
-        new CnameWebpackPlugin({
-            domain:"panel.kokasai.com"
         })
     ]
 };
