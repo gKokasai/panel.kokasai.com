@@ -1,8 +1,8 @@
-name: Deploy GitHub Pages
+name: Deploy GitHub Pages (Develop)
 on:
   push:
     branches:
-      - master
+      - develop
 jobs:
   build-deploy:
     runs-on: ubuntu-18.04
@@ -26,6 +26,7 @@ jobs:
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          external_repository: gKokasai/dev.panel.kokasai.com
           publish_dir: ./dist
-          cname: panel.kokasai.com
+          cname: dev.panel.kokasai.com
