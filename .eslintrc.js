@@ -65,6 +65,7 @@ module.exports = {
                 extensions: ['.jsx', '.tsx'],
             },
         ],
+        'linebreak-style': ["error", "unix"],
     },
     overrides: [
         {

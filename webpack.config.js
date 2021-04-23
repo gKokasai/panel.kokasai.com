@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -47,6 +48,9 @@ module.exports = {
             filename: "404.html",
             template: "./static/404.html",
             inject: false
+        }),
+        new webpack.DefinePlugin({
+            'process.env.API_URL' : '\'' + process.env.API_URL + '\'',
         })
     ]
 };

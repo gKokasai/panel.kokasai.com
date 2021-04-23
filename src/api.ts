@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 
 axios.defaults.withCredentials = true;
 
-export const URL = 'https://api.kokasai.com';
+export const URL = process.env.API_URL;
 
 /**
  * ログイン認証されているか取得する。
