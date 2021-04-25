@@ -52,5 +52,8 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.API_URL' : '\'' + process.env.API_URL + '\'',
         })
-    ]
+    ],
+    devServer: {
+        historyApiFallback: true
+    }
 };
