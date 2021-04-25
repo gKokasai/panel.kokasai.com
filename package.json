@@ -4,11 +4,10 @@
   "description": "",
   "license": "ISC",
   "scripts": {
-    "start:product": "cross-env API_URL=https://api.kokasai.com webpack-cli serve --mode development",
-    "start:dev": "cross-env API_URL=https://dev-api.kokasai.com webpack-cli serve --mode development",
-    "start:local": "cross-env API_URL=http://local-api.kokasai.com:8081 webpack-cli serve --mode development",
-    "build:product": "cross-env API_URL=https://api.kokasai.com webpack",
-    "build:dev": "cross-env API_URL=https://dev-api.kokasai.com webpack",
+    "start:dev": "webpack-cli serve --config webpack.config.dev.js",
+    "start:local": "webpack-cli serve --config webpack.config.local.js",
+    "build:product": "webpack --config webpack.config.product.js",
+    "build:dev": "webpack --config webpack.config.dev.js",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx}"
   },
@@ -32,7 +31,6 @@
     "@types/webpack-dev-server": "^3.11.3",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
-    "cross-env": "^7.0.3",
     "css-loader": "^5.2.3",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -47,6 +45,7 @@
     "ts-loader": "^9.0.0",
     "webpack": "^5.33.2",
     "webpack-cli": "^4.6.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
   }
 }
