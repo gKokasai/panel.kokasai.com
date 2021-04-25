@@ -3,6 +3,15 @@
   "version": "0.1.0",
   "description": "",
   "license": "ISC",
+  "scripts": {
+    "start:product": "cross-env API_URL=https://api.kokasai.com webpack-cli serve --mode development",
+    "start:dev": "cross-env API_URL=https://dev-api.kokasai.com webpack-cli serve --mode development",
+    "start:local": "cross-env API_URL=http://local-api.kokasai.com:8081 webpack-cli serve --mode development",
+    "build:product": "cross-env API_URL=https://api.kokasai.com webpack",
+    "build:dev": "cross-env API_URL=https://dev-api.kokasai.com webpack",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx}"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "axios": "^0.21.1",
@@ -13,16 +22,6 @@
     "react-router-dom": "^5.2.0",
     "sass": "^1.32.10",
     "typescript": "^4.2.4"
-  },
-  "scripts":
-  {
-    "start:product": "cross-env API_URL=https://api.kokasai.com webpack-cli serve --mode development",
-    "start:dev": "cross-env API_URL=https://dev-api.kokasai.com webpack-cli serve --mode development",
-    "start:local": "cross-env API_URL=http://local-api.kokasai.com:8081 webpack-cli serve --mode development",
-    "build:product": "cross-env API_URL=https://api.kokasai.com webpack",
-    "build:dev": "cross-env API_URL=https://dev-api.kokasai.com webpack",
-    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx}"
   },
   "devDependencies": {
     "@types/node": "^12.20.10",
