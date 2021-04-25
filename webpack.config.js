@@ -54,6 +54,8 @@ module.exports = {
         })
     ],
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        host: 'local-panel.kokasai.com',
+        port: 8080
     }
 };
