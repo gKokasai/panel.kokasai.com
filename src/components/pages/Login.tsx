@@ -47,13 +47,6 @@ const Login: FC = () => {
     auth.login();
   };
 
-  const handleIdFormSubmit = (event: any): void => {
-    event.preventDefault();
-    if (isEnableSendButton) {
-      auth.getToken();
-    }
-  };
-
   useEffect(
     () => {
       let isLoggedIn = auth.user?.isLoggedIn === true;
@@ -82,7 +75,6 @@ const Login: FC = () => {
     return (
       <IdForm
         handleIdForm={handleIdForm}
-        handleIdFormSubmit={handleIdFormSubmit}
         isEnableSendButton={isEnableSendButton}
       />
     );

@@ -20,14 +20,21 @@ import {
 import { useAuth } from '../../contexts/UserContext';
 
 type Props = {
-  handleIdFormSubmit: any;
   handleIdForm: any;
   isEnableSendButton: boolean;
 }
 const IdForm: FC<Props> = (props): JSX.Element => {
   const auth = useAuth();
-  const { handleIdFormSubmit, handleIdForm, isEnableSendButton } = props;
+  const { handleIdForm, isEnableSendButton } = props;
   const [isEnablePopUpWindow, setIsEnablePopUpWindow] = useState(false);
+  const handleIdFormSubmit = (event: any): void => {
+    event.preventDefault();
+    setIsEnablePopUpWindow(true);
+  };
+
+  const handleDialogSubmit = () => {
+    auth.getToken();
+  };
   const useStyles = makeStyles((theme: Theme) => createStyles({
     container: {
       display: 'flex',
@@ -93,7 +100,7 @@ const IdForm: FC<Props> = (props): JSX.Element => {
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleIdFormSubmit}>
+              <Button onClick={handleDialogSubmit}>
                 OK
               </Button>
             </DialogActions>
