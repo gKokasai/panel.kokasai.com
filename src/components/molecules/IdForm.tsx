@@ -100,8 +100,11 @@ const IdForm: FC<Props> = (props): JSX.Element => {
               </DialogContentText>
             </DialogContent>
             <DialogActions>
+              <Button onClick={() => { setIsEnablePopUpWindow(false); }}>
+                キャンセルする
+              </Button>
               <Button onClick={handleDialogSubmit}>
-                OK
+                送信する
               </Button>
             </DialogActions>
           </Dialog>
