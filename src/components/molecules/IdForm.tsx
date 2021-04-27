@@ -44,7 +44,7 @@ const IdForm: FC<Props> = (props): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <form className={classes.container} noValidate autoComplete="off">
+    <form className={classes.container} noValidate autoComplete="off" onSubmit={handleIdFormSubmit}>
       <Card className={classes.card}>
         <CardHeader className="classes.header" title="Login" />
         <CardContent>
