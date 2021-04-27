@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   CircularProgress,
 } from '@material-ui/core';
@@ -10,12 +10,21 @@ import LoginForm from '../molecules/LoginForm';
 
 const Login: FC = () => {
   const auth = useAuth();
+
+  const [isEnableSendButton, setIsEnableSendButton] = useState(false);
+
   const handleIdForm = (
     event: React.ChangeEvent<HTMLInputElement>,
   ): void => {
-    console.log(event.target.value);
     auth.setUser({ ...auth.user, inputId: event.target.value });
   };
+
+  useEffect(
+    () => {
+      const pattern = /^((m\d{2}1)|(e\d{2}2)|(j\d{2}3)|(k\d{2}4)|(c\d{2}5))\d{2}$/;
+      setIsEnableSendButton(!!auth.user?.inputId?.match(pattern));
+    }, [auth.user?.inputId],
+  );
 
   const handlePassWordForm = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -27,13 +36,22 @@ const Login: FC = () => {
 
   const handleLoginFormSubmit = (event: any): void => {
     event.preventDefault();
-    auth.setUser({ ...auth.user, isLoading: true });
+    auth.setUser(
+      {
+        ...auth.user,
+        inputPassWord: auth.user?.inputPassWord?.trim(),
+        inputId: auth.user?.inputPassWord?.trim(),
+        isLoading: true,
+      },
+    );
     auth.login();
   };
 
   const handleIdFormSubmit = (event: any): void => {
     event.preventDefault();
-    auth.getToken();
+    if (isEnableSendButton) {
+      auth.getToken();
+    }
   };
 
   useEffect(
@@ -62,7 +80,11 @@ const Login: FC = () => {
     );
   } if (auth.user?.postedId === undefined || auth.user?.postedId === false) {
     return (
-      <IdForm handleIdForm={handleIdForm} handleIdFormSubmit={handleIdFormSubmit} />
+      <IdForm
+        handleIdForm={handleIdForm}
+        handleIdFormSubmit={handleIdFormSubmit}
+        isEnableSendButton={isEnableSendButton}
+      />
     );
   } if (auth.user?.isLoggedIn) {
     return (
