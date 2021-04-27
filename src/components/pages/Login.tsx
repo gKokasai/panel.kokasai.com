@@ -21,7 +21,7 @@ const Login: FC = () => {
 
   useEffect(
     () => {
-      const pattern = /^((m\d{2}1)|(e\d{2}2)|(j\d{2}3)|(k\d{2}4)|(c\d{2}5))\d{2}$/;
+      const pattern = /^((m\d{2}1)|(e\d{2}2)|(j\d{2}3)|(k\d{2}4)|(c\d{2}5)|(ap\d{2}8)|(ae\d{2}9))\d{2}$/;
       setIsEnableSendButton(!!auth.user?.inputId?.match(pattern));
     }, [auth.user?.inputId],
   );
