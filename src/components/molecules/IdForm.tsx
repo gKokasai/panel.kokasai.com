@@ -1,23 +1,40 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Button,
   Card,
   CardActions,
   CardContent,
-  CardHeader, createStyles, Link,
+  CardHeader,
+  createStyles,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Link,
   makeStyles,
-  TextField, Theme,
+  TextField,
+  Theme,
 } from '@material-ui/core';
 
 import { useAuth } from '../../contexts/UserContext';
 
 type Props = {
-  handleIdFormSubmit: any;
   handleIdForm: any;
+  isEnableSendButton: boolean;
 }
 const IdForm: FC<Props> = (props): JSX.Element => {
   const auth = useAuth();
-  const { handleIdFormSubmit, handleIdForm } = props;
+  const { handleIdForm, isEnableSendButton } = props;
+  const [isEnablePopUpWindow, setIsEnablePopUpWindow] = useState(false);
+  const handleIdFormSubmit = (event: any): void => {
+    event.preventDefault();
+    setIsEnablePopUpWindow(true);
+  };
+
+  const handleDialogSubmit = () => {
+    auth.getToken();
+  };
   const useStyles = makeStyles((theme: Theme) => createStyles({
     container: {
       display: 'flex',
@@ -63,10 +80,31 @@ const IdForm: FC<Props> = (props): JSX.Element => {
             size="small"
             color="secondary"
             className={classes.loginBtn}
-            onClick={handleIdFormSubmit}
+            onClick={() => { setIsEnablePopUpWindow(true); }}
+            disabled={!isEnableSendButton}
           >
             メール送信
           </Button>
+          <Dialog
+            open={isEnablePopUpWindow}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle>
+              確認
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                {auth.user?.inputId}
+                @gunma.kosen-ac.jp にメールを送信しますがよろしいですか？
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDialogSubmit}>
+                OK
+              </Button>
+            </DialogActions>
+          </Dialog>
           <Link
             onClick={() => { auth.setUser({ ...auth.user, postedId: true }); }}
           >
