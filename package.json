@@ -8,8 +8,8 @@
     "start:local": "webpack-cli serve --config webpack.config.local.js",
     "build:product": "webpack --config webpack.config.product.js",
     "build:dev": "webpack --config webpack.config.dev.js",
-    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx}"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint --fix . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",

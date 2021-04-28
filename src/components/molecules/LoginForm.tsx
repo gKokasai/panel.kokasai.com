@@ -79,6 +79,7 @@ const LoginForm: FC<Props> = (props): JSX.Element => {
           >
             ログイン
           </Button>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <Link onClick={() => { auth.setUser({ ...auth.user, postedId: false }); }}>メール送信にもどる</Link>
         </CardActions>
       </Card>

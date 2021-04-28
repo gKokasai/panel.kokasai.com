@@ -66,6 +66,7 @@ module.exports = {
             },
         ],
         'linebreak-style': ["error", "unix"],
+        "max-len": [1, 200]
     },
     overrides: [
         {

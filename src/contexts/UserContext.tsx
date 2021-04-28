@@ -80,9 +80,7 @@ const useAuthCtx = (): authContextType => {
 const AuthProvider: React.FC<Props> = ({ children }) => {
   const auth = useAuthCtx();
   return (
-    <SetAuthProvider
-      value={auth}
-    >
+    <SetAuthProvider value={auth}>
       {children}
     </SetAuthProvider>
   );
