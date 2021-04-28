@@ -108,9 +108,7 @@ const IdForm: FC<Props> = (props): JSX.Element => {
               </Button>
             </DialogActions>
           </Dialog>
-          <Link
-            onClick={() => { auth.setUser({ ...auth.user, postedId: true }); }}
-          >
+          <Link onClick={() => { auth.setUser({ ...auth.user, postedId: true }); }}>
             既にパスワードを持っている方
           </Link>
         </CardActions>
