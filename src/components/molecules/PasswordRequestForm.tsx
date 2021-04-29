@@ -10,7 +10,6 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Link,
   TextField,
 } from '@material-ui/core';
 
@@ -50,16 +49,22 @@ const PasswordRequestForm: FC<Props> = (props): JSX.Element => {
             onChange={handleIdForm}
           />
         </CardContent>
-        <CardActions>
+        <CardActions className={classes.cardActions}>
+          <Button
+            className={classes.button}
+            onClick={() => { auth.setUser({ ...auth.user, postedId: true }); }}
+          >
+            パスワードを入力する
+          </Button>
           <Button
             variant="contained"
             size="small"
             color="secondary"
-            className={classes.loginBtn}
+            className={classes.button}
             onClick={() => { setIsEnablePopUpWindow(true); }}
             disabled={!isEnableSendButton}
           >
-            メール送信
+            パスワードを発行する
           </Button>
           <Dialog
             open={isEnablePopUpWindow}
@@ -84,9 +89,6 @@ const PasswordRequestForm: FC<Props> = (props): JSX.Element => {
               </Button>
             </DialogActions>
           </Dialog>
-          <Link onClick={() => { auth.setUser({ ...auth.user, postedId: true }); }}>
-            既にパスワードを持っている方
-          </Link>
         </CardActions>
       </Card>
     </form>
