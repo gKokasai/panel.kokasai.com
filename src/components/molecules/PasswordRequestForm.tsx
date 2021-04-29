@@ -20,14 +20,14 @@ import {
 import { useAuth } from '../../contexts/UserContext';
 
 type Props = {
-  handleIdForm: any;
+  handleIdForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
   isEnableSendButton: boolean;
 }
 const PasswordRequestForm: FC<Props> = (props): JSX.Element => {
   const auth = useAuth();
   const { handleIdForm, isEnableSendButton } = props;
   const [isEnablePopUpWindow, setIsEnablePopUpWindow] = useState(false);
-  const handleIdFormSubmit = (event: any): void => {
+  const handleIdFormSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     setIsEnablePopUpWindow(true);
   };

@@ -12,9 +12,9 @@ import {
 import { useAuth } from '../../contexts/UserContext';
 
 type Props = {
-  handleLoginFormSubmit: any;
-  handleIdForm: any;
-  handlePassWordForm: any;
+  handleLoginFormSubmit: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  handleIdForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handlePassWordForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
   defaultId?: string;
 }
 const LoginForm: FC<Props> = (props): JSX.Element => {
