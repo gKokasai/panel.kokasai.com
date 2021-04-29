@@ -34,7 +34,7 @@ const Login: FC = () => {
     auth.setUser({ ...auth.user, inputPassWord: event.target.value, postedId: true });
   };
 
-  const handleLoginFormSubmit = (event: any): void => {
+  const handleLoginFormSubmit = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
     auth.setUser(
       {
@@ -85,9 +85,9 @@ const Login: FC = () => {
   }
   return (
     <LoginForm
+      handleLoginFormSubmit={handleLoginFormSubmit}
       handleIdForm={handleIdForm}
       handlePassWordForm={handlePassWordForm}
-      handleLoginFormSubmit={handleLoginFormSubmit}
       defaultId={auth.user.inputId}
     />
   );
