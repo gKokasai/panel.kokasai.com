@@ -39,7 +39,7 @@ const PasswordRequestForm: FC<Props> = (props): JSX.Element => {
   return (
     <form className={classes.container} noValidate autoComplete="off" onSubmit={handleIdFormSubmit}>
       <Card className={classes.card}>
-        <CardHeader className="classes.header" title="Login" />
+        <CardHeader className={classes.header} title="Login" />
         <CardContent>
           <TextField
             fullWidth
