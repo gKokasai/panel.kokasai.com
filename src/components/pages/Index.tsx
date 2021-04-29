@@ -2,7 +2,7 @@ import React /* { useEffect } */　from 'react';
 /* import { useAuth } from '../../contexts/UserContext';
 import * as api from '../../api'; */
 
-const Account = (): JSX.Element =>
+const Index = (): JSX.Element =>
 /*  const auth = useAuth();
   useEffect(
     () => {
@@ -29,4 +29,4 @@ const Account = (): JSX.Element =>
     </div>
 */
   );
-export default Account;
+export default Index;

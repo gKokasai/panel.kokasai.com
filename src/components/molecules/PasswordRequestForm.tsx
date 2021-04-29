@@ -23,7 +23,7 @@ type Props = {
   handleIdForm: any;
   isEnableSendButton: boolean;
 }
-const IdForm: FC<Props> = (props): JSX.Element => {
+const PasswordRequestForm: FC<Props> = (props): JSX.Element => {
   const auth = useAuth();
   const { handleIdForm, isEnableSendButton } = props;
   const [isEnablePopUpWindow, setIsEnablePopUpWindow] = useState(false);
@@ -117,4 +117,4 @@ const IdForm: FC<Props> = (props): JSX.Element => {
   );
 };
 
-export default IdForm;
+export default PasswordRequestForm;
