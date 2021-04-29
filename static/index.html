@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Control Panel</title>
     <script>
-      (function(){
+      (() => {
         const query = window.location.search;
         if (query.startsWith('?p=')) {
           const route = decodeURIComponent(query.substr(3));
