@@ -6,7 +6,6 @@ import {
   CardContent,
   CardHeader,
   TextField,
-  Link,
 } from '@material-ui/core';
 import { useAuth } from '../../contexts/UserContext';
 import LoginFormStyle from './LoginForm.style';
@@ -49,18 +48,22 @@ const LoginForm: FC<Props> = (props): JSX.Element => {
             />
           </div>
         </CardContent>
-        <CardActions>
+        <CardActions className={classes.cardActions}>
+          <Button
+            className={classes.button}
+            onClick={() => { auth.setUser({ ...auth.user, postedId: false }); }}
+          >
+            メール送信にもどる
+          </Button>
           <Button
             variant="contained"
             size="large"
             color="secondary"
-            className={classes.loginBtn}
+            className={classes.button}
             onClick={handleLoginFormSubmit}
           >
             ログイン
           </Button>
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <Link onClick={() => { auth.setUser({ ...auth.user, postedId: false }); }}>メール送信にもどる</Link>
         </CardActions>
       </Card>
     </form>
