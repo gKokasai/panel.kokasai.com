@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router, Switch, Route, Redirect, RouteProps,
 } from 'react-router-dom';
 import Login from './pages/Login';
-import Account from './pages/Account';
+import Index from './pages/Index';
 import { AuthProvider, useAuth } from '../contexts/UserContext';
 import './App.scss';
 
@@ -32,7 +32,7 @@ const App = (): JSX.Element => (
         <div>
           <Switch>
             <UnAuthRoute exact path="/login" component={Login} />
-            <PrivateRoute exact path="/" component={Account} />
+            <PrivateRoute exact path="/" component={Index} />
           </Switch>
         </div>
       </Router>
