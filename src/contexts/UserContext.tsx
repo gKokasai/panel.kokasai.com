@@ -23,7 +23,7 @@ type Props = {
   children: ReactNode;
 }
 
-function createCtx<ContextType>() {
+const createCtx = <ContextType extends any>() => {
   const ctx = React.createContext<ContextType | undefined>(undefined);
   const useCtx = () => {
     const c = React.useContext(ctx);
@@ -31,7 +31,7 @@ function createCtx<ContextType>() {
     return c;
   };
   return [useCtx, ctx.Provider] as const;
-}
+};
 
 const [useAuth, SetAuthProvider] = createCtx<authContextType>();
 
