@@ -5,7 +5,6 @@ import {
 import Login from './pages/Login';
 import Index from './pages/Index';
 import { AuthProvider, useAuth } from '../contexts/UserContext';
-import './App.scss';
 
 const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
   const auth = useAuth();

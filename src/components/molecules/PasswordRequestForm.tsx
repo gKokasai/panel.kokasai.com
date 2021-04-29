@@ -5,19 +5,17 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  createStyles,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
   Link,
-  makeStyles,
   TextField,
-  Theme,
 } from '@material-ui/core';
 
 import { useAuth } from '../../contexts/UserContext';
+import LoginFormStyle from './LoginForm.style';
 
 type Props = {
   handleIdForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -35,30 +33,8 @@ const PasswordRequestForm: FC<Props> = (props): JSX.Element => {
   const handleDialogSubmit = () => {
     auth.getToken();
   };
-  const useStyles = makeStyles((theme: Theme) => createStyles({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      width: 400,
-      margin: `${theme.spacing(0)} auto`,
-    },
-    loginBtn: {
-      marginTop: theme.spacing(2),
-      flexGrow: 1,
-    },
-    header: {
-      textAlign: 'center',
-      background: '#212121',
-      color: '#fff',
-    },
-    card: {
-      textAlign: 'center',
-      marginTop: theme.spacing(20),
-      marginLeft: theme.spacing(2),
-    },
-  }));
 
-  const classes = useStyles();
+  const classes = LoginFormStyle();
 
   return (
     <form className={classes.container} noValidate autoComplete="off" onSubmit={handleIdFormSubmit}>
