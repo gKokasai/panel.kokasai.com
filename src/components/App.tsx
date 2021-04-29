@@ -4,7 +4,9 @@ import {
 } from 'react-router-dom';
 import Login from './pages/Login';
 import Index from './pages/Index';
+import Document from './pages/Document';
 import { AuthProvider, useAuth } from '../contexts/UserContext';
+import { Pages } from '../pages';
 
 const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
   const auth = useAuth();
@@ -31,7 +33,8 @@ const App = (): JSX.Element => (
         <div>
           <Switch>
             <UnAuthRoute exact path="/login" component={Login} />
-            <PrivateRoute exact path="/" component={Index} />
+            <PrivateRoute exact path={Pages.index.href} component={Index} />
+            <PrivateRoute exact path={Pages.document.href} component={Document} />
           </Switch>
         </div>
       </Router>
