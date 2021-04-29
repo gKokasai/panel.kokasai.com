@@ -5,7 +5,7 @@ import {
 import { Redirect } from 'react-router-dom';
 import * as api from '../../api';
 import { useAuth } from '../../contexts/UserContext';
-import IdForm from '../molecules/IdForm';
+import PasswordRequestForm from '../molecules/PasswordRequestForm';
 import LoginForm from '../molecules/LoginForm';
 
 const Login: FC = () => {
@@ -73,14 +73,14 @@ const Login: FC = () => {
     );
   } if (auth.user?.postedId === undefined || auth.user?.postedId === false) {
     return (
-      <IdForm
+      <PasswordRequestForm
         handleIdForm={handleIdForm}
         isEnableSendButton={isEnableSendButton}
       />
     );
   } if (auth.user?.isLoggedIn) {
     return (
-      <Redirect to="/Account" />
+      <Redirect to="/Index" />
     );
   }
   return (
