@@ -4,12 +4,12 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardHeader, createStyles,
-  makeStyles,
-  TextField, Theme,
+  CardHeader,
+  TextField,
   Link,
 } from '@material-ui/core';
 import { useAuth } from '../../contexts/UserContext';
+import LoginFormStyle from './LoginForm.style';
 
 type Props = {
   handleLoginFormSubmit: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -22,28 +22,8 @@ const LoginForm: FC<Props> = (props): JSX.Element => {
   const {
     handleLoginFormSubmit, handleIdForm, handlePassWordForm, defaultId,
   } = props;
-  const useStyles = makeStyles((theme: Theme) => createStyles({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      width: 400,
-      margin: `${theme.spacing(0)} auto`,
-    },
-    loginBtn: {
-      marginTop: theme.spacing(2),
-      flexGrow: 1,
-    },
-    header: {
-      textAlign: 'center',
-      background: '#212121',
-      color: '#fff',
-    },
-    card: {
-      marginTop: theme.spacing(10),
-    },
-  }));
 
-  const classes = useStyles();
+  const classes = LoginFormStyle();
 
   return (
     <form className={classes.container} noValidate autoComplete="off">
