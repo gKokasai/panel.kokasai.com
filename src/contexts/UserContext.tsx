@@ -24,7 +24,7 @@ type Props = {
   children: ReactNode;
 }
 
-const createCtx = <ContextType extends any>() => {
+const createCtx = <ContextType extends unknown>() => {
   const ctx = React.createContext<ContextType | undefined>(undefined);
   const useCtx = () => {
     const c = React.useContext(ctx);
@@ -40,36 +40,32 @@ const useAuthCtx = (): authContextType => {
   const [user, setUser] = useState<User | null>(null);
 
   const getToken = () => {
-    const result = api.postLogin(user?.inputId)
+    api.postLogin(user?.inputId)
       .then(() => { setUser({ ...user, postedId: true }); })
       .catch(
         (err) => {
           setUser({ ...user, isLoading: false, statusCode: { login: err.response.status } });
         },
       );
-    console.log(result);
   };
 
   const login = () => {
     setUser({ ...user, isLoading: true });
-    const result = api.postAuth(user?.inputId, user?.inputPassWord)
+    api.postAuth(user?.inputId, user?.inputPassWord)
       .then((res) => {
         setUser({
           ...user, isLoading: false, isLoggedIn: true, statusCode: { login: res.status },
         });
-        console.log(res);
       })
       .catch((err) => {
         setUser({ ...user, isLoading: false, statusCode: { login: err.response.status } });
       });
-    console.log(result);
   };
 
   const logout = () => {
     setUser({ isLoading: true });
-    const result = api.postLogout()
+    api.postLogout()
       .then(() => { setUser({ ...user, isLoading: false, isLoggedIn: false }); });
-    console.log(result);
   };
 
   return {
