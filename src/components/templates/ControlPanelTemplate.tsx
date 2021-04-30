@@ -18,7 +18,7 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import * as icons from '@material-ui/icons';
-import Copyright from '../molecules/Copyright';
+import Copyright from '../organisms/Copyright';
 import { Page, Pages } from '../../pages';
 import ControlPanelTemplateStyle from './ControlPanelTemplate.style';
 import ControlPanelTemplateTheme from './ControlPanelTemplate.theme';

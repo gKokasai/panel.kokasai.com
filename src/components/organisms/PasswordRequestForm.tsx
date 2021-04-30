@@ -1,17 +1,16 @@
 import React, { FC, useState } from 'react';
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  TextField,
-} from '@material-ui/core';
+
+import Dialog from '../molecules/Dialog';
+import Card from '../molecules/Card';
+import CardActions from '../molecules/CardActions';
+import CardContent from '../molecules/CardContent';
+import Button from '../atoms/Button';
+import CardHeader from '../molecules/CardHeader';
+import DialogActions from '../molecules/DialogActions';
+import DialogContent from '../molecules/DialogContent';
+import DialogContentText from '../molecules/DialogContentText';
+import DialogTitle from '../molecules/DialogTitle';
+import TextField from '../atoms/TextField';
 
 import { useAuth } from '../../contexts/UserContext';
 import LoginFormStyle from './LoginForm.style';

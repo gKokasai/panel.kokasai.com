@@ -5,8 +5,8 @@ import {
 import { Redirect } from 'react-router-dom';
 import * as api from '../../api';
 import { useAuth } from '../../contexts/UserContext';
-import PasswordRequestForm from '../molecules/PasswordRequestForm';
-import LoginForm from '../molecules/LoginForm';
+import PasswordRequestForm from '../organisms/PasswordRequestForm';
+import LoginForm from '../organisms/LoginForm';
 
 const Login: FC = () => {
   const auth = useAuth();
