@@ -4,6 +4,7 @@ import * as api from '../api';
 type User = {
   inputId?: string;
   inputPassWord?: string;
+  isFailSessionLogin?: boolean;
   isLoggedIn?: boolean;
   isLoading?: boolean;
   postedId?: boolean;
@@ -56,7 +57,6 @@ const useAuthCtx = (): authContextType => {
         setUser({
           ...user, isLoading: false, isLoggedIn: true, statusCode: { login: res.status },
         });
-        document.cookie = `auth=${res.data.auth}`;
         console.log(res);
       })
       .catch((err) => {

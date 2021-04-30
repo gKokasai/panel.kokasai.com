@@ -49,23 +49,16 @@ const Login: FC = () => {
 
   useEffect(
     () => {
-      let isLoggedIn = auth.user?.isLoggedIn === true;
-      if (!isLoggedIn) {
-        const cookie = document.cookie.split('; ').find((line: string) => line.startsWith('auth='));
-        if (cookie) {
-          const checkSession = async () => {
-            const result = await api.getAuth(cookie);
-            if (result.status === 200) {
-              auth.setUser({ ...auth.user, isLoggedIn: true });
-              isLoggedIn = true;
-            } else if (result.status === 401) {
-              document.cookie = 'auth=; max-age=0';
-            }
-          };
-          checkSession();
-        }
+      if (!auth.user?.isLoggedIn && !auth.user?.isFailSessionLogin) {
+        api.getAuth().then((result) => {
+          if (result.status === 200) {
+            auth.setUser({ ...auth.user, isLoggedIn: true });
+          }
+        }).catch(() => {
+          auth.setUser({ ...auth.user, isFailSessionLogin: true })
+        });
       }
-    }, [],
+    },
   );
   if (auth.user?.isLoading === true) {
     return (
