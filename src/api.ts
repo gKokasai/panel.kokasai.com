@@ -8,9 +8,8 @@ export const URL = process.env.API_URL;
 /**
  * ログイン認証されているか取得する。
  * [GET /auth](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-auth)
- * @param cookie セッションのCookie
  */
-export const getAuth = (cookie: string): Promise<AxiosResponse<never>> => axios.get(`${URL}/auth`, { headers: { cookie } });
+export const getAuth = (): Promise<AxiosResponse<never>> => axios.get(`${URL}/auth`);
 
 /**
  * ログイン認証する。
