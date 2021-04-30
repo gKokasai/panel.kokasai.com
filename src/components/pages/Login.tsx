@@ -30,7 +30,6 @@ const Login: FC = () => {
     event: React.ChangeEvent<HTMLInputElement>,
   ): void => {
     event.preventDefault();
-    console.log(event.target.value);
     auth.setUser({ ...auth.user, inputPassWord: event.target.value, postedId: true });
   };
 
@@ -55,7 +54,7 @@ const Login: FC = () => {
             auth.setUser({ ...auth.user, isLoggedIn: true });
           }
         }).catch(() => {
-          auth.setUser({ ...auth.user, isFailSessionLogin: true })
+          auth.setUser({ ...auth.user, isFailSessionLogin: true });
         });
       }
     },
