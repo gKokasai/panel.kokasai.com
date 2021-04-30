@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  TextField,
-} from '@material-ui/core';
+
+import Button from '../atoms/Button';
+import Card from '../molecules/Card';
+import CardActions from '../molecules/CardActions';
+import CardContent from '../molecules/CardContent';
+import CardHeader from '../molecules/CardHeader';
+import TextField from '../atoms/TextField';
+
 import { useAuth } from '../../contexts/UserContext';
 import LoginFormStyle from './LoginForm.style';
 
