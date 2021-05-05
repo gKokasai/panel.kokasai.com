@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { ThemeProvider } from '@material-ui/styles';
 import {
@@ -28,12 +28,25 @@ type Props = {
   page: Page;
 };
 
+const OptionKey = 'option/panel';
+
+type Option = {
+  isOpenSideBar: boolean
+}
+
 const ControlPanelTemplate: React.FC<Props> = ({
   children,
   page,
 }) => {
   const classes = ControlPanelTemplateStyle();
-  const [open, setOpen] = useState(true);
+  const optionJson = localStorage.getItem(OptionKey);
+  const [option, setOption] = useState<Option>(
+    optionJson ? JSON.parse(optionJson) : {
+      isOpenSideBar: !navigator.userAgent.match(/iPhone|Android.+Mobile/), // is not mobile
+    },
+  );
+
+  useEffect(() => localStorage.setItem(OptionKey, JSON.stringify(option)), [option]);
 
   return (
     <ThemeProvider theme={ControlPanelTemplateTheme}>
@@ -41,17 +54,17 @@ const ControlPanelTemplate: React.FC<Props> = ({
         <CssBaseline />
         <AppBar
           position="absolute"
-          className={clsx(classes.appBar, open && classes.appBarShift)}
+          className={clsx(classes.appBar, option.isOpenSideBar && classes.appBarShift)}
         >
           <Toolbar className={classes.toolbar}>
             <IconButton
               edge="start"
               color="inherit"
               aria-label="open drawer"
-              onClick={() => setOpen(true)}
+              onClick={() => setOption({ ...option, isOpenSideBar: true })}
               className={clsx(
                 classes.menuButton,
-                open && classes.menuButtonHidden,
+                option.isOpenSideBar && classes.menuButtonHidden,
               )}
             >
               <icons.Menu />
@@ -70,12 +83,12 @@ const ControlPanelTemplate: React.FC<Props> = ({
         <Drawer
           variant="permanent"
           classes={{
-            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+            paper: clsx(classes.drawerPaper, !option.isOpenSideBar && classes.drawerPaperClose),
           }}
-          open={open}
+          open={option.isOpenSideBar}
         >
           <div className={classes.toolbarIcon}>
-            <IconButton onClick={() => setOpen(false)}>
+            <IconButton onClick={() => setOption({ ...option, isOpenSideBar: false })}>
               <icons.ChevronLeft />
             </IconButton>
           </div>
