@@ -31,20 +31,23 @@ type Props = {
 const OptionKey = 'option/panel';
 
 type Option = {
-  isOpenSideBar: boolean
+  isOpenSideBar?: boolean
 }
+
+const getLastOption = (): Option => {
+  const optionJson = localStorage.getItem(OptionKey);
+  const option: Option = optionJson ? JSON.parse(optionJson) : {};
+  const isMobile = navigator.userAgent.match(/iPhone|Android.+Mobile/);
+  if (option.isOpenSideBar === undefined) option.isOpenSideBar = !isMobile;
+  return option;
+};
 
 const ControlPanelTemplate: React.FC<Props> = ({
   children,
   page,
 }) => {
   const classes = ControlPanelTemplateStyle();
-  const optionJson = localStorage.getItem(OptionKey);
-  const [option, setOption] = useState<Option>(
-    optionJson ? JSON.parse(optionJson) : {
-      isOpenSideBar: !navigator.userAgent.match(/iPhone|Android.+Mobile/), // is not mobile
-    },
-  );
+  const [option, setOption] = useState<Option>(getLastOption());
 
   useEffect(() => localStorage.setItem(OptionKey, JSON.stringify(option)), [option]);
 
