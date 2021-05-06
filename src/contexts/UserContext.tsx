@@ -40,8 +40,9 @@ const useAuthCtx = (): authContextType => {
   const [user, setUser] = useState<User | null>(null);
 
   const getToken = () => {
+    setUser({ ...user, isLoading: true });
     api.postLogin(user?.inputId)
-      .then(() => { setUser({ ...user, postedId: true }); })
+      .then(() => { setUser({ ...user, postedId: true, isLoading: false }); })
       .catch(
         (err) => {
           setUser({ ...user, isLoading: false, statusCode: { login: err.response.status } });
