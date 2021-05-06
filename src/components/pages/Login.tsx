@@ -1,12 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
-import {
-  CircularProgress,
-} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import * as api from '../../api';
 import { useAuth } from '../../contexts/UserContext';
 import PasswordRequestForm from '../organisms/PasswordRequestForm';
 import LoginForm from '../organisms/LoginForm';
+import Loading from '../organisms/Loading';
 
 const Login: FC = () => {
   const auth = useAuth();
@@ -61,7 +59,7 @@ const Login: FC = () => {
   );
   if (auth.user?.isLoading === true) {
     return (
-      <CircularProgress />
+      <Loading />
     );
   } if (auth.user?.postedId === undefined || auth.user?.postedId === false) {
     return (
