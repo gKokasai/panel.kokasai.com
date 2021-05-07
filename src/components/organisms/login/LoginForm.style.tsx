@@ -39,7 +39,7 @@ const LoginFormStyle = makeStyles((theme: Theme) => createStyles({
     width: '50px',
     height: '50px',
 
-  }
+  },
 }));
 
 export default LoginFormStyle;
