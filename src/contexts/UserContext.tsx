@@ -83,4 +83,14 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
   );
 };
 
-export { useAuth, AuthProvider };
+const checkSession = (auth: authContextType): void => {
+  api.getAuth().then((result) => {
+    if (result.status === 200) {
+      auth.setUser({ ...auth.user, isLoggedIn: true });
+    }
+  }).catch(() => {
+    auth.setUser({ ...auth.user, isFailSessionLogin: true });
+  });
+};
+
+export { useAuth, AuthProvider, checkSession };
