@@ -5,11 +5,16 @@ import {
 import Login from './pages/Login';
 import Index from './pages/Index';
 import Document from './pages/Document';
-import { AuthProvider, useAuth } from '../contexts/UserContext';
+import { AuthProvider, checkSession, useAuth } from '../contexts/UserContext';
 import { Pages } from '../pages';
+import Empty from './pages/Empty';
 
 const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
   const auth = useAuth();
+  if (!auth.user?.isLoggedIn && !auth.user?.isFailSessionLogin) {
+    checkSession(auth);
+    return <Empty />;
+  }
   if (auth.user?.isLoggedIn) {
     // eslint-disable-next-line react/jsx-props-no-spreading
     return <Route {...props} />;
