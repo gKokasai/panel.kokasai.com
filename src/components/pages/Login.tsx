@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { checkSession, useAuth } from '../../contexts/UserContext';
-import PasswordRequestForm from '../organisms/PasswordRequestForm';
-import LoginForm from '../organisms/LoginForm';
-import Loading from '../organisms/Loading';
+import PasswordRequestForm from '../organisms/login/PasswordRequestForm';
+import LoginForm from '../organisms/login/LoginForm';
+import Loading from '../organisms/login/Loading';
 
 const Login: FC = () => {
   const auth = useAuth();
