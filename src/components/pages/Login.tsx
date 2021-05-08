@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import * as api from '../../api';
-import { useAuth } from '../../contexts/UserContext';
+import { checkSession, useAuth } from '../../contexts/UserContext';
 import PasswordRequestForm from '../organisms/login/PasswordRequestForm';
 import LoginForm from '../organisms/login/LoginForm';
 import Loading from '../organisms/login/Loading';
@@ -47,13 +46,7 @@ const Login: FC = () => {
   useEffect(
     () => {
       if (!auth.user?.isLoggedIn && !auth.user?.isFailSessionLogin) {
-        api.getAuth().then((result) => {
-          if (result.status === 200) {
-            auth.setUser({ ...auth.user, isLoggedIn: true });
-          }
-        }).catch(() => {
-          auth.setUser({ ...auth.user, isFailSessionLogin: true });
-        });
+        checkSession(auth);
       }
     },
   );
