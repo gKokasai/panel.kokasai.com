@@ -26,7 +26,7 @@ type Props = {
 
 const ShowEmptyPanelKey = 'show-empty-panel';
 
-export const isShowEmptyPanel = (): boolean => localStorage.getItem(ShowEmptyPanelKey) != null
+export const isShowEmptyPanel = (): boolean => localStorage.getItem(ShowEmptyPanelKey) != null;
 
 const createCtx = <ContextType extends unknown>() => {
   const ctx = React.createContext<ContextType | undefined>(undefined);
@@ -92,9 +92,11 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
 const checkSession = (auth: authContextType): void => {
   api.getAuth().then((result) => {
     if (result.status === 200) {
+      localStorage.setItem(ShowEmptyPanelKey, '');
       auth.setUser({ ...auth.user, isLoggedIn: true });
     }
   }).catch(() => {
+    localStorage.removeItem(ShowEmptyPanelKey);
     auth.setUser({ ...auth.user, isFailSessionLogin: true });
   });
 };
