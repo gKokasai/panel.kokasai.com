@@ -24,6 +24,10 @@ type Props = {
   children: ReactNode;
 }
 
+const ShowEmptyPanelKey = 'show-empty-panel';
+
+export const isShowEmptyPanel = (): boolean => localStorage.getItem(ShowEmptyPanelKey) != null
+
 const createCtx = <ContextType extends unknown>() => {
   const ctx = React.createContext<ContextType | undefined>(undefined);
   const useCtx = () => {
@@ -54,11 +58,13 @@ const useAuthCtx = (): authContextType => {
     setUser({ ...user, isLoading: true });
     api.postAuth(user?.inputId, user?.inputPassWord)
       .then((res) => {
+        localStorage.setItem(ShowEmptyPanelKey, '');
         setUser({
           ...user, isLoading: false, isLoggedIn: true, statusCode: { login: res.status },
         });
       })
       .catch((err) => {
+        localStorage.removeItem(ShowEmptyPanelKey);
         setUser({ ...user, isLoading: false, statusCode: { login: err.response.status } });
       });
   };
