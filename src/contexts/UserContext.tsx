@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import * as api from '../api';
+import * as api from '../api/api';
 
 type User = {
   inputId?: string;
