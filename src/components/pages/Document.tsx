@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { useAuth } from '../../contexts/UserContext';
 import ControlPanelTemplate from '../templates/ControlPanelTemplate';
-import { getUserDocumentList } from '../../api';
+import { getUserDocumentList } from '../../api/api';
 import { Pages } from '../../pages';
 import DocumentList from '../organisms/document/DocumentList';
 

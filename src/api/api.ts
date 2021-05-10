@@ -1,5 +1,6 @@
 import { Base64 } from 'js-base64';
 import axios, { AxiosResponse } from 'axios';
+import { FormDefineType, FormSaveType, FormSaveValue } from './dataType';
 
 axios.defaults.withCredentials = true;
 
@@ -17,9 +18,7 @@ export const getAuth = (): Promise<AxiosResponse<never>> => axios.get(`${URL}/au
  * @param id 学籍番号
  * @param pass パスワード
  */
-export const postAuth = (id?: string, pass?: string): Promise<AxiosResponse<{
-  auth: string
-}>> => {
+export const postAuth = (id?: string, pass?: string): Promise<AxiosResponse> => {
   const header:{
         [key: string]: string | boolean ;
     } = {
@@ -55,6 +54,11 @@ export const getFile = (path: string): Promise<AxiosResponse> => axios.get(`${UR
  * @param documentName 取得するドキュメントの名前
  */
 export const getDocument = (documentName: string): Promise<AxiosResponse> => axios.get(`${URL}/document/${documentName}`);
+
+/** すべてのドキュメントファイルの一覧を取得する
+ * [GET /document](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-document)
+ */
+export const getAllDocument = (): Promise<AxiosResponse<{document: string[]}>> => axios.get(`${URL}/document`);
 
 /**
  * グループに紐づけられているドキュメントファイル一覧を取得する。
@@ -111,3 +115,44 @@ export const getUserDocumentList = (): Promise<AxiosResponse<{
 export const getUserGroupList = (): Promise<AxiosResponse<{
   group: string[]
 }>> => axios.get(`${URL}/user/group/list`);
+
+/**
+ * 指定グループのフォーム一覧を取得する
+ * [GET /group/form/list/](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-groupformlistname)
+ */
+export const getGroupFormList = (): Promise<AxiosResponse<{
+  form: string[]
+}>> => axios.get(`${URL}/group/form/list`);
+
+/**
+ * 指定グループのフォームの内容を取得する
+ * [GET /group/form/get/](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-groupformgetgroupnameformname)
+ * @param groupName 取得するグループの名前
+ * @param formName 取得するフォームの名前
+ */
+export const getGroupForm = (groupName: string, formName: string): Promise<AxiosResponse<{
+  name: string,
+  description: string,
+  receive: string,
+  limit: string,
+  update: string,
+  values: {
+    [id: string]: {
+      name: string,
+      description: string,
+      type: FormDefineType,
+      value?: FormSaveValue,
+    }
+  },
+  status: number,
+  comment: string,
+
+}>> => axios.get(`${URL}/group/form/get/${groupName}/${formName}`);
+
+/** 指定グループのフォーム送信を行う
+ * [POST /group/form/submit/](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#post-groupformsubmitgroupnameformname)
+ * @param groupName 送信するフォームのグループの名前
+ * @param formName 送信するフォームの名前
+ * @param values フォームの値一覧
+ */
+export const postGroupFormSubmit = (groupName: string, formName: string, values: {[id: number]: FormSaveType}): Promise<AxiosResponse<string>> => axios.post(`${URL}/group/form/submit/${groupName}/${formName}`, { values });
