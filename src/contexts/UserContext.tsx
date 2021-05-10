@@ -97,6 +97,7 @@ const checkSession = (auth: authContextType): void => {
     }
   }).catch(() => {
     localStorage.removeItem(ShowEmptyPanelKey);
+
     auth.setUser({ ...auth.user, isFailSessionLogin: true });
   });
 };

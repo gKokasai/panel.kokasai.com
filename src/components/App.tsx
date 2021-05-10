@@ -12,13 +12,14 @@ import { Pages } from '../pages';
 import Empty from './pages/Empty';
 import Loading from './organisms/login/Loading';
 
+
 const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
   const auth = useAuth();
   if (!auth.user?.isLoggedIn && !auth.user?.isFailSessionLogin) {
     checkSession(auth);
     if (isShowEmptyPanel()) return <Empty />;
     return <Loading />;
-  }
+ }
   if (auth.user?.isLoggedIn) {
     // eslint-disable-next-line react/jsx-props-no-spreading
     return <Route {...props} />;
