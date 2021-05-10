@@ -9,7 +9,7 @@ type User = {
   isLoading?: boolean;
   postedId?: boolean;
   statusCode?: { [key: string]: number };
-  documentList?: [string];
+  documentList?: string[];
 }
 
 type authContextType = {
