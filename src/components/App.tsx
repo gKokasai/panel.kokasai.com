@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import Index from './pages/Index';
 import Document from './pages/Document';
 import {
-  AuthProvider, checkSession, isShowEmptyPanel, useAuth
+  AuthProvider, checkSession, isShowEmptyPanel, useAuth,
 } from '../contexts/UserContext';
 import { Pages } from '../pages';
 import Empty from './pages/Empty';
