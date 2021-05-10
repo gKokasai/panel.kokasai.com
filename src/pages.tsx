@@ -16,6 +16,7 @@ const page = (
 export const Pages = {
   index: page('/', 'トップ', <icons.Home />),
   document: page('/document', '資料', <icons.LibraryBooks />),
+  group: page('/group', 'グループ', <icons.Group />),
 };
 
 export const EmptyPage = page('', '', <></>);

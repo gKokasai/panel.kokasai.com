@@ -10,6 +10,7 @@ type User = {
   postedId?: boolean;
   statusCode?: { [key: string]: number };
   documentList?: string[];
+  groupList?: string[];
 }
 
 type authContextType = {

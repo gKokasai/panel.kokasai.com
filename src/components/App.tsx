@@ -11,6 +11,7 @@ import {
 import { Pages } from '../pages';
 import Empty from './pages/Empty';
 import Loading from './organisms/login/Loading';
+import Group from './pages/Group';
 
 const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
   const auth = useAuth();
@@ -44,6 +45,7 @@ const App = (): JSX.Element => (
             <UnAuthRoute exact path="/login" component={Login} />
             <PrivateRoute exact path={Pages.index.href} component={Index} />
             <PrivateRoute exact path={Pages.document.href} component={Document} />
+            <PrivateRoute exact path={Pages.group.href} component={Group} />
           </Switch>
         </div>
       </Router>

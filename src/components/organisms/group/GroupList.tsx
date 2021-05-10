@@ -1,29 +1,29 @@
 import React from 'react';
 import { ListItem } from '@material-ui/core';
-import { Description } from '@material-ui/icons';
+import { PeopleOutline } from '@material-ui/icons';
 import { useAuth } from '../../../contexts/UserContext';
-import List from '../../molecules/List';
+import Typography from '../../atoms/Typography';
 import Link from '../../atoms/Link';
 import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
+import List from '../../molecules/List';
 import ListStyle from '../common/List.style';
-import Typography from '../../atoms/Typography';
 
-const DocumentList = (): JSX.Element => {
+const GroupList = (): JSX.Element => {
   const auth = useAuth();
   const classes = ListStyle();
   return (
     <List className={classes.list}>
       <Typography variant="h6">
-        資料一覧
+        グループ一覧
       </Typography>
       {
-        auth.user?.documentList?.map(
+        auth.user?.groupList?.map(
           (elem) => (
-            <Link href={`https://api.kokasai.com/document/${elem}`}>
+            <Link href="https://kokasai.com">
               <ListItem className={classes.listItem}>
                 <ListItemIcon>
-                  <Description />
+                  <PeopleOutline />
                 </ListItemIcon>
                 <ListItemText>
                   {elem}
@@ -36,4 +36,5 @@ const DocumentList = (): JSX.Element => {
     </List>
   );
 };
-export default DocumentList;
+
+export default GroupList;
