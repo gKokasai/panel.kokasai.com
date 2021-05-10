@@ -1,6 +1,6 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
 
-const DocumentListStyle = makeStyles((theme: Theme) => createStyles({
+const ListStyle = makeStyles((theme: Theme) => createStyles({
   list: {
     backgroundColor: theme.palette.background.paper,
   },
@@ -11,4 +11,4 @@ const DocumentListStyle = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-export default DocumentListStyle;
+export default ListStyle;
