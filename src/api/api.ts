@@ -121,7 +121,13 @@ export const getUserGroupList = (): Promise<AxiosResponse<{
  * [GET /group/form/list/](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-groupformlistname)
  */
 export const getGroupFormList = (): Promise<AxiosResponse<{
-  form: string[]
+  form: {
+    [id: string]: {
+      name: string,
+      update: string,
+      status: number,
+    }
+  }
 }>> => axios.get(`${URL}/group/form/list`);
 
 /**
