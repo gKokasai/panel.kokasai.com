@@ -64,6 +64,24 @@ export const getDocument = (
 ): Promise<AxiosResponse> => axios.get(`${URL}/document/${documentName}`);
 
 /**
+ * ドキュメントファイルを変更する。
+ * [POST /document](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#post-documentname)
+ * @param documentName 変更するドキュメントの名前
+ * @param document 変更するドキュメントの内容
+ */
+export const postDocument = (
+  documentName: string,
+  document: File,
+): Promise<AxiosResponse<never>> => {
+  const formData = new FormData();
+  formData.append('file', document);
+  const headers = {
+    'content-type': 'multipart/form-data',
+  };
+  return axios.post(`${URL}/document/${documentName}`, formData, { headers });
+};
+
+/**
  * グループに紐づけられているドキュメントファイル一覧を取得する。
  * [GET /group/document/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-groupdocumentlistname)
  * @param groupName 取得するグループの名前
