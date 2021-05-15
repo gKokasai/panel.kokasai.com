@@ -20,7 +20,6 @@ const Group = (): JSX.Element => {
         .then()
         .catch();
     },
-    [],
   );
   return (
     <ControlPanelTemplate page={Pages.group}>
