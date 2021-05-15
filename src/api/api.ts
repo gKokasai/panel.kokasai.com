@@ -18,14 +18,16 @@ export const getAuth = (): Promise<AxiosResponse<never>> => axios.get(`${URL}/au
  * @param id 学籍番号
  * @param pass パスワード
  */
-export const postAuth = (id?: string, pass?: string): Promise<AxiosResponse> => {
-  const header:{
-        [key: string]: string | boolean ;
-    } = {
-      Authorization: `Basic ${Base64.encode(`${id}:${pass}`)}`,
-    };
-
-  return axios.post(`${URL}/auth`, null, { headers: header });
+export const postAuth = (
+  id?: string,
+  pass?: string,
+): Promise<AxiosResponse> => {
+  const headers: {
+    [key: string]: string | boolean ;
+  } = {
+    Authorization: `Basic ${Base64.encode(`${id}:${pass}`)}`,
+  };
+  return axios.post(`${URL}/auth`, null, { headers });
 };
 
 /**
@@ -33,7 +35,9 @@ export const postAuth = (id?: string, pass?: string): Promise<AxiosResponse> => 
  * [POST /login](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#post-login)
  * @param id ログインする学籍番号
  */
-export const postLogin = (id?: string): Promise<AxiosResponse<never>> => axios.post(`${URL}/login`, { id });
+export const postLogin = (
+  id?: string,
+): Promise<AxiosResponse<never>> => axios.post(`${URL}/login`, { id });
 
 /**
  * ログアウトする。
@@ -46,21 +50,27 @@ export const postLogout = (): Promise<AxiosResponse<never>> => axios.post(`${URL
  * [GET /file](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-filepath)
  * @param path 取得するファイルのパス
  */
-export const getFile = (path: string): Promise<AxiosResponse> => axios.get(`${URL}/file/${path}`);
+export const getFile = (
+  path: string,
+): Promise<AxiosResponse> => axios.get(`${URL}/file/${path}`);
 
 /**
  * ドキュメントファイルを取得する。
  * [GET /document](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-documentname)
  * @param documentName 取得するドキュメントの名前
  */
-export const getDocument = (documentName: string): Promise<AxiosResponse> => axios.get(`${URL}/document/${documentName}`);
+export const getDocument = (
+  documentName: string,
+): Promise<AxiosResponse> => axios.get(`${URL}/document/${documentName}`);
 
 /**
  * グループに紐づけられているドキュメントファイル一覧を取得する。
  * [GET /group/document/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-groupdocumentlistname)
  * @param groupName 取得するグループの名前
  */
-export const getGroupDocumentList = (groupName: string): Promise<AxiosResponse<{
+export const getGroupDocumentList = (
+  groupName: string,
+): Promise<AxiosResponse<{
   document: string[]
 }>> => axios.get(`${URL}/group/document/list/${groupName}`);
 
@@ -70,16 +80,21 @@ export const getGroupDocumentList = (groupName: string): Promise<AxiosResponse<{
  * @param groupName 変更するグループの名前
  * @param list 変更後の一覧
  */
-export const postGroupDocumentList = (groupName: string, list: {
-  document: string[]
-}): Promise<AxiosResponse<never>> => axios.post(`${URL}/group/document/list/${groupName}`, list);
+export const postGroupDocumentList = (
+  groupName: string,
+  list: {
+    document: string[]
+  },
+): Promise<AxiosResponse<never>> => axios.post(`${URL}/group/document/list/${groupName}`, list);
 
 /**
  * グループに属するユーザー一覧を取得する。
  * [GET /group/user/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-groupuserlistname)
  * @param groupName 取得するグループの名前
  */
-export const getGroupUserList = (groupName: string): Promise<AxiosResponse<{
+export const getGroupUserList = (
+  groupName: string,
+): Promise<AxiosResponse<{
   owner: string[],
   member: string[]
 }>> => axios.get(`${URL}/group/user/list/${groupName}`);
@@ -90,10 +105,13 @@ export const getGroupUserList = (groupName: string): Promise<AxiosResponse<{
  * @param groupName 変更するグループの名前
  * @param list 変更後の一覧
  */
-export const postGroupUserList = (groupName: string, list: {
-  owner: string[],
-  member: string[]
-}): Promise<AxiosResponse<never>> => axios.post(`${URL}/group/user/list/${groupName}`, list);
+export const postGroupUserList = (
+  groupName: string,
+  list: {
+    owner: string[],
+    member: string[]
+  },
+): Promise<AxiosResponse<never>> => axios.post(`${URL}/group/user/list/${groupName}`, list);
 
 /**
  * ユーザーがアクセスできるドキュメントファイルの一覧を取得する。
@@ -131,7 +149,10 @@ export const getGroupFormList = (): Promise<AxiosResponse<{
  * @param groupName 取得するグループの名前
  * @param formName 取得するフォームの名前
  */
-export const getGroupForm = (groupName: string, formName: string): Promise<AxiosResponse<{
+export const getGroupForm = (
+  groupName: string,
+  formName: string,
+): Promise<AxiosResponse<{
   name: string,
   description: string,
   receive: string,
@@ -147,7 +168,6 @@ export const getGroupForm = (groupName: string, formName: string): Promise<Axios
   },
   status: number,
   comment: string,
-
 }>> => axios.get(`${URL}/group/form/get/${groupName}/${formName}`);
 
 /** 指定グループのフォーム送信を行う
@@ -156,4 +176,10 @@ export const getGroupForm = (groupName: string, formName: string): Promise<Axios
  * @param formName 送信するフォームの名前
  * @param values フォームの値一覧
  */
-export const postGroupFormSubmit = (groupName: string, formName: string, values: {[id: number]: FormSaveType}): Promise<AxiosResponse<string>> => axios.post(`${URL}/group/form/submit/${groupName}/${formName}`, { values });
+export const postGroupFormSubmit = (
+  groupName: string,
+  formName: string,
+  values: {
+    [id: number]: FormSaveType
+  },
+): Promise<AxiosResponse<string>> => axios.post(`${URL}/group/form/submit/${groupName}/${formName}`, { values });
