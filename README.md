@@ -24,19 +24,16 @@ yarn build:product # 本番環境
 yarn build:dev # テスト環境
 ```
 
-#### 依存関係の更新確認
-```shell
-npx -p npm-check-updates  -c "ncu"
-```
-
 #### 依存関係の更新
 ```shell
-npx -p npm-check-updates  -c "ncu -u"
+yarn pack:update:check # 確認のみ
+
+yarn pack:update:apply # 適用
 ```
 
 #### package.json の整理
 ```shell
-npx sort-package-json
+yarn pack:sort
 ```
 
 ### コミットについて
