@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useAuth } from '../../contexts/UserContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { getUserGroupList } from '../../api/api';
 import GroupList from '../organisms/group/GroupList';
 import ControlPanelTemplate from '../templates/ControlPanelTemplate';

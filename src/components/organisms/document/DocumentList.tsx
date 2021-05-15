@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListItem } from '@material-ui/core';
 import { Description } from '@material-ui/icons';
-import { useAuth } from '../../../contexts/UserContext';
+import { useAuth } from '../../../contexts/AuthContext';
 import List from '../../molecules/List';
 import Link from '../../atoms/Link';
 import ListItemIcon from '../../atoms/ListItemIcon';

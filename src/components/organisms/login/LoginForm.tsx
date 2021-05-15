@@ -7,7 +7,7 @@ import CardContent from '../../molecules/CardContent';
 import CardHeader from '../../molecules/CardHeader';
 import TextField from '../../atoms/TextField';
 
-import { useAuth } from '../../../contexts/UserContext';
+import { useAuth } from '../../../contexts/AuthContext';
 import LoginFormStyle from './LoginForm.style';
 
 type Props = {
@@ -51,7 +51,7 @@ const LoginForm: FC<Props> = (props): JSX.Element => {
         <CardActions className={classes.cardActions}>
           <Button
             className={classes.button}
-            onClick={() => { auth.setUser({ ...auth.user, postedId: false }); }}
+            onClick={() => { auth.setRequest({ ...auth.request, isRequestPassword: false }); }}
           >
             メール送信にもどる
           </Button>

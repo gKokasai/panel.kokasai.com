@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { useAuth } from '../../contexts/UserContext';
+import { useAuth } from '../../contexts/AuthContext';
 import ControlPanelTemplate from '../templates/ControlPanelTemplate';
 import { getUserDocumentList } from '../../api/api';
 import { Pages } from '../../pages';
