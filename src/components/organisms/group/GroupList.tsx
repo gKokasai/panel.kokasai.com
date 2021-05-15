@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListItem } from '@material-ui/core';
 import { PeopleOutline } from '@material-ui/icons';
-import { useAuth } from '../../../contexts/UserContext';
+import { useAuth } from '../../../contexts/AuthContext';
 import Typography from '../../atoms/Typography';
 import Link from '../../atoms/Link';
 import ListItemIcon from '../../atoms/ListItemIcon';

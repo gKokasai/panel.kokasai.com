@@ -12,7 +12,7 @@ import DialogContentText from '../../molecules/DialogContentText';
 import DialogTitle from '../../molecules/DialogTitle';
 import TextField from '../../atoms/TextField';
 
-import { useAuth } from '../../../contexts/UserContext';
+import { useAuth } from '../../../contexts/AuthContext';
 import LoginFormStyle from './LoginForm.style';
 
 type Props = {
@@ -29,7 +29,7 @@ const PasswordRequestForm: FC<Props> = (props): JSX.Element => {
   };
 
   const handleDialogSubmit = () => {
-    auth.getToken();
+    auth.postLogin();
   };
 
   const classes = LoginFormStyle();
@@ -51,7 +51,7 @@ const PasswordRequestForm: FC<Props> = (props): JSX.Element => {
         <CardActions className={classes.cardActions}>
           <Button
             className={classes.button}
-            onClick={() => { auth.setUser({ ...auth.user, postedId: true }); }}
+            onClick={() => { auth.setRequest({ ...auth.request, isRequestPassword: true }); }}
           >
             パスワードを入力する
           </Button>
@@ -75,7 +75,7 @@ const PasswordRequestForm: FC<Props> = (props): JSX.Element => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                {auth.user?.inputId}
+                {auth.request.inputId}
                 @gunma.kosen-ac.jp にメールを送信しますがよろしいですか？
               </DialogContentText>
             </DialogContent>
