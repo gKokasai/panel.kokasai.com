@@ -55,11 +55,6 @@ export const getFile = (path: string): Promise<AxiosResponse> => axios.get(`${UR
  */
 export const getDocument = (documentName: string): Promise<AxiosResponse> => axios.get(`${URL}/document/${documentName}`);
 
-/** すべてのドキュメントファイルの一覧を取得する
- * [GET /document](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-document)
- */
-export const getAllDocument = (): Promise<AxiosResponse<{document: string[]}>> => axios.get(`${URL}/document`);
-
 /**
  * グループに紐づけられているドキュメントファイル一覧を取得する。
  * [GET /group/document/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-groupdocumentlistname)
