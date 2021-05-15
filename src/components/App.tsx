@@ -7,7 +7,7 @@ import Index from './pages/Index';
 import Document from './pages/Document';
 import {
   AuthProvider, checkSession, isShowEmptyPanel, useAuth,
-} from '../contexts/UserContext';
+} from '../contexts/AuthContext';
 import { Pages } from '../pages';
 import Empty from './pages/Empty';
 import Loading from './organisms/login/Loading';
@@ -15,12 +15,12 @@ import Group from './pages/Group';
 
 const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
   const auth = useAuth();
-  if (!auth.user?.isLoggedIn && !auth.user?.isFailSessionLogin) {
+  if (!auth.user && !auth.request.isFailSessionLogin) {
     checkSession(auth);
     if (isShowEmptyPanel()) return <Empty />;
     return <Loading />;
   }
-  if (auth.user?.isLoggedIn) {
+  if (auth.user) {
     // eslint-disable-next-line react/jsx-props-no-spreading
     return <Route {...props} />;
   }
@@ -29,7 +29,7 @@ const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
 
 const UnAuthRoute: React.FC<RouteProps> = ({ ...props }) => {
   const auth = useAuth();
-  if (auth.user?.isLoggedIn) {
+  if (auth.user) {
     return <Redirect to="/" />;
   }
   // eslint-disable-next-line react/jsx-props-no-spreading
