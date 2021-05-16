@@ -19,14 +19,14 @@ const GroupList = (): JSX.Element => {
       </Typography>
       {
         auth.user?.groupList?.map(
-          (elem) => (
-            <Link href="https://kokasai.com">
+          (name) => (
+            <Link href="https://kokasai.com" key={name}>
               <ListItem className={classes.listItem}>
                 <ListItemIcon>
                   <PeopleOutline />
                 </ListItemIcon>
                 <ListItemText>
-                  {elem}
+                  {name}
                 </ListItemText>
               </ListItem>
             </Link>
