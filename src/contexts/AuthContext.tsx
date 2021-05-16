@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from 'react';
 import * as api from '../api/api';
 import { User } from './User';
 import { Request } from './Request';
-import { setSessionId, setShowEmptyPanel } from '../storage';
+import { setSessionId } from '../storage';
 import { getUserDocumentList, getUserGroupList } from '../api/api';
 
 type AuthContextType = {
@@ -64,14 +64,12 @@ const useAuthContext = (): AuthContextType => {
     setRequest({ ...request, isLoad: true });
     api.postAuth(request.inputId, request.inputPassWord)
       .then((response) => {
-        setShowEmptyPanel(true);
         setRequest({ ...request, isLoad: false });
         setUser({});
         reloadUser();
         setSessionId(response.headers.session);
       })
       .catch(() => {
-        setShowEmptyPanel(false);
         setRequest({ ...request, isLoad: false });
         setSessionId(null);
       });
@@ -104,12 +102,10 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
 const checkSession = (auth: AuthContextType): void => {
   api.getAuth().then((result) => {
     if (result.status === 200) {
-      setShowEmptyPanel(true);
       auth.setUser({});
       auth.reloadUser();
     }
   }).catch(() => {
-    setShowEmptyPanel(false);
     auth.setRequest({ ...auth.request, isFailSessionLogin: true });
   });
 };
