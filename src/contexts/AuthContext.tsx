@@ -67,8 +67,8 @@ const useAuthContext = (): AuthContextType => {
         setShowEmptyPanel(true);
         setRequest({ ...request, isLoad: false });
         setUser({});
-        reloadUser();
         setSessionId(response.headers.session);
+        reloadUser();
       })
       .catch(() => {
         setShowEmptyPanel(false);
