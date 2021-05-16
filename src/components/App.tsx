@@ -12,13 +12,13 @@ import { Pages } from '../pages';
 import Empty from './pages/Empty';
 import Loading from './organisms/login/Loading';
 import Group from './pages/Group';
-import { isShowEmptyPanel } from '../storage';
+import { getSessionId } from '../storage';
 
 const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
   const auth = useAuth();
   if (!auth.user && !auth.request.isFailSessionLogin) {
     checkSession(auth);
-    if (isShowEmptyPanel()) return <Empty />;
+    if (getSessionId() != null) return <Empty />;
     return <Loading />;
   }
   if (auth.user) {
