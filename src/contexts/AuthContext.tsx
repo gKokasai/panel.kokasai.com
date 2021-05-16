@@ -3,12 +3,14 @@ import * as api from '../api/api';
 import { User } from './User';
 import { Request } from './Request';
 import { setSessionId, setShowEmptyPanel } from '../storage';
+import { getUserDocumentList, getUserGroupList } from '../api/api';
 
 type AuthContextType = {
   request: Request;
   setRequest: React.Dispatch<React.SetStateAction<Request>>;
   user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  reloadUser: () => void;
   postLogin: () => void;
   postAuth: () => void;
   postLogout: () => void;
@@ -34,6 +36,23 @@ const useAuthContext = (): AuthContextType => {
   const [request, setRequest] = useState<Request>({});
   const [user, setUser] = useState<User | null>(null);
 
+  const reloadUser = () => {
+    Promise.all(
+      [
+        getUserDocumentList(),
+        getUserGroupList(),
+      ],
+    ).then(([
+      documentResponse,
+      groupResponse,
+    ]) => {
+      setUser({
+        documentList: documentResponse.data.document,
+        groupList: groupResponse.data.group,
+      });
+    });
+  };
+
   const postLogin = () => {
     setRequest({ ...request, isLoad: true });
     api.postLogin(request.inputId)
@@ -48,6 +67,7 @@ const useAuthContext = (): AuthContextType => {
         setShowEmptyPanel(true);
         setRequest({ ...request, isLoad: false });
         setUser({});
+        reloadUser();
         setSessionId(response.headers.session);
       })
       .catch(() => {
@@ -68,7 +88,7 @@ const useAuthContext = (): AuthContextType => {
   };
 
   return {
-    request, setRequest, user, setUser, postLogin, postAuth, postLogout,
+    request, setRequest, user, setUser, reloadUser, postLogin, postAuth, postLogout,
   };
 };
 
@@ -86,6 +106,7 @@ const checkSession = (auth: AuthContextType): void => {
     if (result.status === 200) {
       setShowEmptyPanel(true);
       auth.setUser({});
+      auth.reloadUser();
     }
   }).catch(() => {
     setShowEmptyPanel(false);
