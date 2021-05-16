@@ -2,6 +2,7 @@ import React, { ReactNode, useState } from 'react';
 import * as api from '../api/api';
 import { User } from './User';
 import { Request } from './Request';
+import { setSessionId, setShowEmptyPanel } from '../storage';
 
 type AuthContextType = {
   request: Request;
@@ -16,10 +17,6 @@ type AuthContextType = {
 type Props = {
   children: ReactNode;
 }
-
-const ShowEmptyPanelKey = 'show-empty-panel';
-
-export const isShowEmptyPanel = (): boolean => localStorage.getItem(ShowEmptyPanelKey) != null;
 
 const createContext = <ContextType extends unknown>() => {
   const context = React.createContext<ContextType | undefined>(undefined);
@@ -47,14 +44,16 @@ const useAuthContext = (): AuthContextType => {
   const postAuth = () => {
     setRequest({ ...request, isLoad: true });
     api.postAuth(request.inputId, request.inputPassWord)
-      .then(() => {
-        localStorage.setItem(ShowEmptyPanelKey, '');
+      .then((response) => {
+        setShowEmptyPanel(true);
         setRequest({ ...request, isLoad: false });
         setUser({});
+        setSessionId(response.headers.session);
       })
       .catch(() => {
-        localStorage.removeItem(ShowEmptyPanelKey);
+        setShowEmptyPanel(false);
         setRequest({ ...request, isLoad: false });
+        setSessionId(null);
       });
   };
 
@@ -64,6 +63,7 @@ const useAuthContext = (): AuthContextType => {
       .then(() => {
         setRequest({ ...request, isLoad: false });
         setUser(null);
+        setSessionId(null);
       });
   };
 
@@ -84,11 +84,11 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
 const checkSession = (auth: AuthContextType): void => {
   api.getAuth().then((result) => {
     if (result.status === 200) {
-      localStorage.setItem(ShowEmptyPanelKey, '');
+      setShowEmptyPanel(true);
       auth.setUser({});
     }
   }).catch(() => {
-    localStorage.removeItem(ShowEmptyPanelKey);
+    setShowEmptyPanel(false);
     auth.setRequest({ ...auth.request, isFailSessionLogin: true });
   });
 };
