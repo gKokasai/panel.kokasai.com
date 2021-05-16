@@ -6,12 +6,13 @@ import Login from './pages/Login';
 import Index from './pages/Index';
 import Document from './pages/Document';
 import {
-  AuthProvider, checkSession, isShowEmptyPanel, useAuth,
+  AuthProvider, checkSession, useAuth,
 } from '../contexts/AuthContext';
 import { Pages } from '../pages';
 import Empty from './pages/Empty';
 import Loading from './organisms/login/Loading';
 import Group from './pages/Group';
+import { isShowEmptyPanel } from '../storage';
 
 const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
   const auth = useAuth();
