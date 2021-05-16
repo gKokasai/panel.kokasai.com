@@ -19,14 +19,14 @@ const DocumentList = (): JSX.Element => {
       </Typography>
       {
         auth.user?.documentList?.map(
-          (elem) => (
-            <Link href={`https://api.kokasai.com/document/${elem}`}>
+          (name) => (
+            <Link href={`https://api.kokasai.com/document/${name}`} key={name}>
               <ListItem className={classes.listItem}>
                 <ListItemIcon>
                   <Description />
                 </ListItemIcon>
                 <ListItemText>
-                  {elem}
+                  {name}
                 </ListItemText>
               </ListItem>
             </Link>
