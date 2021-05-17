@@ -29,30 +29,29 @@ const GroupNameFormName = (): JSX.Element => {
     <ControlPanelTemplate page={Pages.groupNameFormName}>
       {(
         () => {
-          if (!auth.user?.form || Object.keys(auth.user?.form)) {
+          if (!auth.user?.form || !auth.user?.form[params.formName]) {
             return <>Loading</>;
           }
-          const form = auth.user?.form[params.formName];
-          const keys = Object.keys(form);
+          const formData = auth.user?.form[params.formName];
           return (
             <>
-              <Typography variant="h6">{form?.name}</Typography>
-              <Typography variant="subtitle1">{form?.description}</Typography>
+              <Typography variant="h6">{formData?.name}</Typography>
+              <Typography variant="subtitle1">{formData?.description}</Typography>
               <Typography variant="caption">
                 最終期限
-                {form?.limit}
+                {formData?.limit}
               </Typography>
               <br />
               <Typography variant="caption">
                 最終更新日時
-                {form?.update}
+                {formData?.update}
                 <br />
               </Typography>
-              {keys.map(
-                (elem) => (
+              {Object.keys(formData.values).map(
+                (id) => (
                   <>
-                    {/* {form?.values[elem]?.name} */}
-                    {/* {form?.values[elem]?.description} */}
+                    {formData?.values[id]?.name}
+                    {formData?.values[id]?.description}
                     <br />
                   </>
                 ),
