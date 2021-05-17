@@ -16,3 +16,22 @@ export type FormSaveValue = {
   value : FormSaveType,
   comment: string,
 };
+
+export type GetGroupFormResponse = {
+  name: string,
+  description: string,
+  receive: string,
+  limit: string,
+  update: string,
+  values: {
+    [id: string]: {
+      name: string,
+      description: string,
+      type: FormDefineType,
+      value?: FormSaveValue,
+    }
+  },
+  status: number,
+  comment: string,
+
+}

@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ListItem } from '@material-ui/core';
 import { PeopleOutline } from '@material-ui/icons';
 import { useAuth } from '../../../contexts/AuthContext';
 import Typography from '../../atoms/Typography';
-import Link from '../../atoms/Link';
 import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import List from '../../molecules/List';
 import ListStyle from '../common/List.style';
+import { Pages } from '../../../pages';
 
 const GroupList = (): JSX.Element => {
   const auth = useAuth();
@@ -20,8 +21,8 @@ const GroupList = (): JSX.Element => {
       {
         auth.user?.groupList?.map(
           (name) => (
-            <Link href="https://kokasai.com" key={name}>
-              <ListItem className={classes.listItem}>
+            <Link to={`${Pages.group.href}/${name}`}>
+              <ListItem className={classes.listItem} key={name}>
                 <ListItemIcon>
                   <PeopleOutline />
                 </ListItemIcon>
