@@ -22,6 +22,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./static/index.html",
+      inject: false
     }),
     new HtmlWebpackPlugin({
       filename: "404.html",
