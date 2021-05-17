@@ -21,7 +21,7 @@ const GroupList = (): JSX.Element => {
       {
         auth.user?.groupList?.map(
           (name) => (
-            <Link to={`${Pages.group.href}/${name}`}>
+            <Link to={Pages.groupName.href(name)}>
               <ListItem className={classes.listItem} key={name}>
                 <ListItemIcon>
                   <PeopleOutline />

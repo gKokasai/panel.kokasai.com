@@ -16,7 +16,7 @@ const GroupName = (): JSX.Element => {
   return (
     <ControlPanelTemplate page={Pages.groupName}>
       <List className={classes.list}>
-        <Link to={`${Pages.group.href}/${params.groupName}/form`}>
+        <Link to={Pages.groupNameForm.href(params.groupName)}>
           <ListItem className={classes.listItem}>
             <ListItemIcon>
               <FormatAlignRight />
@@ -26,7 +26,7 @@ const GroupName = (): JSX.Element => {
             </ListItemText>
           </ListItem>
         </Link>
-        <Link to={`${Pages.group.href}/${params.groupName}/member`}>
+        <Link to={Pages.groupNameMember.href(params.groupName)}>
           <ListItem className={classes.listItem}>
             <ListItemIcon>
               <Person />

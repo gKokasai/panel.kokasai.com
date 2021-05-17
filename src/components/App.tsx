@@ -50,9 +50,9 @@ const App = (): JSX.Element => (
             <PrivateRoute exact path={Pages.index.href} component={Index} />
             <PrivateRoute exact path={Pages.document.href} component={Document} />
             <PrivateRoute exact path={Pages.group.href} component={Group} />
-            <PrivateRoute exact path={Pages.groupName.href} component={GroupName} />
-            <PrivateRoute exact path={Pages.groupNameForm.href} component={GroupNameForm} />
-            <PrivateRoute exact path={Pages.groupNameFormName.href} component={GroupNameFormName} />
+            <PrivateRoute exact path={Pages.groupName.href(':groupName')} component={GroupName} />
+            <PrivateRoute exact path={Pages.groupNameForm.href(':groupName')} component={GroupNameForm} />
+            <PrivateRoute exact path={Pages.groupNameFormName.href(':groupName', ':formName')} component={GroupNameFormName} />
           </Switch>
         </div>
       </Router>

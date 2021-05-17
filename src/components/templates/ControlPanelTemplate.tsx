@@ -19,13 +19,13 @@ import {
 import { Link } from 'react-router-dom';
 import * as icons from '@material-ui/icons';
 import Copyright from '../organisms/common/Copyright';
-import { Page, SideBar } from '../../pages';
+import { SideBar } from '../../pages';
 import ControlPanelTemplateStyle from './ControlPanelTemplate.style';
 import ControlPanelTemplateTheme from './ControlPanelTemplate.theme';
 
 type Props = {
   children: React.ReactNode;
-  page: Page;
+  page: { name: string }
 };
 
 const OptionKey = 'option/panel';
