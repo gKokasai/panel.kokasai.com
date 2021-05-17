@@ -1,13 +1,14 @@
 import React from 'react';
 import { ListItem } from '@material-ui/core';
 import { Description } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../../contexts/AuthContext';
 import List from '../../molecules/List';
-import Link from '../../atoms/Link';
 import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import ListStyle from '../common/List.style';
 import Typography from '../../atoms/Typography';
+import { Pages } from '../../../pages';
 
 const DocumentList = (): JSX.Element => {
   const auth = useAuth();
@@ -20,7 +21,7 @@ const DocumentList = (): JSX.Element => {
       {
         auth.user?.documentList?.map(
           (name) => (
-            <Link href={`https://api.kokasai.com/document/${name}`} key={name}>
+            <Link to={`${Pages.document.href}?${name}`} key={name}>
               <ListItem className={classes.listItem}>
                 <ListItemIcon>
                   <Description />

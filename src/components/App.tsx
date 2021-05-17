@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import Login from './pages/Login';
 import Index from './pages/Index';
-import Document from './pages/Document';
+import Document from './pages/document/Document';
 import {
   AuthProvider, checkSession, useAuth,
 } from '../contexts/AuthContext';

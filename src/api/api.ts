@@ -66,7 +66,7 @@ export const getFile = (
  */
 export const getDocument = (
   documentName: string,
-): Promise<AxiosResponse> => axios.get(`${URL}/document/${documentName}`, { headers: defaultHeaders() });
+): Promise<AxiosResponse<Blob>> => axios.get(`${URL}/document/${documentName}`, { headers: defaultHeaders(), responseType: 'blob' });
 
 /**
  * ドキュメントファイルを変更する。
