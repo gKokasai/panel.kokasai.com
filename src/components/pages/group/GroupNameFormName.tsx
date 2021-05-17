@@ -23,8 +23,7 @@ const GroupNameFormName = (): JSX.Element => {
           });
         });
       }
-    },
-    [auth, params.formName, params.groupName],
+    }, [], // eslint-disable-line react-hooks/exhaustive-deps
   );
   return (
     <ControlPanelTemplate page={Pages.groupNameFormName}>

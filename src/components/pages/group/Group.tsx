@@ -12,7 +12,7 @@ const Group = (): JSX.Element => {
       if (!auth.user?.groupList) {
         getUserGroupList().then((response) => auth.setUser({ ...auth.user, groupList: response.data.group }));
       }
-    }, [auth],
+    }, [], // eslint-disable-line react-hooks/exhaustive-deps
   );
   return (
     <ControlPanelTemplate page={Pages.group}>

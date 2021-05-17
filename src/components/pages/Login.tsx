@@ -48,7 +48,7 @@ const Login: FC = () => {
       if (!auth.user && !auth.request.isFailSessionLogin) {
         checkSession(auth);
       }
-    },
+    }, [], // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   if (auth.request.isLoad === true) {
