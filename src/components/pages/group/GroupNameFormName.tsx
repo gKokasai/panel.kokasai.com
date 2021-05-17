@@ -11,21 +11,19 @@ const GroupNameFormName = (): JSX.Element => {
   const params: {groupName: string, formName: string} = useParams();
   useEffect(
     () => {
-      const asyncGet = async () => {
-        const result = await getGroupForm(params.groupName, params.formName);
-        auth.setUser({
-          ...auth.user,
-          form: {
-            ...auth.user?.form,
-            formName: result.data,
-          },
+      if (!auth.user?.form && !auth.user?.form) {
+        getGroupForm(params.groupName, params.formName).then((response) => {
+          auth.setUser({
+            ...auth.user,
+            form: {
+              ...auth.user?.form,
+              [params.formName]: response.data,
+            },
+          });
         });
-      };
-      asyncGet()
-        .then()
-        .catch();
+      }
     },
-    [],
+    [auth, params.formName, params.groupName],
   );
   return (
     <ControlPanelTemplate page={Pages.groupNameFormName}>
