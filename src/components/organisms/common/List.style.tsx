@@ -9,6 +9,9 @@ const ListStyle = makeStyles((theme: Theme) => createStyles({
       backgroundColor: theme.palette.action.hover,
     },
   },
+  loading: {
+    textAlign: 'center',
+  },
 }));
 
 export default ListStyle;

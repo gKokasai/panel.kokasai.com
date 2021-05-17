@@ -5,6 +5,7 @@ import ControlPanelTemplate from '../../templates/ControlPanelTemplate';
 import { Pages } from '../../../pages';
 import { useAuth } from '../../../contexts/AuthContext';
 import { getGroupForm } from '../../../api/api';
+import ListLoading from '../../organisms/common/ListLoading';
 
 const GroupNameFormName = (): JSX.Element => {
   const auth = useAuth();
@@ -27,15 +28,17 @@ const GroupNameFormName = (): JSX.Element => {
   );
   return (
     <ControlPanelTemplate page={Pages.groupNameFormName}>
+      <Typography variant="h6">
+        {auth.user?.formList && auth.user.formList[params.formName].name}
+      </Typography>
       {(
         () => {
           if (!auth.user?.form || !auth.user?.form[params.formName]) {
-            return <>Loading</>;
+            return <ListLoading />;
           }
           const formData = auth.user?.form[params.formName];
           return (
             <>
-              <Typography variant="h6">{formData?.name}</Typography>
               <Typography variant="subtitle1">{formData?.description}</Typography>
               <Typography variant="caption">
                 最終期限

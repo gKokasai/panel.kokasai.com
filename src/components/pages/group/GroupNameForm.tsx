@@ -11,6 +11,7 @@ import ListItemIcon from '../../molecules/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import ControlPanelTemplate from '../../templates/ControlPanelTemplate';
 import { getGroupFormList } from '../../../api/api';
+import ListLoading from '../../organisms/common/ListLoading';
 
 const GroupNameForm = (): JSX.Element => {
   const auth = useAuth();
@@ -29,7 +30,7 @@ const GroupNameForm = (): JSX.Element => {
         </Typography>
         { (() => {
           if (!auth.user?.formList || (Object.keys(auth.user.formList).length === 0)) {
-            return <>Loading</>;
+            return <ListLoading />;
           }
           const formList = auth.user?.formList;
           const keys = Object.keys(formList);
