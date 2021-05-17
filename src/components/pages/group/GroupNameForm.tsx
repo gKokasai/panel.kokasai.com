@@ -21,7 +21,7 @@ const GroupNameForm = (): JSX.Element => {
     if (!auth.user?.formList) {
       getGroupFormList(params.groupName).then((result) => auth.setUser({ ...auth.user, formList: result.data.form }));
     }
-  }, [auth, params.groupName]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <ControlPanelTemplate page={Pages.groupNameForm}>
       <List className={classes.list}>
