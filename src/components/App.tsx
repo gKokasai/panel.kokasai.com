@@ -11,8 +11,11 @@ import {
 import { Pages } from '../pages';
 import Empty from './pages/Empty';
 import Loading from './organisms/login/Loading';
-import Group from './pages/Group';
+import Group from './pages/group/Group';
 import { getSessionId } from '../storage';
+import GroupName from './pages/group/GroupName';
+import GroupNameForm from './pages/group/GroupNameForm';
+import GroupNameFormName from './pages/group/GroupNameFormName';
 
 const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
   const auth = useAuth();
@@ -47,6 +50,9 @@ const App = (): JSX.Element => (
             <PrivateRoute exact path={Pages.index.href} component={Index} />
             <PrivateRoute exact path={Pages.document.href} component={Document} />
             <PrivateRoute exact path={Pages.group.href} component={Group} />
+            <PrivateRoute exact path={Pages.groupName.href} component={GroupName} />
+            <PrivateRoute exact path={Pages.groupNameForm.href} component={GroupNameForm} />
+            <PrivateRoute exact path={Pages.groupNameFormName.href} component={GroupNameFormName} />
           </Switch>
         </div>
       </Router>

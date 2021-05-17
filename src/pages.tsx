@@ -15,6 +15,9 @@ export const Pages = {
   index: page('/', 'トップ'),
   document: page('/document', '資料'),
   group: page('/group', 'グループ'),
+  groupName: page('/group/:groupName', 'グループ'),
+  groupNameForm: page('/group/:groupName/form', 'フォーム'),
+  groupNameFormName: page('/group/:groupName/form/:formName', 'フォーム'),
   empty: page('', ''),
 };
 
