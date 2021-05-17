@@ -36,7 +36,7 @@ const GroupNameForm = (): JSX.Element => {
           return (
             keys.map(
               (formName) => (
-                <Link to={`/group/${params.groupName}/form/${formName}`}>
+                <Link to={Pages.groupNameFormName.href(params.groupName, formName)}>
                   <ListItem>
                     <ListItemIcon>
                       <FormatAlignRight />

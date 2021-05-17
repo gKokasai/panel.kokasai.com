@@ -1,24 +1,14 @@
 import * as icons from '@material-ui/icons';
 import React from 'react';
 
-export type Page = {
-  href: string;
-  name: string;
-}
-
-const page = (
-  href: string,
-  name: string,
-): Page => ({ href, name });
-
 export const Pages = {
-  index: page('/', 'トップ'),
-  document: page('/document', '資料'),
-  group: page('/group', 'グループ'),
-  groupName: page('/group/:groupName', 'グループ'),
-  groupNameForm: page('/group/:groupName/form', 'フォーム'),
-  groupNameFormName: page('/group/:groupName/form/:formName', 'フォーム'),
-  empty: page('', ''),
+  index: { name: 'トップ', href: '/' },
+  document: { name: '資料', href: '/document' },
+  group: { name: 'グループ', href: '/group' },
+  groupName: { name: 'グループ', href: (groupName: string): string => `/group/${groupName}` },
+  groupNameForm: { name: 'フォーム', href: (groupName: string): string => `/group/${groupName}/form` },
+  groupNameFormName: { name: 'フォーム', href: (groupName: string, formName: string): string => `/group/${groupName}/form/${formName}` },
+  groupNameMember: { name: 'メンバー', href: (groupName: string): string => `/group/${groupName}/member` },
 };
 
 export const SideBar = [
