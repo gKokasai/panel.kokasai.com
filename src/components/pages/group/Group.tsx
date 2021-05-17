@@ -9,17 +9,10 @@ const Group = (): JSX.Element => {
   const auth = useAuth();
   useEffect(
     () => {
-      const asyncGet = async () => {
-        const result = await getUserGroupList();
-        auth.setUser({
-          ...auth.user,
-          groupList: result.data.group,
-        });
-      };
-      asyncGet()
-        .then()
-        .catch();
-    },
+      if (!auth.user?.groupList) {
+        getUserGroupList().then((response) => auth.setUser({ ...auth.user, groupList: response.data.group }));
+      }
+    }, [auth],
   );
   return (
     <ControlPanelTemplate page={Pages.group}>

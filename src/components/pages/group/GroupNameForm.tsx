@@ -15,22 +15,12 @@ import { getGroupFormList } from '../../../api/api';
 const GroupNameForm = (): JSX.Element => {
   const auth = useAuth();
   const classes = ListStyle();
-  const params: {groupName: string} = useParams();
-  useEffect(
-    () => {
-      const asyncGet = async () => {
-        const result = await getGroupFormList(params.groupName);
-        auth.setUser({
-          ...auth.user,
-          formList: result.data.form,
-        });
-      };
-      asyncGet()
-        .then()
-        .catch();
-    },
-    [],
-  );
+  const params: { groupName: string } = useParams();
+  useEffect(() => {
+    if (!auth.user?.formList) {
+      getGroupFormList(params.groupName).then((result) => auth.setUser({ ...auth.user, formList: result.data.form }));
+    }
+  }, [auth, params.groupName]);
   return (
     <ControlPanelTemplate page={Pages.groupNameForm}>
       <List className={classes.list}>
