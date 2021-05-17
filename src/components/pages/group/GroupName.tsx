@@ -9,6 +9,7 @@ import ControlPanelTemplate from '../../templates/ControlPanelTemplate';
 import ListItemIcon from '../../molecules/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import ListStyle from '../../organisms/common/List.style';
+import Typography from '../../atoms/Typography';
 
 const GroupName = (): JSX.Element => {
   const params: {groupName: string} = useParams();
@@ -16,6 +17,9 @@ const GroupName = (): JSX.Element => {
   return (
     <ControlPanelTemplate page={Pages.groupName}>
       <List className={classes.list}>
+        <Typography variant="h6">
+          項目一覧
+        </Typography>
         <Link to={Pages.groupNameForm.href(params.groupName)}>
           <ListItem className={classes.listItem}>
             <ListItemIcon>
