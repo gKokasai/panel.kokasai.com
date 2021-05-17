@@ -2,21 +2,24 @@ import * as icons from '@material-ui/icons';
 import React from 'react';
 
 export type Page = {
-  href: string
-  name: string
-  icon: JSX.Element
-};
+  href: string;
+  name: string;
+}
 
 const page = (
   href: string,
   name: string,
-  icon: JSX.Element,
-): Page => ({ href, name, icon });
+): Page => ({ href, name });
 
 export const Pages = {
-  index: page('/', 'トップ', <icons.Home />),
-  document: page('/document', '資料', <icons.LibraryBooks />),
-  group: page('/group', 'グループ', <icons.Group />),
+  index: page('/', 'トップ'),
+  document: page('/document', '資料'),
+  group: page('/group', 'グループ'),
+  empty: page('', ''),
 };
 
-export const EmptyPage = page('', '', <></>);
+export const SideBar = [
+  { page: Pages.index, icon: <icons.Home /> },
+  { page: Pages.document, icon: <icons.LibraryBooks /> },
+  { page: Pages.group, icon: <icons.Group /> },
+];

@@ -1,9 +1,9 @@
 import React from 'react';
 import ControlPanelTemplate from '../templates/ControlPanelTemplate';
-import { EmptyPage } from '../../pages';
+import { Pages } from '../../pages';
 
 const Empty = (): JSX.Element => (
-  <ControlPanelTemplate page={EmptyPage}>
+  <ControlPanelTemplate page={Pages.empty}>
     <></>
   </ControlPanelTemplate>
 );

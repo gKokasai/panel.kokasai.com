@@ -19,7 +19,7 @@ import {
 import { Link } from 'react-router-dom';
 import * as icons from '@material-ui/icons';
 import Copyright from '../organisms/common/Copyright';
-import { Page, Pages } from '../../pages';
+import { Page, SideBar } from '../../pages';
 import ControlPanelTemplateStyle from './ControlPanelTemplate.style';
 import ControlPanelTemplateTheme from './ControlPanelTemplate.theme';
 
@@ -97,14 +97,15 @@ const ControlPanelTemplate: React.FC<Props> = ({
           </div>
           <Divider />
           <List>
-            {Object.values(Pages).map((p) => (
-              <Link to={p.href} className={classes.link} key={p.href}>
-                <Tooltip title={p.name}>
+            {/* eslint-disable-next-line no-shadow */}
+            {SideBar.map(({ page, icon }) => (
+              <Link to={page.href} className={classes.link} key={page.href}>
+                <Tooltip title={page.name}>
                   <ListItem button>
                     <ListItemIcon>
-                      {p.icon}
+                      {icon}
                     </ListItemIcon>
-                    <ListItemText primary={p.name} />
+                    <ListItemText primary={page.name} />
                   </ListItem>
                 </Tooltip>
               </Link>
