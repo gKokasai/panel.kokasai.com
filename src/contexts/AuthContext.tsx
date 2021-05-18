@@ -4,6 +4,8 @@ import { User } from './User';
 import { Request } from './Request';
 import { setSessionId } from '../storage';
 import { getUserDocumentList, getUserGroupList } from '../api/api';
+import createContext from './createContext';
+import { useAlert } from './AlertContext';
 
 type AuthContextType = {
   request: Request;
@@ -20,21 +22,12 @@ type Props = {
   children: ReactNode;
 }
 
-const createContext = <ContextType extends unknown>() => {
-  const context = React.createContext<ContextType | undefined>(undefined);
-  const useContext = () => {
-    const c = React.useContext(context);
-    if (!c) throw new Error('useCtx must be inside a Provider with a value');
-    return c;
-  };
-  return [useContext, context.Provider] as const;
-};
-
 const [useAuth, SetAuthProvider] = createContext<AuthContextType>();
 
 const useAuthContext = (): AuthContextType => {
   const [request, setRequest] = useState<Request>({});
   const [user, setUser] = useState<User | null>(null);
+  const alert = useAlert();
 
   const reloadUser = () => {
     Promise.all(
@@ -56,8 +49,14 @@ const useAuthContext = (): AuthContextType => {
   const postLogin = () => {
     setRequest({ ...request, isLoad: true });
     api.postLogin(request.inputId)
-      .then(() => { setRequest({ ...request, isRequestPassword: true, isLoad: false }); })
-      .catch(() => { setRequest({ ...request, isLoad: false }); });
+      .then(() => {
+        setRequest({ ...request, isRequestPassword: true, isLoad: false });
+        alert.success('メールが送信されました');
+      })
+      .catch(() => {
+        setRequest({ ...request, isLoad: false });
+        alert.error('メール送信に失敗しました');
+      });
   };
 
   const postAuth = () => {
@@ -68,10 +67,12 @@ const useAuthContext = (): AuthContextType => {
         setUser({});
         setSessionId(response.headers.session);
         reloadUser();
+        alert.info(`${request.inputId} としてログインしました`);
       })
       .catch(() => {
         setRequest({ ...request, isLoad: false });
         setSessionId(null);
+        alert.error('ログインに失敗しました');
       });
   };
 
