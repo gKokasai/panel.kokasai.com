@@ -7,7 +7,14 @@ import Button from '../atoms/Button';
 const NotFoundStyle = makeStyles((theme: Theme) => createStyles({
   container: {
     textAlign: 'center',
-    marginTop: '30vh',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translateX(-50%) translateY(-50%)',
+    width: 'calc(100% - 20px)',
+    '@media(min-width: 420px)': {
+      width: '400px',
+    },
   },
   icon: {
     fontSize: '6rem',
