@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Checkbox from '../../atoms/Checkbox';
 import Typography from '../../atoms/Typography';
 import ControlPanelTemplate from '../../templates/ControlPanelTemplate';
 import { Pages } from '../../../pages';
 import { useAuth } from '../../../contexts/AuthContext';
 import { getGroupForm } from '../../../api/api';
 import ListLoading from '../../organisms/common/ListLoading';
+import TextField from '../../atoms/TextField';
+import Button from '../../atoms/Button';
 
 const GroupNameFormName = (): JSX.Element => {
   const auth = useAuth();
@@ -27,7 +30,7 @@ const GroupNameFormName = (): JSX.Element => {
   );
   return (
     <ControlPanelTemplate page={Pages.groupNameFormName}>
-      <Typography variant="h6">
+      <Typography variant="h5">
         {auth.user?.formList && auth.user.formList[params.formName].name}
       </Typography>
       {(
@@ -38,26 +41,62 @@ const GroupNameFormName = (): JSX.Element => {
           const formData = auth.user?.form[params.formName];
           return (
             <>
-              <Typography variant="subtitle1">{formData?.description}</Typography>
-              <Typography variant="caption">
-                最終期限
-                {formData?.limit}
-              </Typography>
-              <br />
-              <Typography variant="caption">
-                最終更新日時
-                {formData?.update}
-                <br />
-              </Typography>
+              <p>
+                <Typography variant="subtitle1">{formData?.description}</Typography>
+              </p>
+              <p>
+                <Typography variant="caption">
+                  最終期限
+                  {formData?.limit}
+                </Typography>
+              </p>
+              <p>
+                <Typography variant="caption">
+                  最終更新日時
+                  {formData?.update}
+                </Typography>
+              </p>
               {Object.keys(formData.values).map(
-                (id) => (
-                  <>
-                    {formData?.values[id]?.name}
-                    {formData?.values[id]?.description}
-                    <br />
-                  </>
-                ),
+                (name) => {
+                  const formDataValue = formData?.values[name];
+                  const formDataValueType = formDataValue.type;
+                  return (
+                    <>
+                      <p>
+                        <Typography>{formDataValue.name}</Typography>
+                      </p>
+                      <p>
+                        <Typography>{formDataValue.description}</Typography>
+                      </p>
+                      {
+                        (() => {
+                          if (formDataValueType[0] === 'string') {
+                            return <TextField variant="outlined" fullWidth />;
+                          }
+                          return (
+                            Object.keys(formDataValueType[1].element).map(
+                              (id) => (
+                                <p>
+                                  {formDataValueType[1].element[id as keyof string]}
+                                  <Checkbox />
+                                </p>
+                              ),
+                            )
+                          );
+                        })()
+                      }
+                    </>
+                  );
+                },
               )}
+              <Typography variant="h6">コメント</Typography>
+              <Typography variant="body1">{formData.comment}</Typography>
+              <Button variant="contained" color="secondary">
+                元に戻す
+              </Button>
+              <Button variant="contained" color="primary">
+                保存する
+              </Button>
             </>
           );
         })()}
