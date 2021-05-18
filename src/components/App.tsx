@@ -16,6 +16,7 @@ import { getSessionId } from '../storage';
 import GroupName from './pages/group/GroupName';
 import GroupNameForm from './pages/group/GroupNameForm';
 import GroupNameFormName from './pages/group/GroupNameFormName';
+import NotFound from './pages/NotFound';
 
 const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
   const auth = useAuth();
@@ -53,6 +54,7 @@ const App = (): JSX.Element => (
             <PrivateRoute exact path={Pages.groupName.href(':groupName')} component={GroupName} />
             <PrivateRoute exact path={Pages.groupNameForm.href(':groupName')} component={GroupNameForm} />
             <PrivateRoute exact path={Pages.groupNameFormName.href(':groupName', ':formName')} component={GroupNameFormName} />
+            <Route exact component={NotFound} />
           </Switch>
         </div>
       </Router>
