@@ -1,12 +1,15 @@
 export type FormDefineType =
-  { type: 'string' } |
-  {
+  [
+    'string',
+    {} // eslint-disable-line @typescript-eslint/ban-types
+  ] |
+  [
     type: 'check',
     element: {
       [id: string]: string,
-    }
+    },
     limit: number,
-  };
+  ];
 
 export type FormSaveType =
   ['string', { content: string }] |
