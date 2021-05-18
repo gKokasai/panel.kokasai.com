@@ -17,6 +17,7 @@ import GroupName from './pages/group/GroupName';
 import GroupNameForm from './pages/group/GroupNameForm';
 import GroupNameFormName from './pages/group/GroupNameFormName';
 import NotFound from './pages/NotFound';
+import { AlertProvider } from '../contexts/AlertContext';
 
 const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
   const auth = useAuth();
@@ -42,24 +43,26 @@ const UnAuthRoute: React.FC<RouteProps> = ({ ...props }) => {
 };
 
 const App = (): JSX.Element => (
-  <AuthProvider>
-    <div className="app">
-      <Router>
-        <div>
-          <Switch>
-            <UnAuthRoute exact path="/login" component={Login} />
-            <PrivateRoute exact path={Pages.index.href} component={Index} />
-            <PrivateRoute exact path={Pages.document.href} component={Document} />
-            <PrivateRoute exact path={Pages.group.href} component={Group} />
-            <PrivateRoute exact path={Pages.groupName.href(':groupName')} component={GroupName} />
-            <PrivateRoute exact path={Pages.groupNameForm.href(':groupName')} component={GroupNameForm} />
-            <PrivateRoute exact path={Pages.groupNameFormName.href(':groupName', ':formName')} component={GroupNameFormName} />
-            <Route exact component={NotFound} />
-          </Switch>
-        </div>
-      </Router>
-    </div>
-  </AuthProvider>
+  <AlertProvider>
+    <AuthProvider>
+      <div className="app">
+        <Router>
+          <div>
+            <Switch>
+              <UnAuthRoute exact path="/login" component={Login} />
+              <PrivateRoute exact path={Pages.index.href} component={Index} />
+              <PrivateRoute exact path={Pages.document.href} component={Document} />
+              <PrivateRoute exact path={Pages.group.href} component={Group} />
+              <PrivateRoute exact path={Pages.groupName.href(':groupName')} component={GroupName} />
+              <PrivateRoute exact path={Pages.groupNameForm.href(':groupName')} component={GroupNameForm} />
+              <PrivateRoute exact path={Pages.groupNameFormName.href(':groupName', ':formName')} component={GroupNameFormName} />
+              <Route exact component={NotFound} />
+            </Switch>
+          </div>
+        </Router>
+      </div>
+    </AuthProvider>
+  </AlertProvider>
 );
 
 export default App;
