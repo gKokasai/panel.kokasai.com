@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ListItem } from '@material-ui/core';
-
 import { FormatAlignRight, Person } from '@material-ui/icons';
 import List from '../../molecules/List';
 import { Pages } from '../../../pages';
@@ -10,6 +9,7 @@ import ListItemIcon from '../../molecules/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import ListStyle from '../../organisms/common/List.style';
 import Typography from '../../atoms/Typography';
+import InternalLink from '../../molecules/InternalLink';
 
 const GroupName = (): JSX.Element => {
   const params: {groupName: string} = useParams();
@@ -20,7 +20,7 @@ const GroupName = (): JSX.Element => {
         <Typography variant="h6">
           項目一覧
         </Typography>
-        <Link to={Pages.groupNameForm.href(params.groupName)}>
+        <InternalLink to={Pages.groupNameForm.href(params.groupName)}>
           <ListItem className={classes.listItem}>
             <ListItemIcon>
               <FormatAlignRight />
@@ -29,8 +29,8 @@ const GroupName = (): JSX.Element => {
               form
             </ListItemText>
           </ListItem>
-        </Link>
-        <Link to={Pages.groupNameMember.href(params.groupName)}>
+        </InternalLink>
+        <InternalLink to={Pages.groupNameMember.href(params.groupName)}>
           <ListItem className={classes.listItem}>
             <ListItemIcon>
               <Person />
@@ -39,7 +39,7 @@ const GroupName = (): JSX.Element => {
               member
             </ListItemText>
           </ListItem>
-        </Link>
+        </InternalLink>
       </List>
     </ControlPanelTemplate>
   );

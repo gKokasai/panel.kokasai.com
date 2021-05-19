@@ -16,12 +16,12 @@ import {
   Tooltip,
   IconButton, ListItem,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import * as icons from '@material-ui/icons';
 import Copyright from '../organisms/common/Copyright';
 import { SideBar } from '../../pages';
 import ControlPanelTemplateStyle from './ControlPanelTemplate.style';
 import ControlPanelTemplateTheme from './ControlPanelTemplate.theme';
+import InternalLink from '../molecules/InternalLink';
 
 type Props = {
   children: React.ReactNode;
@@ -99,7 +99,7 @@ const ControlPanelTemplate: React.FC<Props> = ({
           <List>
             {/* eslint-disable-next-line no-shadow */}
             {SideBar.map(({ page, icon }) => (
-              <Link to={page.href} className={classes.link} key={page.href}>
+              <InternalLink to={page.href} className={classes.link} key={page.href}>
                 <Tooltip title={page.name}>
                   <ListItem button>
                     <ListItemIcon>
@@ -108,7 +108,7 @@ const ControlPanelTemplate: React.FC<Props> = ({
                     <ListItemText primary={page.name} />
                   </ListItem>
                 </Tooltip>
-              </Link>
+              </InternalLink>
             ))}
           </List>
         </Drawer>
