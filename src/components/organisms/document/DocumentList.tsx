@@ -1,7 +1,6 @@
 import React from 'react';
 import { ListItem } from '@material-ui/core';
 import { Description } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
 import { useAuth } from '../../../contexts/AuthContext';
 import List from '../../molecules/List';
 import ListItemIcon from '../../atoms/ListItemIcon';
@@ -9,6 +8,7 @@ import ListItemText from '../../atoms/ListItemText';
 import ListStyle from '../common/List.style';
 import Typography from '../../atoms/Typography';
 import { Pages } from '../../../pages';
+import InternalLink from '../../molecules/InternalLink';
 
 const DocumentList = (): JSX.Element => {
   const auth = useAuth();
@@ -21,7 +21,7 @@ const DocumentList = (): JSX.Element => {
       {
         auth.user?.documentList?.map(
           (name) => (
-            <Link to={`${Pages.document.href}?${name}`} key={name}>
+            <InternalLink to={`${Pages.document.href}?${name}`} key={name}>
               <ListItem className={classes.listItem}>
                 <ListItemIcon>
                   <Description />
@@ -30,7 +30,7 @@ const DocumentList = (): JSX.Element => {
                   {name}
                 </ListItemText>
               </ListItem>
-            </Link>
+            </InternalLink>
           ),
         )
       }

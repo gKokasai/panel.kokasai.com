@@ -1,7 +1,7 @@
 import { Link as MuiLink, LinkProps as MuiLinkActionProps } from '@material-ui/core';
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 
-type Props = MuiLinkActionProps & {children: ReactNode}
+export type Props = MuiLinkActionProps
 
 const Link: FC<Props> = (props): JSX.Element => {
   const { children } = props;
