@@ -7,6 +7,7 @@ import Typography from '../../atoms/Typography';
 import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import List from '../../molecules/List';
+import MLink from '../../atoms/Link';
 import ListStyle from '../common/List.style';
 import { Pages } from '../../../pages';
 
@@ -22,14 +23,16 @@ const GroupList = (): JSX.Element => {
         auth.user?.groupList?.map(
           (name) => (
             <Link to={Pages.groupName.href(name)}>
-              <ListItem className={classes.listItem} key={name}>
-                <ListItemIcon>
-                  <PeopleOutline />
-                </ListItemIcon>
-                <ListItemText>
-                  {name}
-                </ListItemText>
-              </ListItem>
+              <MLink>
+                <ListItem className={classes.listItem} key={name}>
+                  <ListItemIcon>
+                    <PeopleOutline />
+                  </ListItemIcon>
+                  <ListItemText>
+                    {name}
+                  </ListItemText>
+                </ListItem>
+              </MLink>
             </Link>
           ),
         )

@@ -3,7 +3,7 @@ import React, { FC, ReactNode } from 'react';
 
 type Props = MuiLinkActionProps & {children: ReactNode}
 
-const Link: FC<Props> = (props): JSX.Element => {
+const MLink: FC<Props> = (props): JSX.Element => {
   const { children } = props;
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -12,4 +12,4 @@ const Link: FC<Props> = (props): JSX.Element => {
     </MuiLink>
   );
 };
-export default Link;
+export default MLink;

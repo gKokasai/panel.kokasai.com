@@ -12,6 +12,7 @@ import ListItemText from '../../atoms/ListItemText';
 import ControlPanelTemplate from '../../templates/ControlPanelTemplate';
 import { getGroupFormList } from '../../../api/api';
 import ListLoading from '../../organisms/common/ListLoading';
+import MLink from '../../atoms/Link';
 
 const GroupNameForm = (): JSX.Element => {
   const auth = useAuth();
@@ -38,14 +39,16 @@ const GroupNameForm = (): JSX.Element => {
             keys.map(
               (formName) => (
                 <Link to={Pages.groupNameFormName.href(params.groupName, formName)}>
-                  <ListItem>
-                    <ListItemIcon>
-                      <FormatAlignRight />
-                    </ListItemIcon>
-                    <ListItemText>
-                      {formList[formName].name}
-                    </ListItemText>
-                  </ListItem>
+                  <MLink>
+                    <ListItem>
+                      <ListItemIcon>
+                        <FormatAlignRight />
+                      </ListItemIcon>
+                      <ListItemText>
+                        {formList[formName].name}
+                      </ListItemText>
+                    </ListItem>
+                  </MLink>
                 </Link>
               ),
             )

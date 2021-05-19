@@ -9,6 +9,7 @@ import ListItemText from '../../atoms/ListItemText';
 import ListStyle from '../common/List.style';
 import Typography from '../../atoms/Typography';
 import { Pages } from '../../../pages';
+import MLink from '../../atoms/Link';
 
 const DocumentList = (): JSX.Element => {
   const auth = useAuth();
@@ -22,14 +23,16 @@ const DocumentList = (): JSX.Element => {
         auth.user?.documentList?.map(
           (name) => (
             <Link to={`${Pages.document.href}?${name}`} key={name}>
-              <ListItem className={classes.listItem}>
-                <ListItemIcon>
-                  <Description />
-                </ListItemIcon>
-                <ListItemText>
-                  {name}
-                </ListItemText>
-              </ListItem>
+              <MLink>
+                <ListItem className={classes.listItem}>
+                  <ListItemIcon>
+                    <Description />
+                  </ListItemIcon>
+                  <ListItemText>
+                    {name}
+                  </ListItemText>
+                </ListItem>
+              </MLink>
             </Link>
           ),
         )

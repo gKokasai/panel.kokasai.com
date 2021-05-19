@@ -10,6 +10,7 @@ import ListItemIcon from '../../molecules/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import ListStyle from '../../organisms/common/List.style';
 import Typography from '../../atoms/Typography';
+import MLink from '../../atoms/Link';
 
 const GroupName = (): JSX.Element => {
   const params: {groupName: string} = useParams();
@@ -21,24 +22,28 @@ const GroupName = (): JSX.Element => {
           項目一覧
         </Typography>
         <Link to={Pages.groupNameForm.href(params.groupName)}>
-          <ListItem className={classes.listItem}>
-            <ListItemIcon>
-              <FormatAlignRight />
-            </ListItemIcon>
-            <ListItemText>
-              form
-            </ListItemText>
-          </ListItem>
+          <MLink>
+            <ListItem className={classes.listItem}>
+              <ListItemIcon>
+                <FormatAlignRight />
+              </ListItemIcon>
+              <ListItemText>
+                form
+              </ListItemText>
+            </ListItem>
+          </MLink>
         </Link>
         <Link to={Pages.groupNameMember.href(params.groupName)}>
-          <ListItem className={classes.listItem}>
-            <ListItemIcon>
-              <Person />
-            </ListItemIcon>
-            <ListItemText>
-              member
-            </ListItemText>
-          </ListItem>
+          <MLink>
+            <ListItem className={classes.listItem}>
+              <ListItemIcon>
+                <Person />
+              </ListItemIcon>
+              <ListItemText>
+                member
+              </ListItemText>
+            </ListItem>
+          </MLink>
         </Link>
       </List>
     </ControlPanelTemplate>
