@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { ListItem } from '@material-ui/core';
 import { PeopleOutline } from '@material-ui/icons';
 import { useAuth } from '../../../contexts/AuthContext';
@@ -9,6 +8,7 @@ import ListItemText from '../../atoms/ListItemText';
 import List from '../../molecules/List';
 import ListStyle from '../common/List.style';
 import { Pages } from '../../../pages';
+import InternalLink from '../../molecules/InternalLink';
 
 const GroupList = (): JSX.Element => {
   const auth = useAuth();
@@ -21,7 +21,7 @@ const GroupList = (): JSX.Element => {
       {
         auth.user?.groupList?.map(
           (name) => (
-            <Link to={Pages.groupName.href(name)}>
+            <InternalLink to={Pages.groupName.href(name)}>
               <ListItem className={classes.listItem} key={name}>
                 <ListItemIcon>
                   <PeopleOutline />
@@ -30,7 +30,7 @@ const GroupList = (): JSX.Element => {
                   {name}
                 </ListItemText>
               </ListItem>
-            </Link>
+            </InternalLink>
           ),
         )
       }

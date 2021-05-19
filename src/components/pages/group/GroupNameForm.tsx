@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ListItem } from '@material-ui/core';
 import { FormatAlignRight } from '@material-ui/icons';
 import Typography from '../../atoms/Typography';
@@ -12,6 +12,7 @@ import ListItemText from '../../atoms/ListItemText';
 import ControlPanelTemplate from '../../templates/ControlPanelTemplate';
 import { getGroupFormList } from '../../../api/api';
 import ListLoading from '../../organisms/common/ListLoading';
+import InternalLink from '../../molecules/InternalLink';
 
 const GroupNameForm = (): JSX.Element => {
   const auth = useAuth();
@@ -37,7 +38,7 @@ const GroupNameForm = (): JSX.Element => {
           return (
             keys.map(
               (formName) => (
-                <Link to={Pages.groupNameFormName.href(params.groupName, formName)}>
+                <InternalLink to={Pages.groupNameFormName.href(params.groupName, formName)}>
                   <ListItem>
                     <ListItemIcon>
                       <FormatAlignRight />
@@ -46,7 +47,7 @@ const GroupNameForm = (): JSX.Element => {
                       {formList[formName].name}
                     </ListItemText>
                   </ListItem>
-                </Link>
+                </InternalLink>
               ),
             )
           );
