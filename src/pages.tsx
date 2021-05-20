@@ -2,6 +2,7 @@ import * as icons from '@material-ui/icons';
 import React from 'react';
 
 export const Pages = {
+  login: { href: '/login' },
   index: { name: 'トップ', href: '/' },
   document: { name: '資料', href: '/document/list' },
   documentName: { name: '資料', href: '/document' },

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
-  BrowserRouter as Router, Switch, Route, Redirect, RouteProps,
+  BrowserRouter, Switch, Route as DOMRoute, Redirect, RouteProps,
 } from 'react-router-dom';
 import Login from './pages/Login';
 import Index from './pages/Index';
@@ -20,24 +20,30 @@ import NotFound from './pages/NotFound';
 import { AlertProvider } from '../contexts/AlertContext';
 import DocumentName from './pages/document/DocumentName';
 
-const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
+const Route: FC<RouteProps> = (props) => {
   const auth = useAuth();
   if (!auth.user && !auth.request.isFailSessionLogin) {
     checkSession(auth);
     if (getSessionId() != null) return <Empty />;
     return <LoginFormLoading />;
   }
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  return <DOMRoute {...props} />;
+};
+
+const PrivateRoute: FC<RouteProps> = (props) => {
+  const auth = useAuth();
   if (auth.user) {
     // eslint-disable-next-line react/jsx-props-no-spreading
     return <Route {...props} />;
   }
-  return <Redirect to="/login" />;
+  return <Redirect to={Pages.login.href} />;
 };
 
-const UnAuthRoute: React.FC<RouteProps> = ({ ...props }) => {
+const UnAuthRoute: FC<RouteProps> = (props) => {
   const auth = useAuth();
   if (auth.user) {
-    return <Redirect to="/" />;
+    return <Redirect to={Pages.index.href} />;
   }
   // eslint-disable-next-line react/jsx-props-no-spreading
   return <Route {...props} />;
@@ -47,10 +53,10 @@ const App = (): JSX.Element => (
   <AlertProvider>
     <AuthProvider>
       <div className="app">
-        <Router>
+        <BrowserRouter>
           <div>
             <Switch>
-              <UnAuthRoute exact path="/login" component={Login} />
+              <UnAuthRoute exact path={Pages.login.href} component={Login} />
               <PrivateRoute exact path={Pages.index.href} component={Index} />
               <PrivateRoute exact path={Pages.document.href} component={Document} />
               <PrivateRoute exact path={Pages.documentName.href} component={DocumentName} />
@@ -58,10 +64,10 @@ const App = (): JSX.Element => (
               <PrivateRoute exact path={Pages.groupName.href(':groupName')} component={GroupName} />
               <PrivateRoute exact path={Pages.groupNameForm.href(':groupName')} component={GroupNameForm} />
               <PrivateRoute exact path={Pages.groupNameFormName.href(':groupName', ':formName')} component={GroupNameFormName} />
-              <Route exact component={NotFound} />
+              <PrivateRoute exact component={NotFound} />
             </Switch>
           </div>
-        </Router>
+        </BrowserRouter>
       </div>
     </AuthProvider>
   </AlertProvider>
