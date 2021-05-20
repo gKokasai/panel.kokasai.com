@@ -2,8 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { ListItem } from '@material-ui/core';
 import { FormatAlignRight } from '@material-ui/icons';
-import Typography from '../../atoms/Typography';
-import List from '../../atoms/List';
 import { useAuth } from '../../../contexts/AuthContext';
 import ListStyle from '../../organisms/common/List.style';
 import { Pages } from '../../../pages';
@@ -14,6 +12,7 @@ import { getGroupFormList } from '../../../api/api';
 import InternalLink from '../../molecules/InternalLink';
 import LoadableItems from '../../organisms/common/LoadableItems';
 import { FormListType } from '../../../contexts/User';
+import WithHeaderList from '../../organisms/common/WithHeaderList';
 
 const GroupNameForm = (): JSX.Element => {
   const auth = useAuth();
@@ -21,10 +20,10 @@ const GroupNameForm = (): JSX.Element => {
   const params: { groupName: string } = useParams();
   return (
     <ControlPanelTemplate page={Pages.groupNameForm}>
-      <List className={classes.list}>
-        <Typography variant="h6">
-          フォーム一覧
-        </Typography>
+      <WithHeaderList
+        title="フォーム一覧"
+        listClassName={classes.list}
+      >
         <LoadableItems<FormListType>
           items={auth.user?.formList}
           load={() => {
@@ -50,7 +49,7 @@ const GroupNameForm = (): JSX.Element => {
             );
           }}
         />
-      </List>
+      </WithHeaderList>
     </ControlPanelTemplate>
   );
 };

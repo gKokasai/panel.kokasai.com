@@ -2,24 +2,23 @@ import React from 'react';
 import { ListItem } from '@material-ui/core';
 import { PeopleOutline } from '@material-ui/icons';
 import { useAuth } from '../../../contexts/AuthContext';
-import Typography from '../../atoms/Typography';
 import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
-import List from '../../atoms/List';
 import ListStyle from '../common/List.style';
 import { Pages } from '../../../pages';
 import InternalLink from '../../molecules/InternalLink';
 import LoadableItems from '../common/LoadableItems';
 import { getUserGroupList } from '../../../api/api';
+import WithHeaderList from '../common/WithHeaderList';
 
 const GroupList = (): JSX.Element => {
   const auth = useAuth();
   const classes = ListStyle();
   return (
-    <List className={classes.list}>
-      <Typography variant="h6">
-        グループ一覧
-      </Typography>
+    <WithHeaderList
+      title="グループ一覧"
+      listClassName={classes.list}
+    >
       <LoadableItems<string[]>
         items={auth.user?.groupList}
         load={() => {
@@ -42,7 +41,7 @@ const GroupList = (): JSX.Element => {
           )
         )}
       />
-    </List>
+    </WithHeaderList>
   );
 };
 

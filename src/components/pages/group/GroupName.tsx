@@ -2,24 +2,23 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { ListItem } from '@material-ui/core';
 import { FormatAlignRight, Person } from '@material-ui/icons';
-import List from '../../atoms/List';
 import { Pages } from '../../../pages';
 import ControlPanelTemplate from '../../templates/ControlPanelTemplate';
 import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import ListStyle from '../../organisms/common/List.style';
-import Typography from '../../atoms/Typography';
 import InternalLink from '../../molecules/InternalLink';
+import WithHeaderList from '../../organisms/common/WithHeaderList';
 
 const GroupName = (): JSX.Element => {
   const params: {groupName: string} = useParams();
   const classes = ListStyle();
   return (
     <ControlPanelTemplate page={Pages.groupName}>
-      <List className={classes.list}>
-        <Typography variant="h6">
-          項目一覧
-        </Typography>
+      <WithHeaderList
+        title="項目一覧"
+        listClassName={classes.list}
+      >
         <InternalLink to={Pages.groupNameForm.href(params.groupName)}>
           <ListItem className={classes.listItem}>
             <ListItemIcon>
@@ -40,7 +39,7 @@ const GroupName = (): JSX.Element => {
             </ListItemText>
           </ListItem>
         </InternalLink>
-      </List>
+      </WithHeaderList>
     </ControlPanelTemplate>
   );
 };

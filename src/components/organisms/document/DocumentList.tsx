@@ -2,24 +2,23 @@ import React from 'react';
 import { ListItem } from '@material-ui/core';
 import { Description } from '@material-ui/icons';
 import { useAuth } from '../../../contexts/AuthContext';
-import List from '../../atoms/List';
 import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import ListStyle from '../common/List.style';
-import Typography from '../../atoms/Typography';
 import { Pages } from '../../../pages';
 import InternalLink from '../../molecules/InternalLink';
 import LoadableItems from '../common/LoadableItems';
 import { getUserDocumentList } from '../../../api/api';
+import WithHeaderList from '../common/WithHeaderList';
 
 const DocumentList = (): JSX.Element => {
   const auth = useAuth();
   const classes = ListStyle();
   return (
-    <List className={classes.list}>
-      <Typography variant="h6">
-        資料一覧
-      </Typography>
+    <WithHeaderList
+      title="資料一覧"
+      listClassName={classes.list}
+    >
       <LoadableItems<string[]>
         items={auth.user?.documentList}
         load={() => {
@@ -42,7 +41,7 @@ const DocumentList = (): JSX.Element => {
           )
         )}
       />
-    </List>
+    </WithHeaderList>
   );
 };
 
