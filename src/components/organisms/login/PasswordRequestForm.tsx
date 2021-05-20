@@ -1,93 +1,67 @@
-import React, { FC, useState } from 'react';
-import Dialog from '../../atoms/Dialog';
-import Card from '../../atoms/Card';
+import React, { FC, useEffect, useState } from 'react';
 import CardActions from '../../atoms/CardActions';
 import CardContent from '../../atoms/CardContent';
 import Button from '../../atoms/Button';
-import CardHeader from '../../atoms/CardHeader';
-import DialogActions from '../../atoms/DialogActions';
-import DialogContent from '../../atoms/DialogContent';
-import DialogContentText from '../../atoms/DialogContentText';
-import DialogTitle from '../../atoms/DialogTitle';
-import TextField from '../../atoms/TextField';
 import LoginFormStyle from './LoginForm.style';
+import StudentNumberTextField from '../../molecules/login/StudentNumberTextField';
+import LoginFormCard from '../../molecules/login/LoginFormCard';
+import PasswordRequestConfirmDialog from '../../molecules/login/PasswordRequestConfirmDialog';
 
 export type PasswordRequestFormProps = {
-  handleIdForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleDialogSubmit: () => void;
-  handleGoToPasswordForm: () => void;
-  inputId?: string;
-  isEnableSendButton: boolean;
+  onChangeStudentNumber: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmitPasswordRequestForm: () => void;
+  onClickForwardButton: () => void;
+  id?: string;
 }
 
 const PasswordRequestForm: FC<PasswordRequestFormProps> = (props): JSX.Element => {
   const {
-    handleIdForm, handleDialogSubmit, handleGoToPasswordForm, inputId, isEnableSendButton,
+    onChangeStudentNumber, onSubmitPasswordRequestForm, onClickForwardButton, id,
   } = props;
-  const [isEnablePopUpWindow, setIsEnablePopUpWindow] = useState(false);
-  const handleIdFormSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-    setIsEnablePopUpWindow(true);
-  };
-
+  const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
+  const [enableSendButton, setEnableSendButton] = useState(false);
+  useEffect(
+    () => {
+      const pattern = /^((m\d{2}1)|(e\d{2}2)|(j\d{2}3)|(k\d{2}4)|(c\d{2}5)|(ap\d{2}8)|(ae\d{2}9))\d{2}$/;
+      setEnableSendButton(!!id?.match(pattern));
+    }, [id],
+  );
   const classes = LoginFormStyle();
-
   return (
-    <form className={classes.container} noValidate autoComplete="off" onSubmit={handleIdFormSubmit}>
-      <Card className={classes.card}>
-        <CardHeader className={classes.header} title="Login" />
-        <CardContent>
-          <TextField
-            fullWidth
-            type="email"
-            label="学籍番号"
-            placeholder="アルファベットから始まる学籍番号"
-            margin="normal"
-            onChange={handleIdForm}
-          />
-        </CardContent>
-        <CardActions className={classes.cardActions}>
-          <Button
-            className={classes.button}
-            onClick={handleGoToPasswordForm}
-          >
-            パスワードを入力する
-          </Button>
-          <Button
-            variant="contained"
-            size="small"
-            color="secondary"
-            className={classes.button}
-            onClick={() => { setIsEnablePopUpWindow(true); }}
-            disabled={!isEnableSendButton}
-          >
-            パスワードを発行する
-          </Button>
-          <Dialog
-            open={isEnablePopUpWindow}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle>
-              確認
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                {`${inputId}@gunma.kosen-ac.jp にメールを送信しますがよろしいですか？`}
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={() => { setIsEnablePopUpWindow(false); }}>
-                キャンセルする
-              </Button>
-              <Button onClick={handleDialogSubmit}>
-                送信する
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </CardActions>
-      </Card>
-    </form>
+    <LoginFormCard
+      onSubmit={(event) => {
+        event.preventDefault();
+        setOpenConfirmDialog(true);
+      }}
+    >
+      <CardContent>
+        <StudentNumberTextField onChange={onChangeStudentNumber} defaultValue={id} />
+      </CardContent>
+      <CardActions className={classes.cardActions}>
+        <Button
+          className={classes.button}
+          onClick={onClickForwardButton}
+        >
+          パスワードを入力する
+        </Button>
+        <Button
+          variant="contained"
+          size="small"
+          color="secondary"
+          className={classes.button}
+          onClick={() => setOpenConfirmDialog(true)}
+          disabled={!enableSendButton}
+        >
+          パスワードを発行する
+        </Button>
+        <PasswordRequestConfirmDialog
+          open={openConfirmDialog}
+          setOpen={setOpenConfirmDialog}
+          id={id}
+          onConfirm={onSubmitPasswordRequestForm}
+        />
+      </CardActions>
+    </LoginFormCard>
   );
 };
 
