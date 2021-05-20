@@ -60,6 +60,9 @@ const Login: FC = () => {
     return (
       <PasswordRequestForm
         handleIdForm={handleIdForm}
+        handleDialogSubmit={auth.postLogin}
+        handleGoToPasswordForm={() => { auth.setRequest({ ...auth.request, isRequestPassword: true }); }}
+        inputId={auth.request.inputId}
         isEnableSendButton={isEnableSendButton}
       />
     );
@@ -75,6 +78,7 @@ const Login: FC = () => {
       handleIdForm={handleIdForm}
       handlePassWordForm={handlePassWordForm}
       defaultId={auth.request.inputId}
+      handleReturnToIdForm={() => { auth.setRequest({ ...auth.request, isRequestPassword: false }); }}
     />
   );
 };

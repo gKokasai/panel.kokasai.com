@@ -5,20 +5,19 @@ import CardActions from '../../atoms/CardActions';
 import CardContent from '../../atoms/CardContent';
 import CardHeader from '../../atoms/CardHeader';
 import TextField from '../../atoms/TextField';
-import { useAuth } from '../../../contexts/AuthContext';
 import LoginFormStyle from './LoginForm.style';
 
 export type LoginFormProps = {
   handleLoginFormSubmit: (event: React.MouseEvent<HTMLButtonElement>) => void;
   handleIdForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handlePassWordForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleReturnToIdForm: () => void;
   defaultId?: string;
 }
 
 const LoginForm: FC<LoginFormProps> = (props): JSX.Element => {
-  const auth = useAuth();
   const {
-    handleLoginFormSubmit, handleIdForm, handlePassWordForm, defaultId,
+    handleLoginFormSubmit, handleIdForm, handlePassWordForm, handleReturnToIdForm, defaultId,
   } = props;
 
   const classes = LoginFormStyle();
@@ -50,7 +49,7 @@ const LoginForm: FC<LoginFormProps> = (props): JSX.Element => {
         <CardActions className={classes.cardActions}>
           <Button
             className={classes.button}
-            onClick={() => { auth.setRequest({ ...auth.request, isRequestPassword: false }); }}
+            onClick={handleReturnToIdForm}
           >
             メール送信にもどる
           </Button>
