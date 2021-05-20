@@ -3,14 +3,14 @@ import { createStyles, makeStyles } from '@material-ui/core';
 import LinearProgress from '../atoms/LinerProgress';
 import Typography from '../atoms/Typography';
 
-export const ListLoadingStyle = makeStyles(() => createStyles({
+export const LinearLoadingStyle = makeStyles(() => createStyles({
   loading: {
     textAlign: 'center',
   },
 }));
 
-const ListLoading: FC = (): JSX.Element => {
-  const classes = ListLoadingStyle();
+const LinearLoading: FC = (): JSX.Element => {
+  const classes = LinearLoadingStyle();
   return (
     <div className={classes.loading}>
       <LinearProgress />
@@ -21,4 +21,4 @@ const ListLoading: FC = (): JSX.Element => {
   );
 };
 
-export default ListLoading;
+export default LinearLoading;

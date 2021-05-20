@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { ListItem } from '@material-ui/core';
 import { FormatAlignRight } from '@material-ui/icons';
@@ -11,47 +11,45 @@ import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import ControlPanelTemplate from '../../templates/ControlPanelTemplate';
 import { getGroupFormList } from '../../../api/api';
-import ListLoading from '../../molecules/ListLoading';
 import InternalLink from '../../molecules/InternalLink';
+import LoadableItems from '../../organisms/common/LoadableItems';
+import { FormListType } from '../../../contexts/User';
 
 const GroupNameForm = (): JSX.Element => {
   const auth = useAuth();
   const classes = ListStyle();
   const params: { groupName: string } = useParams();
-  useEffect(() => {
-    if (!auth.user?.formList) {
-      getGroupFormList(params.groupName).then((result) => auth.setUser({ ...auth.user, formList: result.data.form }));
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <ControlPanelTemplate page={Pages.groupNameForm}>
       <List className={classes.list}>
         <Typography variant="h6">
           フォーム一覧
         </Typography>
-        { (() => {
-          if (!auth.user?.formList || (Object.keys(auth.user.formList).length === 0)) {
-            return <ListLoading />;
-          }
-          const formList = auth.user?.formList;
-          const keys = Object.keys(formList);
-          return (
-            keys.map(
-              (formName) => (
-                <InternalLink to={Pages.groupNameFormName.href(params.groupName, formName)}>
-                  <ListItem>
-                    <ListItemIcon>
-                      <FormatAlignRight />
-                    </ListItemIcon>
-                    <ListItemText>
-                      {formList[formName].name}
-                    </ListItemText>
-                  </ListItem>
-                </InternalLink>
-              ),
-            )
-          );
-        })()}
+        <LoadableItems<FormListType>
+          items={auth.user?.formList}
+          load={() => {
+            getGroupFormList(params.groupName).then((result) => auth.setUser({ ...auth.user, formList: result.data.form }));
+          }}
+          onComplete={(items) => {
+            const keys = Object.keys(items);
+            return (
+              keys.map(
+                (formName) => (
+                  <InternalLink to={Pages.groupNameFormName.href(params.groupName, formName)}>
+                    <ListItem>
+                      <ListItemIcon>
+                        <FormatAlignRight />
+                      </ListItemIcon>
+                      <ListItemText>
+                        {items[formName].name}
+                      </ListItemText>
+                    </ListItem>
+                  </InternalLink>
+                ),
+              )
+            );
+          }}
+        />
       </List>
     </ControlPanelTemplate>
   );
