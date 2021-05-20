@@ -9,6 +9,8 @@ import ListStyle from '../common/List.style';
 import Typography from '../../atoms/Typography';
 import { Pages } from '../../../pages';
 import InternalLink from '../../molecules/InternalLink';
+import LoadableItems from '../common/LoadableItems';
+import { getUserDocumentList } from '../../../api/api';
 
 const DocumentList = (): JSX.Element => {
   const auth = useAuth();
@@ -18,22 +20,28 @@ const DocumentList = (): JSX.Element => {
       <Typography variant="h6">
         資料一覧
       </Typography>
-      {
-        auth.user?.documentList?.map(
-          (name) => (
-            <InternalLink to={`${Pages.document.href}?${name}`} key={name}>
-              <ListItem className={classes.listItem}>
-                <ListItemIcon>
-                  <Description />
-                </ListItemIcon>
-                <ListItemText>
-                  {name}
-                </ListItemText>
-              </ListItem>
-            </InternalLink>
-          ),
-        )
-      }
+      <LoadableItems<string[]>
+        items={auth.user?.documentList}
+        load={() => {
+          getUserDocumentList().then((response) => auth.setUser({ ...auth.user, documentList: response.data.document }));
+        }}
+        onComplete={(items) => (
+          items.map(
+            (name) => (
+              <InternalLink to={`${Pages.document.href}?${name}`} key={name}>
+                <ListItem className={classes.listItem}>
+                  <ListItemIcon>
+                    <Description />
+                  </ListItemIcon>
+                  <ListItemText>
+                    {name}
+                  </ListItemText>
+                </ListItem>
+              </InternalLink>
+            ),
+          )
+        )}
+      />
     </List>
   );
 };

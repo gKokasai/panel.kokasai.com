@@ -9,6 +9,8 @@ import List from '../../atoms/List';
 import ListStyle from '../common/List.style';
 import { Pages } from '../../../pages';
 import InternalLink from '../../molecules/InternalLink';
+import LoadableItems from '../common/LoadableItems';
+import { getUserGroupList } from '../../../api/api';
 
 const GroupList = (): JSX.Element => {
   const auth = useAuth();
@@ -18,22 +20,28 @@ const GroupList = (): JSX.Element => {
       <Typography variant="h6">
         グループ一覧
       </Typography>
-      {
-        auth.user?.groupList?.map(
-          (name) => (
-            <InternalLink to={Pages.groupName.href(name)}>
-              <ListItem className={classes.listItem} key={name}>
-                <ListItemIcon>
-                  <PeopleOutline />
-                </ListItemIcon>
-                <ListItemText>
-                  {name}
-                </ListItemText>
-              </ListItem>
-            </InternalLink>
-          ),
-        )
-      }
+      <LoadableItems<string[]>
+        items={auth.user?.groupList}
+        load={() => {
+          getUserGroupList().then((response) => auth.setUser({ ...auth.user, groupList: response.data.group }));
+        }}
+        onComplete={(items) => (
+          items.map(
+            (name) => (
+              <InternalLink to={Pages.groupName.href(name)}>
+                <ListItem className={classes.listItem} key={name}>
+                  <ListItemIcon>
+                    <PeopleOutline />
+                  </ListItemIcon>
+                  <ListItemText>
+                    {name}
+                  </ListItemText>
+                </ListItem>
+              </InternalLink>
+            ),
+          )
+        )}
+      />
     </List>
   );
 };
