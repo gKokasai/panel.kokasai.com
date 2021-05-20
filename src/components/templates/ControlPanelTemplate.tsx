@@ -17,7 +17,7 @@ import {
   IconButton, ListItem,
 } from '@material-ui/core';
 import * as icons from '@material-ui/icons';
-import Copyright from '../organisms/common/Copyright';
+import Copyright from '../molecules/Copyright';
 import { SideBar } from '../../pages';
 import ControlPanelTemplateStyle from './ControlPanelTemplate.style';
 import ControlPanelTemplateTheme from './ControlPanelTemplate.theme';

@@ -1,15 +1,11 @@
 import { Typography as MuiTypography, TypographyProps as MuiTypographyProps } from '@material-ui/core';
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 
-type Props = MuiTypographyProps & {children: ReactNode}
+export type TypographyProps = MuiTypographyProps;
 
-const Typography: FC<Props> = (props): JSX.Element => {
-  const { children } = props;
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <MuiTypography {...props}>
-      {children}
-    </MuiTypography>
-  );
-};
+const Typography: FC<TypographyProps> = (props): JSX.Element => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <MuiTypography {...props} />
+);
+
 export default Typography;

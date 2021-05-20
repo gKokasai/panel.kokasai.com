@@ -1,15 +1,11 @@
 import { ListItemText as MuiListItemText, ListItemTextProps as MuiListItemTextActionProps } from '@material-ui/core';
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 
-type Props = MuiListItemTextActionProps & {children: ReactNode}
+export type ListItemTextProps = MuiListItemTextActionProps;
 
-const ListItemText: FC<Props> = (props): JSX.Element => {
-  const { children } = props;
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <MuiListItemText {...props}>
-      {children}
-    </MuiListItemText>
-  );
-};
+const ListItemText: FC<ListItemTextProps> = (props): JSX.Element => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <MuiListItemText {...props} />
+);
+
 export default ListItemText;

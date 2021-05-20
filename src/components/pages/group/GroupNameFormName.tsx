@@ -6,7 +6,7 @@ import ControlPanelTemplate from '../../templates/ControlPanelTemplate';
 import { Pages } from '../../../pages';
 import { useAuth } from '../../../contexts/AuthContext';
 import { getGroupForm } from '../../../api/api';
-import ListLoading from '../../organisms/common/ListLoading';
+import ListLoading from '../../molecules/ListLoading';
 import TextField from '../../atoms/TextField';
 import Button from '../../atoms/Button';
 

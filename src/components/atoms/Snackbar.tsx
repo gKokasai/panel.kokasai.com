@@ -1,15 +1,11 @@
 import { Snackbar as MuiSnackbar, SnackbarProps as MuiSnackbarProps } from '@material-ui/core';
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 
-type Props = MuiSnackbarProps & {children: ReactNode}
+export type SnackbarProps = MuiSnackbarProps;
 
-const Snackbar: FC<Props> = (props): JSX.Element => {
-  const { children } = props;
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <MuiSnackbar {...props}>
-      {children}
-    </MuiSnackbar>
-  );
-};
+const Snackbar: FC<SnackbarProps> = (props): JSX.Element => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <MuiSnackbar {...props} />
+);
+
 export default Snackbar;

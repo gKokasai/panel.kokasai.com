@@ -1,13 +1,11 @@
-import {
-  CircularProgress as MuiCircularProgress,
-  CircularProgressProps as MuiCircularProgressProps,
-} from '@material-ui/core';
+import { CircularProgress as MuiCircularProgress, CircularProgressProps as MuiCircularProgressProps } from '@material-ui/core';
 import React, { FC } from 'react';
 
-type Props = MuiCircularProgressProps;
+export type CircularProgressProps = MuiCircularProgressProps;
 
-const CircularProgress: FC<Props> = (props): JSX.Element => (
+const CircularProgress: FC<CircularProgressProps> = (props): JSX.Element => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <MuiCircularProgress {...props} />
 );
+
 export default CircularProgress;

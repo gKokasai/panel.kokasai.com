@@ -3,15 +3,15 @@ import { useParams } from 'react-router-dom';
 import { ListItem } from '@material-ui/core';
 import { FormatAlignRight } from '@material-ui/icons';
 import Typography from '../../atoms/Typography';
-import List from '../../molecules/List';
+import List from '../../atoms/List';
 import { useAuth } from '../../../contexts/AuthContext';
 import ListStyle from '../../organisms/common/List.style';
 import { Pages } from '../../../pages';
-import ListItemIcon from '../../molecules/ListItemIcon';
+import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import ControlPanelTemplate from '../../templates/ControlPanelTemplate';
 import { getGroupFormList } from '../../../api/api';
-import ListLoading from '../../organisms/common/ListLoading';
+import ListLoading from '../../molecules/ListLoading';
 import InternalLink from '../../molecules/InternalLink';
 
 const GroupNameForm = (): JSX.Element => {

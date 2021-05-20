@@ -1,22 +1,21 @@
 import React, { FC } from 'react';
-
 import Button from '../../atoms/Button';
-import Card from '../../molecules/Card';
-import CardActions from '../../molecules/CardActions';
-import CardContent from '../../molecules/CardContent';
-import CardHeader from '../../molecules/CardHeader';
+import Card from '../../atoms/Card';
+import CardActions from '../../atoms/CardActions';
+import CardContent from '../../atoms/CardContent';
+import CardHeader from '../../atoms/CardHeader';
 import TextField from '../../atoms/TextField';
-
 import { useAuth } from '../../../contexts/AuthContext';
 import LoginFormStyle from './LoginForm.style';
 
-type Props = {
+export type LoginFormProps = {
   handleLoginFormSubmit: (event: React.MouseEvent<HTMLButtonElement>) => void;
   handleIdForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handlePassWordForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
   defaultId?: string;
 }
-const LoginForm: FC<Props> = (props): JSX.Element => {
+
+const LoginForm: FC<LoginFormProps> = (props): JSX.Element => {
   const auth = useAuth();
   const {
     handleLoginFormSubmit, handleIdForm, handlePassWordForm, defaultId,

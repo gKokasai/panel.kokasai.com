@@ -5,7 +5,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 import Typography from '../../atoms/Typography';
 import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
-import List from '../../molecules/List';
+import List from '../../atoms/List';
 import ListStyle from '../common/List.style';
 import { Pages } from '../../../pages';
 import InternalLink from '../../molecules/InternalLink';
