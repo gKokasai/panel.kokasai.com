@@ -10,7 +10,7 @@ import {
 } from '../contexts/AuthContext';
 import { Pages } from '../pages';
 import Empty from './pages/Empty';
-import Loading from './organisms/login/Loading';
+import LoginFormLoading from './organisms/login/LoginFormLoading';
 import Group from './pages/group/Group';
 import { getSessionId } from '../storage';
 import GroupName from './pages/group/GroupName';
@@ -25,7 +25,7 @@ const PrivateRoute: React.FC<RouteProps> = ({ ...props }) => {
   if (!auth.user && !auth.request.isFailSessionLogin) {
     checkSession(auth);
     if (getSessionId() != null) return <Empty />;
-    return <Loading />;
+    return <LoginFormLoading />;
   }
   if (auth.user) {
     // eslint-disable-next-line react/jsx-props-no-spreading
