@@ -51,6 +51,14 @@ export const postLogin = (
 export const postLogout = (): Promise<AxiosResponse<never>> => axios.post(`${URL}/logout`, undefined, { headers: defaultHeaders() });
 
 /**
+ * セッション数を取得する。
+ * [GET /session](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-session)
+ */
+export const getSession = (): Promise<AxiosResponse<{
+  count: number
+}>> => axios.get(`${URL}/session`, { headers: defaultHeaders() });
+
+/**
  * 公開されているファイルを取得する。
  * [GET /file](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-filepath)
  * @param path 取得するファイルのパス
