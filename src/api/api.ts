@@ -65,15 +65,6 @@ export const getSession = (): Promise<AxiosResponse<{
 }>> => axios.get(`${URL}/session`, { headers: defaultHeaders() });
 
 /**
- * 公開されているファイルを取得する。
- * [GET /file](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-filepath)
- * @param path 取得するファイルのパス
- */
-export const getFile = (
-  path: string,
-): Promise<AxiosResponse> => axios.get(`${URL}/file/${path}`, { headers: defaultHeaders() });
-
-/**
  * ドキュメントファイルを取得する。
  * [GET /document](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-documentname)
  * @param documentName 取得するドキュメントの名前
