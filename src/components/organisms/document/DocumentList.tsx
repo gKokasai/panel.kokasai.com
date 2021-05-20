@@ -2,7 +2,7 @@ import React from 'react';
 import { ListItem } from '@material-ui/core';
 import { Description } from '@material-ui/icons';
 import { useAuth } from '../../../contexts/AuthContext';
-import List from '../../molecules/List';
+import List from '../../atoms/List';
 import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import ListStyle from '../common/List.style';
@@ -37,4 +37,5 @@ const DocumentList = (): JSX.Element => {
     </List>
   );
 };
+
 export default DocumentList;
