@@ -10,25 +10,24 @@ import DialogContent from '../../atoms/DialogContent';
 import DialogContentText from '../../atoms/DialogContentText';
 import DialogTitle from '../../atoms/DialogTitle';
 import TextField from '../../atoms/TextField';
-import { useAuth } from '../../../contexts/AuthContext';
 import LoginFormStyle from './LoginForm.style';
 
 export type PasswordRequestFormProps = {
   handleIdForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDialogSubmit: () => void;
+  handleGoToPasswordForm: () => void;
+  inputId?: string;
   isEnableSendButton: boolean;
 }
 
 const PasswordRequestForm: FC<PasswordRequestFormProps> = (props): JSX.Element => {
-  const auth = useAuth();
-  const { handleIdForm, isEnableSendButton } = props;
+  const {
+    handleIdForm, handleDialogSubmit, handleGoToPasswordForm, inputId, isEnableSendButton,
+  } = props;
   const [isEnablePopUpWindow, setIsEnablePopUpWindow] = useState(false);
   const handleIdFormSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     setIsEnablePopUpWindow(true);
-  };
-
-  const handleDialogSubmit = () => {
-    auth.postLogin();
   };
 
   const classes = LoginFormStyle();
@@ -50,7 +49,7 @@ const PasswordRequestForm: FC<PasswordRequestFormProps> = (props): JSX.Element =
         <CardActions className={classes.cardActions}>
           <Button
             className={classes.button}
-            onClick={() => { auth.setRequest({ ...auth.request, isRequestPassword: true }); }}
+            onClick={handleGoToPasswordForm}
           >
             パスワードを入力する
           </Button>
@@ -74,8 +73,7 @@ const PasswordRequestForm: FC<PasswordRequestFormProps> = (props): JSX.Element =
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                {auth.request.inputId}
-                @gunma.kosen-ac.jp にメールを送信しますがよろしいですか？
+                {`${inputId}@gunma.kosen-ac.jp にメールを送信しますがよろしいですか？`}
               </DialogContentText>
             </DialogContent>
             <DialogActions>
