@@ -1,15 +1,11 @@
 import { ListItemIcon as MuiListItemIcon, ListItemIconProps as MuiListItemIconActionProps } from '@material-ui/core';
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 
-type Props = MuiListItemIconActionProps & {children: ReactNode}
+export type ListItemIconProps = MuiListItemIconActionProps;
 
-const ListItemIcon: FC<Props> = (props): JSX.Element => {
-  const { children } = props;
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <MuiListItemIcon {...props}>
-      {children}
-    </MuiListItemIcon>
-  );
-};
+const ListItemIcon: FC<ListItemIconProps> = (props): JSX.Element => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <MuiListItemIcon {...props} />
+);
+
 export default ListItemIcon;

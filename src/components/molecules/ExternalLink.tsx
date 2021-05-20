@@ -1,16 +1,11 @@
 import React, { FC } from 'react';
-import Link, { Props as LinkProps } from '../atoms/Link';
+import Link, { LinkProps } from '../atoms/Link';
 
-export type Props = LinkProps
+export type ExternalLinkProps = LinkProps;
 
-const ExternalLink: FC<Props> = (props): JSX.Element => {
-  const { children } = props;
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <Link {...props}>
-      {children}
-    </Link>
-  );
-};
+const ExternalLink: FC<ExternalLinkProps> = (props): JSX.Element => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <Link {...props} />
+);
 
 export default ExternalLink;
