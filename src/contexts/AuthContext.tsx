@@ -3,7 +3,6 @@ import * as api from '../api/api';
 import { User } from './User';
 import { Request } from './Request';
 import { setSessionId } from '../storage';
-import { getUserDocumentList, getUserGroupList } from '../api/api';
 import createContext from './createContext';
 import { useAlert } from './AlertContext';
 
@@ -29,22 +28,8 @@ const useAuthContext = (): AuthContextType => {
   const [user, setUser] = useState<User | null>(null);
   const alert = useAlert();
 
-  const reloadUser = () => {
-    Promise.all(
-      [
-        getUserDocumentList(),
-        getUserGroupList(),
-      ],
-    ).then(([
-      documentResponse,
-      groupResponse,
-    ]) => {
-      setUser({
-        documentList: documentResponse.data.document,
-        groupList: groupResponse.data.group,
-      });
-    });
-  };
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const reloadUser = () => {};
 
   const postLogin = () => {
     setRequest({ ...request, isLoad: true });
