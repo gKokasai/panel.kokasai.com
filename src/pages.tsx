@@ -3,7 +3,8 @@ import React from 'react';
 
 export const Pages = {
   index: { name: 'トップ', href: '/' },
-  document: { name: '資料', href: '/document' },
+  document: { name: '資料', href: '/document/list' },
+  documentName: { name: '資料', href: '/document' },
   group: { name: 'グループ', href: '/group' },
   groupName: { name: 'グループ', href: (groupName: string): string => `/group/${groupName}` },
   groupNameForm: { name: 'フォーム', href: (groupName: string): string => `/group/${groupName}/form` },
