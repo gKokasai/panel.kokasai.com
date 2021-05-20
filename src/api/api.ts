@@ -91,6 +91,14 @@ export const postDocument = (
 };
 
 /**
+ * 全グループ一覧を取得する。
+ * [GET /group/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-grouplist)
+ */
+export const getGroupList = (): Promise<AxiosResponse<{
+  group: string[]
+}>> => axios.get(`${URL}/group/list`, { headers: defaultHeaders() });
+
+/**
  * グループに紐づけられているドキュメントファイル一覧を取得する。
  * [GET /group/document/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-groupdocumentlistname)
  * @param groupName 取得するグループの名前
