@@ -51,6 +51,12 @@ export const postLogin = (
 export const postLogout = (): Promise<AxiosResponse<never>> => axios.post(`${URL}/logout`, undefined, { headers: defaultHeaders() });
 
 /**
+ * ログアウトする。
+ * [POST /logout/all](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#post-logoutall)
+ */
+export const postLogoutAll = (): Promise<AxiosResponse<never>> => axios.post(`${URL}/logout/all`, undefined, { headers: defaultHeaders() });
+
+/**
  * セッション数を取得する。
  * [GET /session](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-session)
  */
