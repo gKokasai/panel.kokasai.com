@@ -28,7 +28,7 @@ const DocumentList: FC<DocumentListProps> = (props): JSX.Element => {
         onComplete={(_items) => (
           _items.map(
             (name) => (
-              <InternalLink to={`${Pages.document.href}?${name}`} key={name}>
+              <InternalLink to={`${Pages.documentName.href}?${name}`} key={name}>
                 <ListItem className={classes.listItem}>
                   <ListItemIcon>
                     <Description />
