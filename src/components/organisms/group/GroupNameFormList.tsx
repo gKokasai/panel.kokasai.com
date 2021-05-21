@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import { ListItem } from '@material-ui/core';
 import { FormatAlignRight } from '@material-ui/icons';
-import LoadableItems from '../common/LoadableItems';
+import LoadableItems from '../../molecules/LoadableItems';
 import { FormListType } from '../../../contexts/User';
 import InternalLink from '../../molecules/InternalLink';
 import { Pages } from '../../../pages';
 import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
-import WithHeaderList from '../common/WithHeaderList';
+import WithHeaderList from '../../molecules/WithHeaderList';
 import ListStyle from '../common/List.style';
 
 export type GroupNameFormListProps = {

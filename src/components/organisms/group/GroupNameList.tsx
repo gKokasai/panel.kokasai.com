@@ -5,7 +5,7 @@ import InternalLink from '../../molecules/InternalLink';
 import { Pages } from '../../../pages';
 import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
-import WithHeaderList from '../common/WithHeaderList';
+import WithHeaderList from '../../molecules/WithHeaderList';
 import ListStyle from '../common/List.style';
 
 export type GroupNameListProps = {
