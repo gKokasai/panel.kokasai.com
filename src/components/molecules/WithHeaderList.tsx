@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
-import Typography from '../../atoms/Typography';
-import List from '../../atoms/List';
+import Typography from '../atoms/Typography';
+import List from '../atoms/List';
 
 export type WithHeaderListProps = {
   title: string,
