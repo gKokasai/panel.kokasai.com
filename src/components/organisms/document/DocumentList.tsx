@@ -6,27 +6,29 @@ import ListItemText from '../../atoms/ListItemText';
 import ListStyle from '../common/List.style';
 import { Pages } from '../../../pages';
 import InternalLink from '../../molecules/InternalLink';
-import LoadableItems from '../../molecules/LoadableItems';
+import LoadableItem from '../../molecules/LoadableItem';
 import WithHeaderList from '../../molecules/WithHeaderList';
 
 export type DocumentListProps = {
-  items?: string[],
+  item?: string[],
   load: () => void,
+  LoadComponent: JSX.Element,
 };
 
 const DocumentList: FC<DocumentListProps> = (props): JSX.Element => {
-  const { items, load } = props;
+  const { item, load, LoadComponent } = props;
   const classes = ListStyle();
   return (
     <WithHeaderList
       title="資料一覧"
       listClassName={classes.list}
     >
-      <LoadableItems<string[]>
-        items={items}
+      <LoadableItem<string[]>
+        item={item}
         load={load}
-        onComplete={(_items) => (
-          _items.map(
+        LoadComponent={LoadComponent}
+        onComplete={(_item) => (
+          _item.map(
             (name) => (
               <InternalLink to={`${Pages.documentName.href}?${name}`} key={name}>
                 <ListItem className={classes.listItem}>
