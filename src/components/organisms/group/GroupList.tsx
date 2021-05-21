@@ -6,27 +6,29 @@ import ListItemText from '../../atoms/ListItemText';
 import ListStyle from '../common/List.style';
 import { Pages } from '../../../pages';
 import InternalLink from '../../molecules/InternalLink';
-import LoadableItems from '../../molecules/LoadableItems';
+import LoadableItem from '../../molecules/LoadableItem';
 import WithHeaderList from '../../molecules/WithHeaderList';
 
 export type GroupListProps = {
-  items?: string[],
+  item?: string[],
   load: () => void,
+  LoadComponent: JSX.Element,
 }
 
 const GroupList: FC<GroupListProps> = (props): JSX.Element => {
-  const { items, load } = props;
+  const { item, load, LoadComponent } = props;
   const classes = ListStyle();
   return (
     <WithHeaderList
       title="グループ一覧"
       listClassName={classes.list}
     >
-      <LoadableItems<string[]>
-        items={items}
+      <LoadableItem<string[]>
+        item={item}
         load={load}
-        onComplete={(_items) => (
-          _items.map(
+        LoadComponent={LoadComponent}
+        onComplete={(_item) => (
+          _item.map(
             (name) => (
               <InternalLink to={Pages.groupName.href(name)}>
                 <ListItem className={classes.listItem} key={name}>

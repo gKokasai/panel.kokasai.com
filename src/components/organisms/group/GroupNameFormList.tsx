@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { ListItem } from '@material-ui/core';
 import { FormatAlignRight } from '@material-ui/icons';
-import LoadableItems from '../../molecules/LoadableItems';
+import LoadableItem from '../../molecules/LoadableItem';
 import { FormListType } from '../../../contexts/User';
 import InternalLink from '../../molecules/InternalLink';
 import { Pages } from '../../../pages';
@@ -11,24 +11,28 @@ import WithHeaderList from '../../molecules/WithHeaderList';
 import ListStyle from '../common/List.style';
 
 export type GroupNameFormListProps = {
-  items?: FormListType,
+  item?: FormListType,
   load: () => void,
   groupName: string,
+  LoadComponent: JSX.Element,
 };
 
 const GroupNameFormList: FC<GroupNameFormListProps> = (props) => {
-  const { items, load, groupName } = props;
+  const {
+    item, load, groupName, LoadComponent,
+  } = props;
   const classes = ListStyle();
   return (
     <WithHeaderList
       title="フォーム一覧"
       listClassName={classes.list}
     >
-      <LoadableItems<FormListType>
-        items={items}
+      <LoadableItem<FormListType>
+        item={item}
         load={load}
-        onComplete={(_items) => {
-          const keys = Object.keys(_items);
+        LoadComponent={LoadComponent}
+        onComplete={(_item) => {
+          const keys = Object.keys(_item);
           return (
             keys.map(
               (formName) => (
@@ -38,7 +42,7 @@ const GroupNameFormList: FC<GroupNameFormListProps> = (props) => {
                       <FormatAlignRight />
                     </ListItemIcon>
                     <ListItemText>
-                      {_items[formName].name}
+                      {_item[formName].name}
                     </ListItemText>
                   </ListItem>
                 </InternalLink>
