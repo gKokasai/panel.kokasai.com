@@ -5,6 +5,7 @@ import { Pages } from '../../../pages';
 import ControlPanelTemplate from '../../templates/ControlPanelTemplate';
 import { getGroupFormList } from '../../../api/api';
 import GroupNameFormList from '../../organisms/group/GroupNameFormList';
+import LinearLoading from '../../molecules/LinearLoading';
 
 const GroupNameForm = (): JSX.Element => {
   const auth = useAuth();
@@ -12,11 +13,12 @@ const GroupNameForm = (): JSX.Element => {
   return (
     <ControlPanelTemplate page={Pages.groupNameForm}>
       <GroupNameFormList
-        items={auth.user?.formList}
+        item={auth.user?.formList}
         load={() => {
           getGroupFormList(params.groupName).then((result) => auth.setUser({ ...auth.user, formList: result.data.form }));
         }}
         groupName={params.groupName}
+        LoadComponent={<LinearLoading />}
       />
     </ControlPanelTemplate>
   );

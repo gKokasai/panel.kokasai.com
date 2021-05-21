@@ -8,8 +8,9 @@ import { useAuth } from '../../../contexts/AuthContext';
 import { getGroupForm } from '../../../api/api';
 import TextField from '../../atoms/TextField';
 import Button from '../../atoms/Button';
-import LoadableItems from '../../molecules/LoadableItems';
+import LoadableItem from '../../molecules/LoadableItem';
 import { GetGroupFormResponse } from '../../../api/dataType';
+import LinearLoading from '../../molecules/LinearLoading';
 
 const GroupNameFormName = (): JSX.Element => {
   const auth = useAuth();
@@ -19,8 +20,8 @@ const GroupNameFormName = (): JSX.Element => {
       <Typography variant="h5">
         {auth.user?.formList && auth.user.formList[params.formName].name}
       </Typography>
-      <LoadableItems<GetGroupFormResponse>
-        items={auth.user?.form?.[params.formName]}
+      <LoadableItem<GetGroupFormResponse>
+        item={auth.user?.form?.[params.formName]}
         load={() => {
           getGroupForm(params.groupName, params.formName).then((response) => {
             auth.setUser({
@@ -32,26 +33,27 @@ const GroupNameFormName = (): JSX.Element => {
             });
           });
         }}
-        onComplete={(items) => (
+        LoadComponent={<LinearLoading />}
+        onComplete={(item) => (
           <>
             <p>
-              <Typography variant="subtitle1">{items.description}</Typography>
+              <Typography variant="subtitle1">{item.description}</Typography>
             </p>
             <p>
               <Typography variant="caption">
                 最終期限
-                {items.limit}
+                {item.limit}
               </Typography>
             </p>
             <p>
               <Typography variant="caption">
                 最終更新日時
-                {items.update}
+                {item.update}
               </Typography>
             </p>
-            {Object.keys(items.values).map(
+            {Object.keys(item.values).map(
               (name) => {
-                const formDataValue = items.values[name];
+                const formDataValue = item.values[name];
                 const formDataValueType = formDataValue.type;
                 return (
                   <>
@@ -83,7 +85,7 @@ const GroupNameFormName = (): JSX.Element => {
               },
             )}
             <Typography variant="h6">コメント</Typography>
-            <Typography variant="body1">{items.comment}</Typography>
+            <Typography variant="body1">{item.comment}</Typography>
             <Button variant="contained" color="secondary">
               元に戻す
             </Button>
