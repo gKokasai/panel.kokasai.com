@@ -6,8 +6,8 @@ import ListItemText from '../../atoms/ListItemText';
 import ListStyle from '../common/List.style';
 import { Pages } from '../../../pages';
 import InternalLink from '../../molecules/InternalLink';
-import LoadableItems from '../common/LoadableItems';
-import WithHeaderList from '../common/WithHeaderList';
+import LoadableItems from '../../molecules/LoadableItems';
+import WithHeaderList from '../../molecules/WithHeaderList';
 
 export type DocumentListProps = {
   items?: string[],

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import LinearLoading from '../../molecules/LinearLoading';
+import LinearLoading from './LinearLoading';
 
 export type LoadableItemsProps<T> = {
   items?: T,

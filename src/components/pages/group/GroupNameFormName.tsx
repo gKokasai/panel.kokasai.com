@@ -8,7 +8,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 import { getGroupForm } from '../../../api/api';
 import TextField from '../../atoms/TextField';
 import Button from '../../atoms/Button';
-import LoadableItems from '../../organisms/common/LoadableItems';
+import LoadableItems from '../../molecules/LoadableItems';
 import { GetGroupFormResponse } from '../../../api/dataType';
 
 const GroupNameFormName = (): JSX.Element => {
