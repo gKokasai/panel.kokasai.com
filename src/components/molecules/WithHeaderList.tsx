@@ -3,7 +3,7 @@ import Typography from '../atoms/Typography';
 import List from '../atoms/List';
 
 export type WithHeaderListProps = {
-  title: string,
+  title?: string,
   listClassName?: string,
   headerClassName?: string,
   children: ReactNode,
