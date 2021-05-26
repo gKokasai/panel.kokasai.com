@@ -1,3 +1,22 @@
+export type FormMergedType =
+  ['string', FormDefineTypeString & FormSaveTypeString] |
+  ['check', FormDefineTypeCheck & FormSaveTypeCheck] |
+  [];
+
+export const mergeFormType = (type: FormDefineType, value: FormSaveType): FormMergedType => {
+  if (type[0] !== value[0]) {
+    return [];
+  }
+  switch (type[0]) {
+    case 'string':
+      return ['string', { ...type[1], ...(value[1] as FormSaveTypeString) }];
+    case 'check':
+      return ['check', { ...type[1], ...(value[1] as FormSaveTypeCheck) }];
+    default:
+      return [];
+  }
+};
+
 export type FormDefineType =
   ['string', FormDefineTypeString] |
   ['check', FormDefineTypeCheck];
