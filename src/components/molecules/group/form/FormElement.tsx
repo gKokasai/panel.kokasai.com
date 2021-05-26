@@ -1,21 +1,27 @@
 import React from 'react';
-import { FormDefineType } from '../../../../api/dataType';
+import {
+  FormDefineType,
+  FormSaveType,
+  mergeFormType,
+} from '../../../../api/dataType';
 import FormElementString from './FormElementString';
 import FormElementCheck from './FormElementCheck';
 
 export type FormElementProps = {
   type: FormDefineType,
+  value?: FormSaveType,
 }
 
 const FormElement = (props: FormElementProps): JSX.Element => {
-  const { type } = props;
-  switch (type[0]) {
+  const { type, value } = props;
+  const data = value ? mergeFormType(type, value) : [];
+  switch (data[0]) {
     case 'string':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <FormElementString {...type[1]} />;
+      return <FormElementString {...data[1]} />;
     case 'check':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <FormElementCheck {...type[1]} />;
+      return <FormElementCheck {...data[1]} />;
     default:
       return <>Error</>;
   }
