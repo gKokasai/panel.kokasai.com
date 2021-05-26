@@ -4,7 +4,7 @@ import { GetGroupFormResponse } from '../../../api/dataType';
 import LoadableItem from '../../molecules/LoadableItem';
 import Typography from '../../atoms/Typography';
 import Button from '../../atoms/Button';
-import FormElement from '../../molecules/group/FormElement';
+import FormElement from '../../molecules/group/form/FormElement';
 
 export type Props = {
   formName?: string;
@@ -51,7 +51,7 @@ const GroupNameFormContent: FC<Props> = (props): JSX.Element => {
                     <p>
                       <Typography>{formDataValue.description}</Typography>
                     </p>
-                    <FormElement formDataValueType={formDataValueType} />
+                    <FormElement type={formDataValueType} />
                   </div>
                 );
               },
