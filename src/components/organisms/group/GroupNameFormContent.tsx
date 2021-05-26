@@ -3,9 +3,8 @@ import WithHeaderList from '../../molecules/WithHeaderList';
 import { GetGroupFormResponse } from '../../../api/dataType';
 import LoadableItem from '../../molecules/LoadableItem';
 import Typography from '../../atoms/Typography';
-import TextField from '../../atoms/TextField';
-import Checkbox from '../../atoms/Checkbox';
 import Button from '../../atoms/Button';
+import FormElement from '../../molecules/group/FormElement';
 
 export type Props = {
   formName?: string;
@@ -52,23 +51,7 @@ const GroupNameFormContent: FC<Props> = (props): JSX.Element => {
                     <p>
                       <Typography>{formDataValue.description}</Typography>
                     </p>
-                    {
-                      (() => {
-                        if (formDataValueType[0] === 'string') {
-                          return <TextField variant="outlined" fullWidth />;
-                        }
-                        return (
-                          Object.keys(formDataValueType[1].element).map(
-                            (id) => (
-                              <p>
-                                {formDataValueType[1].element[id as keyof string]}
-                                <Checkbox />
-                              </p>
-                            ),
-                          )
-                        );
-                      })()
-                    }
+                    <FormElement formDataValueType={formDataValueType} />
                   </div>
                 );
               },
