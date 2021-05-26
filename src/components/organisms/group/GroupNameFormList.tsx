@@ -2,16 +2,16 @@ import React, { FC } from 'react';
 import { ListItem } from '@material-ui/core';
 import { FormatAlignRight } from '@material-ui/icons';
 import LoadableItem from '../../molecules/LoadableItem';
-import { FormListType } from '../../../contexts/User';
 import InternalLink from '../../molecules/InternalLink';
 import { Pages } from '../../../pages';
 import ListItemIcon from '../../atoms/ListItemIcon';
 import ListItemText from '../../atoms/ListItemText';
 import WithHeaderList from '../../molecules/WithHeaderList';
 import ListStyle from '../common/List.style';
+import { FormList } from '../../../api/dataType';
 
 export type GroupNameFormListProps = {
-  item?: FormListType,
+  item?: FormList,
   load: () => void,
   groupName: string,
   LoadComponent: JSX.Element,
@@ -27,7 +27,7 @@ const GroupNameFormList: FC<GroupNameFormListProps> = (props) => {
       title="フォーム一覧"
       listClassName={classes.list}
     >
-      <LoadableItem<FormListType>
+      <LoadableItem<FormList>
         item={item}
         load={load}
         LoadComponent={LoadComponent}

@@ -1,16 +1,8 @@
-import { GetGroupFormResponse } from '../api/dataType';
-
-export type FormListType = {
-  [id: string]: {
-    name: string,
-    update: string,
-    status: number,
-  }
-};
+import { FormList, GetGroupFormResponse } from '../api/dataType';
 
 export type User = {
   documentList?: string[];
   groupList?: string[];
-  formList?: FormListType;
+  formList?: FormList;
   form?: {[formName: string]: GetGroupFormResponse}
 }
