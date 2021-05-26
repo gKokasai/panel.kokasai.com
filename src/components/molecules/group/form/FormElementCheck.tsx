@@ -12,10 +12,10 @@ const FormElementCheck = (props: FormElementCheckProps): JSX.Element => {
         Object.keys(element)
           .map(
             (id) => (
-              <p key={id}>
+              <div key={id}>
                 {element[id as keyof string]}
                 <Checkbox checked={id in select} />
-              </p>
+              </div>
             ),
           )
       }
