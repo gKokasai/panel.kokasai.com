@@ -1,11 +1,14 @@
 import React from 'react';
 import TextField from '../../../atoms/TextField';
-import { FormDefineTypeString } from '../../../../api/dataType';
+import { FormDefineTypeString, FormSaveTypeString } from '../../../../api/dataType';
 
-export type FormElementStringProps = FormDefineTypeString;
+export type FormElementStringProps = FormDefineTypeString & FormSaveTypeString;
 
-const FormElementString = (_: FormElementStringProps): JSX.Element => (
-  <TextField variant="outlined" fullWidth />
-);
+const FormElementString = (props: FormElementStringProps): JSX.Element => {
+  const { content } = props;
+  return (
+    <TextField variant="outlined" fullWidth value={content} />
+  );
+};
 
 export default FormElementString;

@@ -43,6 +43,7 @@ const GroupNameFormContent: FC<Props> = (props): JSX.Element => {
               (name) => {
                 const formDataValue = _item.values[name];
                 const formDataValueType = formDataValue.type;
+                const formDataValueValue = formDataValue.value;
                 return (
                   <div key={name}>
                     <p>
@@ -51,7 +52,7 @@ const GroupNameFormContent: FC<Props> = (props): JSX.Element => {
                     <p>
                       <Typography>{formDataValue.description}</Typography>
                     </p>
-                    <FormElement type={formDataValueType} />
+                    <FormElement type={formDataValueType} value={formDataValueValue?.value} />
                   </div>
                 );
               },
