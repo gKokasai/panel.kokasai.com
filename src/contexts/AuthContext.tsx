@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import * as api from '../api/api';
 import { User } from './User';
 import { Request } from './Request';
@@ -15,10 +15,6 @@ type AuthContextType = {
   postLogin: () => void;
   postAuth: () => void;
   postLogout: () => void;
-}
-
-type Props = {
-  children: ReactNode;
 }
 
 const [useAuth, SetAuthProvider] = createContext<AuthContextType>();
@@ -76,7 +72,8 @@ const useAuthContext = (): AuthContextType => {
   };
 };
 
-const AuthProvider: React.FC<Props> = ({ children }) => {
+const AuthProvider: React.FC = (props) => {
+  const { children } = props;
   const auth = useAuthContext();
   return (
     <SetAuthProvider value={auth}>

@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from 'react';
+import React, { FC, useState } from 'react';
 import MuiAlert from '@material-ui/lab/Alert';
 import createContext from './createContext';
 import Snackbar from '../components/atoms/Snackbar';
@@ -44,10 +44,6 @@ type AlertState = {
   closeTimer: number;
 }
 
-type Props = {
-  children: ReactNode;
-}
-
 const [useAlert, SetAlertProvider] = createContext<AlertContextType>();
 
 const useAlertContext = (): { state: AlertState, type: AlertContextType } => {
@@ -84,7 +80,8 @@ const useAlertContext = (): { state: AlertState, type: AlertContextType } => {
   };
 };
 
-export const AlertProvider: FC<Props> = ({ children }) => {
+export const AlertProvider: FC = (props) => {
+  const { children } = props;
   const { state, type } = useAlertContext();
   return (
     <SetAlertProvider value={type}>
