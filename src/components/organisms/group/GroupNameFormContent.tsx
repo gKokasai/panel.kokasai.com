@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core';
-import WithHeaderList from '../../molecules/WithHeaderList';
 import { GetGroupFormResponse } from '../../../api/dataType';
 import LoadableItem from '../../molecules/LoadableItem';
 import Typography from '../../atoms/Typography';
@@ -40,7 +39,10 @@ const GroupNameFormContent: FC<Props> = (props): JSX.Element => {
   } = props;
   const classes = GroupNameFormContentStyle();
   return (
-    <WithHeaderList title={formName}>
+    <div>
+      <Typography variant="h6">
+        {formName}
+      </Typography>
       <LoadableItem<GetGroupFormResponse>
         item={item}
         load={load}
@@ -112,7 +114,7 @@ const GroupNameFormContent: FC<Props> = (props): JSX.Element => {
           </div>
         )}
       />
-    </WithHeaderList>
+    </div>
   );
 };
 
