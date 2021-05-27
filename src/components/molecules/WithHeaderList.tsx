@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import Typography from '../atoms/Typography';
 import List from '../atoms/List';
 
@@ -6,7 +6,6 @@ export type WithHeaderListProps = {
   title?: string,
   listClassName?: string,
   headerClassName?: string,
-  children: ReactNode,
 }
 
 const WithHeaderList: FC<WithHeaderListProps> = (props): JSX.Element => {
