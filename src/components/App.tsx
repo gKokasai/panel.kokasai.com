@@ -53,28 +53,37 @@ const UnAuthRoute: FC<RouteProps> = (props) => (
   />
 );
 
+const Provider: FC = (props): JSX.Element => {
+  const { children } = props;
+  return (
+    <AlertProvider>
+      <AuthProvider>
+        {children}
+      </AuthProvider>
+    </AlertProvider>
+  );
+};
+
 const App = (): JSX.Element => (
-  <AlertProvider>
-    <AuthProvider>
-      <div className="app">
-        <BrowserRouter>
-          <div>
-            <Switch>
-              <UnAuthRoute exact path={Pages.login.href} component={Login} />
-              <AuthRoute exact path={Pages.index.href} component={Index} />
-              <AuthRoute exact path={Pages.document.href} component={Document} />
-              <AuthRoute exact path={Pages.documentName.href} component={DocumentName} />
-              <AuthRoute exact path={Pages.group.href} component={Group} />
-              <AuthRoute exact path={Pages.groupName.href(':groupName')} component={GroupName} />
-              <AuthRoute exact path={Pages.groupNameForm.href(':groupName')} component={GroupNameForm} />
-              <AuthRoute exact path={Pages.groupNameFormName.href(':groupName', ':formName')} component={GroupNameFormName} />
-              <AuthRoute exact component={NotFound} />
-            </Switch>
-          </div>
-        </BrowserRouter>
-      </div>
-    </AuthProvider>
-  </AlertProvider>
+  <Provider>
+    <div className="app">
+      <BrowserRouter>
+        <div>
+          <Switch>
+            <UnAuthRoute exact path={Pages.login.href} component={Login} />
+            <AuthRoute exact path={Pages.index.href} component={Index} />
+            <AuthRoute exact path={Pages.document.href} component={Document} />
+            <AuthRoute exact path={Pages.documentName.href} component={DocumentName} />
+            <AuthRoute exact path={Pages.group.href} component={Group} />
+            <AuthRoute exact path={Pages.groupName.href(':groupName')} component={GroupName} />
+            <AuthRoute exact path={Pages.groupNameForm.href(':groupName')} component={GroupNameForm} />
+            <AuthRoute exact path={Pages.groupNameFormName.href(':groupName', ':formName')} component={GroupNameFormName} />
+            <AuthRoute exact component={NotFound} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </div>
+  </Provider>
 );
 
 export default App;
