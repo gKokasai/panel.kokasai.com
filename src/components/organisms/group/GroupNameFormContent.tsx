@@ -26,14 +26,14 @@ const GroupNameFormContentStyle = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-export type Props = {
+export type GroupNameFormContentProps = {
   formName?: string;
   item?: GetGroupFormResponse;
   load: () => void;
   LoadComponent: JSX.Element;
 }
 
-const GroupNameFormContent: FC<Props> = (props): JSX.Element => {
+const GroupNameFormContent: FC<GroupNameFormContentProps> = (props): JSX.Element => {
   const {
     formName, load, item, LoadComponent,
   } = props;

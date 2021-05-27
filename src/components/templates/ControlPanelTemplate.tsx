@@ -23,8 +23,7 @@ import ControlPanelTemplateStyle from './ControlPanelTemplate.style';
 import ControlPanelTemplateTheme from './ControlPanelTemplate.theme';
 import InternalLink from '../molecules/InternalLink';
 
-type Props = {
-  children: React.ReactNode;
+export type ControlPanelTemplateProps = {
   page: { name: string }
 };
 
@@ -42,7 +41,7 @@ const getLastOption = (): Option => {
   return option;
 };
 
-const ControlPanelTemplate: React.FC<Props> = ({
+const ControlPanelTemplate: React.FC<ControlPanelTemplateProps> = ({
   children,
   page,
 }) => {
