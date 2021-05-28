@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Pages } from '../../../pages';
 import { getDocument } from '../../../api/api';
 import { useAlert } from '../../../contexts/AlertContext';
@@ -6,6 +7,7 @@ import { useAlert } from '../../../contexts/AlertContext';
 const DocumentName: FC = (): JSX.Element => {
   const alert = useAlert();
   const queryParameter = window.location.search;
+  const history = useHistory();
   useEffect(() => {
     if (queryParameter) {
       getDocument(queryParameter.substring(1)).then((response) => {
@@ -15,18 +17,15 @@ const DocumentName: FC = (): JSX.Element => {
         const maxCount = 30;
         let count = 1;
         const backTime = 3000;
-        const { href } = window.location;
+        const { location } = history;
         alert.error('資料の取得に失敗しました', backTime);
-        let intervalId: number;
-        // eslint-disable-next-line prefer-const
-        intervalId = window.setInterval(() => {
-          const sameLocation = window.location.href === href;
+        const intervalId = window.setInterval(() => {
           if (count === maxCount) {
             window.clearInterval(intervalId);
-            window.location.href = Pages.document.href;
+            history.push(Pages.document.href);
             return;
           }
-          if (!sameLocation) {
+          if (history.location !== location) {
             window.clearInterval(intervalId);
             alert.close();
             return;
@@ -35,7 +34,7 @@ const DocumentName: FC = (): JSX.Element => {
         }, backTime / maxCount);
       });
     } else {
-      window.location.replace(Pages.document.href);
+      history.replace(Pages.document.href);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return <></>;
