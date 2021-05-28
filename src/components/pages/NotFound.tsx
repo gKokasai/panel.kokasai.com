@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import * as icons from '@material-ui/icons';
+import { useHistory } from 'react-router-dom';
 import Typography from '../atoms/Typography';
 import Button from '../atoms/Button';
+import { Pages } from '../../pages';
 
 const NotFoundStyle = makeStyles((theme: Theme) => createStyles({
   container: {
@@ -33,6 +35,7 @@ const NotFoundStyle = makeStyles((theme: Theme) => createStyles({
 
 const NotFound: FC = (): JSX.Element => {
   const classes = NotFoundStyle();
+  const history = useHistory();
   return (
     <div className={classes.container}>
       <icons.MoodBad className={classes.icon} />
@@ -42,7 +45,7 @@ const NotFound: FC = (): JSX.Element => {
       <Typography variant="body1" align="center">
         ページが見つかりませんでした
       </Typography>
-      <Button onClick={() => { window.location.href = '/'; }} className={classes.button}>
+      <Button onClick={() => history.push(Pages.index.href)} className={classes.button}>
         <icons.ArrowBack className={classes.arrowBack} />
         トップに戻る
       </Button>
