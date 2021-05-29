@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import clsx from 'clsx';
-import { ThemeProvider } from '@material-ui/styles';
+import React, { useEffect, useState } from "react";
+import clsx from "clsx";
+import { ThemeProvider } from "@material-ui/styles";
 import {
   CssBaseline,
   Drawer,
@@ -14,24 +14,25 @@ import {
   ListItemIcon,
   ListItemText,
   Tooltip,
-  IconButton, ListItem,
-} from '@material-ui/core';
-import * as icons from '@material-ui/icons';
-import Copyright from '../molecules/Copyright';
-import { SideBar } from '../../pages';
-import ControlPanelTemplateStyle from './ControlPanelTemplate.style';
-import ControlPanelTemplateTheme from './ControlPanelTemplate.theme';
-import InternalLink from '../molecules/InternalLink';
+  IconButton,
+  ListItem,
+} from "@material-ui/core";
+import * as icons from "@material-ui/icons";
+import Copyright from "../molecules/Copyright";
+import { SideBar } from "../../pages";
+import ControlPanelTemplateStyle from "./ControlPanelTemplate.style";
+import ControlPanelTemplateTheme from "./ControlPanelTemplate.theme";
+import InternalLink from "../molecules/InternalLink";
 
 export type ControlPanelTemplateProps = {
-  page: { name: string }
+  page: { name: string };
 };
 
-const OptionKey = 'option/panel';
+const OptionKey = "option/panel";
 
 type Option = {
-  isOpenSideBar?: boolean
-}
+  isOpenSideBar?: boolean;
+};
 
 const getLastOption = (): Option => {
   const optionJson = localStorage.getItem(OptionKey);
@@ -48,7 +49,10 @@ const ControlPanelTemplate: React.FC<ControlPanelTemplateProps> = ({
   const classes = ControlPanelTemplateStyle();
   const [option, setOption] = useState<Option>(getLastOption());
 
-  useEffect(() => localStorage.setItem(OptionKey, JSON.stringify(option)), [option]);
+  useEffect(
+    () => localStorage.setItem(OptionKey, JSON.stringify(option)),
+    [option]
+  );
 
   return (
     <ThemeProvider theme={ControlPanelTemplateTheme}>
@@ -56,7 +60,10 @@ const ControlPanelTemplate: React.FC<ControlPanelTemplateProps> = ({
         <CssBaseline />
         <AppBar
           position="absolute"
-          className={clsx(classes.appBar, option.isOpenSideBar && classes.appBarShift)}
+          className={clsx(
+            classes.appBar,
+            option.isOpenSideBar && classes.appBarShift
+          )}
         >
           <Toolbar className={classes.toolbar}>
             <IconButton
@@ -66,7 +73,7 @@ const ControlPanelTemplate: React.FC<ControlPanelTemplateProps> = ({
               onClick={() => setOption({ ...option, isOpenSideBar: true })}
               className={clsx(
                 classes.menuButton,
-                option.isOpenSideBar && classes.menuButtonHidden,
+                option.isOpenSideBar && classes.menuButtonHidden
               )}
             >
               <icons.Menu />
@@ -85,12 +92,17 @@ const ControlPanelTemplate: React.FC<ControlPanelTemplateProps> = ({
         <Drawer
           variant="permanent"
           classes={{
-            paper: clsx(classes.drawerPaper, !option.isOpenSideBar && classes.drawerPaperClose),
+            paper: clsx(
+              classes.drawerPaper,
+              !option.isOpenSideBar && classes.drawerPaperClose
+            ),
           }}
           open={option.isOpenSideBar}
         >
           <div className={classes.toolbarIcon}>
-            <IconButton onClick={() => setOption({ ...option, isOpenSideBar: false })}>
+            <IconButton
+              onClick={() => setOption({ ...option, isOpenSideBar: false })}
+            >
               <icons.ChevronLeft />
             </IconButton>
           </div>
@@ -98,12 +110,14 @@ const ControlPanelTemplate: React.FC<ControlPanelTemplateProps> = ({
           <List>
             {/* eslint-disable-next-line no-shadow */}
             {SideBar.map(({ page, icon }) => (
-              <InternalLink to={page.href} className={classes.link} key={page.href}>
+              <InternalLink
+                to={page.href}
+                className={classes.link}
+                key={page.href}
+              >
                 <Tooltip title={page.name}>
                   <ListItem button>
-                    <ListItemIcon>
-                      {icon}
-                    </ListItemIcon>
+                    <ListItemIcon>{icon}</ListItemIcon>
                     <ListItemText primary={page.name} />
                   </ListItem>
                 </Tooltip>

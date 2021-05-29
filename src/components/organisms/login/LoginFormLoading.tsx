@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-import CircularProgress from '../../atoms/CircularProgress';
-import LoginFormStyle from './LoginForm.style';
-import CardContent from '../../atoms/CardContent';
-import LoginFormCard from '../../molecules/login/LoginFormCard';
+import React, { FC } from "react";
+import CircularProgress from "../../atoms/CircularProgress";
+import LoginFormStyle from "./LoginForm.style";
+import CardContent from "../../atoms/CardContent";
+import LoginFormCard from "../../molecules/login/LoginFormCard";
 
 const LoginFormLoading: FC = (): JSX.Element => {
   const classes = LoginFormStyle();

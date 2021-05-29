@@ -1,5 +1,8 @@
-import { Typography as MuiTypography, TypographyProps as MuiTypographyProps } from '@material-ui/core';
-import React, { FC } from 'react';
+import {
+  Typography as MuiTypography,
+  TypographyProps as MuiTypographyProps,
+} from "@material-ui/core";
+import React, { FC } from "react";
 
 export type TypographyProps = MuiTypographyProps;
 

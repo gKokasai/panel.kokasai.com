@@ -1,5 +1,8 @@
-import { Link as MuiLink, LinkProps as MuiLinkActionProps } from '@material-ui/core';
-import React, { FC } from 'react';
+import {
+  Link as MuiLink,
+  LinkProps as MuiLinkActionProps,
+} from "@material-ui/core";
+import React, { FC } from "react";
 
 export type LinkProps = MuiLinkActionProps;
 

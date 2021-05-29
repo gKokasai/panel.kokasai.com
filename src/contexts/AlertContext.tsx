@@ -1,7 +1,7 @@
-import React, { FC, useState } from 'react';
-import MuiAlert from '@material-ui/lab/Alert';
-import createContext from './createContext';
-import Snackbar from '../components/atoms/Snackbar';
+import React, { FC, useState } from "react";
+import MuiAlert from "@material-ui/lab/Alert";
+import createContext from "./createContext";
+import Snackbar from "../components/atoms/Snackbar";
 
 type AlertContextType = {
   /**
@@ -33,29 +33,36 @@ type AlertContextType = {
   error: (message: string, displayTime?: number) => void;
 
   close: () => void;
-}
+};
 
-type AlertSeverity = 'info' | 'success' | 'warning' | 'error';
+type AlertSeverity = "info" | "success" | "warning" | "error";
 
 type AlertState = {
   open: boolean;
   severity: AlertSeverity;
   message: string;
   closeTimer: number;
-}
+};
 
 const [useAlert, SetAlertProvider] = createContext<AlertContextType>();
 
-const useAlertContext = (): { state: AlertState, type: AlertContextType } => {
+const useAlertContext = (): { state: AlertState; type: AlertContextType } => {
   const [alertState, setAlertState] = useState<AlertState>({
-    open: false, severity: 'success', message: '', closeTimer: 0,
+    open: false,
+    severity: "success",
+    message: "",
+    closeTimer: 0,
   });
 
   const close = () => {
     setAlertState((lastState) => ({ ...lastState, open: false }));
   };
 
-  const open = (severity: AlertSeverity, message: string, displayTime = 5000) => {
+  const open = (
+    severity: AlertSeverity,
+    message: string,
+    displayTime = 5000
+  ) => {
     if (alertState.closeTimer) {
       clearTimeout(alertState.closeTimer);
     }
@@ -64,18 +71,29 @@ const useAlertContext = (): { state: AlertState, type: AlertContextType } => {
       closeTimer = window.setTimeout(close, displayTime);
     }
     setAlertState({
-      open: true, message, severity, closeTimer,
+      open: true,
+      message,
+      severity,
+      closeTimer,
     });
   };
 
-  const info = (message: string, displayTime = 5000) => open('info', message, displayTime);
-  const success = (message: string, displayTime = 5000) => open('success', message, displayTime);
-  const warning = (message: string, displayTime = 5000) => open('warning', message, displayTime);
-  const error = (message: string, displayTime = 5000) => open('error', message, displayTime);
+  const info = (message: string, displayTime = 5000) =>
+    open("info", message, displayTime);
+  const success = (message: string, displayTime = 5000) =>
+    open("success", message, displayTime);
+  const warning = (message: string, displayTime = 5000) =>
+    open("warning", message, displayTime);
+  const error = (message: string, displayTime = 5000) =>
+    open("error", message, displayTime);
   return {
     state: alertState,
     type: {
-      info, success, warning, error, close,
+      info,
+      success,
+      warning,
+      error,
+      close,
     },
   };
 };

@@ -1,5 +1,8 @@
-import { Snackbar as MuiSnackbar, SnackbarProps as MuiSnackbarProps } from '@material-ui/core';
-import React, { FC } from 'react';
+import {
+  Snackbar as MuiSnackbar,
+  SnackbarProps as MuiSnackbarProps,
+} from "@material-ui/core";
+import React, { FC } from "react";
 
 export type SnackbarProps = MuiSnackbarProps;
 

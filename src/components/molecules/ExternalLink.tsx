@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import Link, { LinkProps } from '../atoms/Link';
+import React, { FC } from "react";
+import Link, { LinkProps } from "../atoms/Link";
 
 export type ExternalLinkProps = LinkProps;
 
