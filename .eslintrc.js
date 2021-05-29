@@ -14,6 +14,7 @@ module.exports = {
         'plugin:import/typescript',
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
+        'prettier'
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -31,6 +32,7 @@ module.exports = {
         'jsx-a11y',
         'react',
         'react-hooks',
+        'prettier'
     ],
     root: true,
     rules: {
@@ -66,7 +68,8 @@ module.exports = {
             },
         ],
         'linebreak-style': ["error", "unix"],
-        "max-len": [1, 200]
+        "max-len": [1, 200],
+        "prettier/prettier": "error"
     },
     overrides: [
         {

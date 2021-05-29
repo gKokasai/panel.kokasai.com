@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 export type LoadableItemProps<T> = {
-  item?: T,
-  load: () => void,
-  onComplete: (items: T) => JSX.Element | JSX.Element[],
-  LoadComponent: JSX.Element,
+  item?: T;
+  load: () => void;
+  onComplete: (items: T) => JSX.Element | JSX.Element[];
+  LoadComponent: JSX.Element;
 };
 
-const LoadableItem = <T extends unknown>(props: LoadableItemProps<T>): JSX.Element => {
-  const {
-    item, load, onComplete, LoadComponent,
-  } = props;
+const LoadableItem = <T extends unknown>(
+  props: LoadableItemProps<T>
+): JSX.Element => {
+  const { item, load, onComplete, LoadComponent } = props;
   useEffect(() => {
     if (item === undefined) {
       load();

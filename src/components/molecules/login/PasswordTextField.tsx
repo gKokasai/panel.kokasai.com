@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import TextField, { TextFieldProps } from '../../atoms/TextField';
+import React, { FC } from "react";
+import TextField, { TextFieldProps } from "../../atoms/TextField";
 
 export type PasswordTextFieldProps = TextFieldProps;
 
@@ -10,7 +10,7 @@ const PasswordTextField: FC<PasswordTextFieldProps> = (props) => (
     label="パスワード"
     placeholder="メールに届いたパスワード"
     margin="normal"
-    {...props /* eslint-disable-line react/jsx-props-no-spreading */}
+    {...props} /* eslint-disable-line react/jsx-props-no-spreading */
   />
 );
 

@@ -1,5 +1,8 @@
-import { Card as MuiCard, CardProps as MuiCardActionProps } from '@material-ui/core';
-import React, { FC } from 'react';
+import {
+  Card as MuiCard,
+  CardProps as MuiCardActionProps,
+} from "@material-ui/core";
+import React, { FC } from "react";
 
 export type CardProps = MuiCardActionProps;
 

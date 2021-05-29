@@ -4,4 +4,4 @@ export type Request = {
   isFailSessionLogin?: boolean;
   isLoad?: boolean;
   isRequestPassword?: boolean;
-}
+};

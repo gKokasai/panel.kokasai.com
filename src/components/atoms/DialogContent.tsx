@@ -1,5 +1,8 @@
-import { DialogContent as MuiDialogContent, DialogContentProps as MuiDialogContentProps } from '@material-ui/core';
-import React, { FC } from 'react';
+import {
+  DialogContent as MuiDialogContent,
+  DialogContentProps as MuiDialogContentProps,
+} from "@material-ui/core";
+import React, { FC } from "react";
 
 export type DialogContentProps = MuiDialogContentProps;
 

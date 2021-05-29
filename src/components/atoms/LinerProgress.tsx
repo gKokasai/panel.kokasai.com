@@ -1,5 +1,8 @@
-import { LinearProgress as MuiLinearProgress, LinearProgressProps as MuiLinearProgressProps } from '@material-ui/core';
-import React, { FC } from 'react';
+import {
+  LinearProgress as MuiLinearProgress,
+  LinearProgressProps as MuiLinearProgressProps,
+} from "@material-ui/core";
+import React, { FC } from "react";
 
 export type LinearProgressProps = MuiLinearProgressProps;
 

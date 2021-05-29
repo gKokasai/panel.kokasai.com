@@ -1,5 +1,8 @@
-import { DialogActions as MuiDialogActions, DialogActionsProps as MuiDialogActionsProps } from '@material-ui/core';
-import React, { FC } from 'react';
+import {
+  DialogActions as MuiDialogActions,
+  DialogActionsProps as MuiDialogActionsProps,
+} from "@material-ui/core";
+import React, { FC } from "react";
 
 export type DialogActionsProps = MuiDialogActionsProps;
 

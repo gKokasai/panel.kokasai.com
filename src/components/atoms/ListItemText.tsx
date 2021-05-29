@@ -1,5 +1,8 @@
-import { ListItemText as MuiListItemText, ListItemTextProps as MuiListItemTextActionProps } from '@material-ui/core';
-import React, { FC } from 'react';
+import {
+  ListItemText as MuiListItemText,
+  ListItemTextProps as MuiListItemTextActionProps,
+} from "@material-ui/core";
+import React, { FC } from "react";
 
 export type ListItemTextProps = MuiListItemTextActionProps;
 
