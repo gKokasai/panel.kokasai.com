@@ -1,5 +1,8 @@
-import { Dialog as MuiDialog, DialogProps as MuiCardActionProps } from '@material-ui/core';
-import React, { FC } from 'react';
+import {
+  Dialog as MuiDialog,
+  DialogProps as MuiCardActionProps,
+} from "@material-ui/core";
+import React, { FC } from "react";
 
 export type DialogProps = MuiCardActionProps;
 

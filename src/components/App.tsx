@@ -1,29 +1,31 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 import {
-  BrowserRouter, Switch, Route, Redirect, RouteProps,
-} from 'react-router-dom';
-import Login from './pages/Login';
-import Index from './pages/Index';
-import Document from './pages/document/Document';
-import {
-  AuthProvider, checkSession, useAuth,
-} from '../contexts/AuthContext';
-import { Pages } from '../pages';
-import Empty from './pages/Empty';
-import LoginFormLoading from './organisms/login/LoginFormLoading';
-import Group from './pages/group/Group';
-import { getSessionId } from '../storage';
-import GroupName from './pages/group/GroupName';
-import GroupNameForm from './pages/group/GroupNameForm';
-import GroupNameFormName from './pages/group/GroupNameFormName';
-import NotFound from './pages/NotFound';
-import { AlertProvider } from '../contexts/AlertContext';
-import DocumentName from './pages/document/DocumentName';
+  BrowserRouter,
+  Switch,
+  Route,
+  Redirect,
+  RouteProps,
+} from "react-router-dom";
+import Login from "./pages/Login";
+import Index from "./pages/Index";
+import Document from "./pages/document/Document";
+import { AuthProvider, checkSession, useAuth } from "../contexts/AuthContext";
+import { Pages } from "../pages";
+import Empty from "./pages/Empty";
+import LoginFormLoading from "./organisms/login/LoginFormLoading";
+import Group from "./pages/group/Group";
+import { getSessionId } from "../storage";
+import GroupName from "./pages/group/GroupName";
+import GroupNameForm from "./pages/group/GroupNameForm";
+import GroupNameFormName from "./pages/group/GroupNameFormName";
+import NotFound from "./pages/NotFound";
+import { AlertProvider } from "../contexts/AlertContext";
+import DocumentName from "./pages/document/DocumentName";
 
 type UseAuthRouteProps = {
-  authResponse: JSX.Element,
-  unAuthResponse: JSX.Element
-}
+  authResponse: JSX.Element;
+  unAuthResponse: JSX.Element;
+};
 
 const UseAuthRoute: FC<UseAuthRouteProps> = (props) => {
   const { authResponse, unAuthResponse } = props;
@@ -57,9 +59,7 @@ const Provider: FC = (props): JSX.Element => {
   const { children } = props;
   return (
     <AlertProvider>
-      <AuthProvider>
-        {children}
-      </AuthProvider>
+      <AuthProvider>{children}</AuthProvider>
     </AlertProvider>
   );
 };
@@ -73,11 +73,27 @@ const App = (): JSX.Element => (
             <UnAuthRoute exact path={Pages.login.href} component={Login} />
             <AuthRoute exact path={Pages.index.href} component={Index} />
             <AuthRoute exact path={Pages.document.href} component={Document} />
-            <AuthRoute exact path={Pages.documentName.href} component={DocumentName} />
+            <AuthRoute
+              exact
+              path={Pages.documentName.href}
+              component={DocumentName}
+            />
             <AuthRoute exact path={Pages.group.href} component={Group} />
-            <AuthRoute exact path={Pages.groupName.href(':groupName')} component={GroupName} />
-            <AuthRoute exact path={Pages.groupNameForm.href(':groupName')} component={GroupNameForm} />
-            <AuthRoute exact path={Pages.groupNameFormName.href(':groupName', ':formName')} component={GroupNameFormName} />
+            <AuthRoute
+              exact
+              path={Pages.groupName.href(":groupName")}
+              component={GroupName}
+            />
+            <AuthRoute
+              exact
+              path={Pages.groupNameForm.href(":groupName")}
+              component={GroupNameForm}
+            />
+            <AuthRoute
+              exact
+              path={Pages.groupNameFormName.href(":groupName", ":formName")}
+              component={GroupNameFormName}
+            />
             <AuthRoute exact component={NotFound} />
           </Switch>
         </div>

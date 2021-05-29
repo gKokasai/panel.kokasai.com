@@ -1,5 +1,8 @@
-import { ListItemIcon as MuiListItemIcon, ListItemIconProps as MuiListItemIconActionProps } from '@material-ui/core';
-import React, { FC } from 'react';
+import {
+  ListItemIcon as MuiListItemIcon,
+  ListItemIconProps as MuiListItemIconActionProps,
+} from "@material-ui/core";
+import React, { FC } from "react";
 
 export type ListItemIconProps = MuiListItemIconActionProps;
 

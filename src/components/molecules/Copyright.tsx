@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import Typography, { TypographyProps } from '../atoms/Typography';
+import React, { FC } from "react";
+import Typography, { TypographyProps } from "../atoms/Typography";
 
 export type CopyrightProps = TypographyProps;
 
