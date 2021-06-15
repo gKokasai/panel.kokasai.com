@@ -10,16 +10,24 @@ import LinearLoading from "../../molecules/LinearLoading";
 const GroupNameForm = (): JSX.Element => {
   const auth = useAuth();
   const params: { groupName: string } = useParams();
+  const { groupName } = params;
   return (
     <ControlPanelTemplate page={Pages.groupNameForm}>
       <GroupNameFormList
-        item={auth.user?.formList}
+        item={auth.user?.group?.[groupName]?.formList}
         load={() => {
           getGroupFormList(params.groupName).then((result) =>
-            auth.setUser({ ...auth.user, formList: result.data.form })
+            auth?.setUser({
+              ...auth?.user,
+              group: {
+                [groupName]: {
+                  formList: result.data.form,
+                },
+              },
+            })
           );
         }}
-        groupName={params.groupName}
+        groupName={groupName}
         LoadComponent={<LinearLoading />}
       />
     </ControlPanelTemplate>
