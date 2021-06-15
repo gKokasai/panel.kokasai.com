@@ -14,7 +14,7 @@ const FormElementCheck = (props: FormElementCheckProps): JSX.Element => {
       {Object.keys(element).map((id) => (
         <div key={id}>
           {element[id]}
-          <Checkbox checked={id in select} />
+          <Checkbox defaultChecked={id in select} />
         </div>
       ))}
     </>
