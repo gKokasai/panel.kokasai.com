@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ChangeEvent, FC } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { Theme } from "@material-ui/core";
 import { GetGroupFormResponse } from "../../../api/dataType";
@@ -33,12 +33,21 @@ export type GroupNameFormContentProps = {
   item?: GetGroupFormResponse;
   load: () => void;
   LoadComponent: JSX.Element;
+  onChangeString: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeCheckbox: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const GroupNameFormContent: FC<GroupNameFormContentProps> = (
   props
 ): JSX.Element => {
-  const { formName, load, item, LoadComponent } = props;
+  const {
+    formName,
+    load,
+    item,
+    LoadComponent,
+    onChangeString,
+    onChangeCheckbox,
+  } = props;
   const classes = GroupNameFormContentStyle();
   return (
     <div>
@@ -85,6 +94,9 @@ const GroupNameFormContent: FC<GroupNameFormContentProps> = (
                         <FormElement
                           type={formDataValueType}
                           value={formDataValueValue?.value}
+                          onChangeString={onChangeString}
+                          onChangeCheckbox={onChangeCheckbox}
+                          itemId={name}
                         />
                       </WithCaptionItem>
                     </div>
