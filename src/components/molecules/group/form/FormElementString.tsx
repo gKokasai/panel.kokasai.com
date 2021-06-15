@@ -24,7 +24,7 @@ const FormElementString = (props: FormElementStringProps): JSX.Element => {
     <TextField
       variant="outlined"
       fullWidth
-      value={content}
+      defaultValue={content}
       className={classes.field}
     />
   );
