@@ -44,13 +44,16 @@ const GroupNameFormContent: FC<GroupNameFormContentProps> = (
   const { formName, load, item, LoadComponent, groupName } = props;
   const [editedForm, setEditedForm] =
     useState<PostGroupFormSubmitRequest | undefined>(undefined);
+  const [isEnableButton, setIsEnableButton] = useState(true);
   const classes = GroupNameFormContentStyle();
   const alert = useAlert();
   const onClickSubmitButton = () => {
     if (editedForm) {
-      postGroupFormSubmit(groupName, formName, editedForm).then(() =>
-        alert.success("フォームが保存されました")
-      );
+      setIsEnableButton(false);
+      postGroupFormSubmit(groupName, formName, editedForm).then(() => {
+        setIsEnableButton(true);
+        alert.success("フォームが保存されました");
+      });
     }
   };
 
@@ -67,6 +70,7 @@ const GroupNameFormContent: FC<GroupNameFormContentProps> = (
             setEditedForm={setEditedForm}
             onClickSubmitButton={onClickSubmitButton}
             classes={classes}
+            isEnableButton={isEnableButton}
           />
         )}
       />
