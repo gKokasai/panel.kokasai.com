@@ -5,6 +5,7 @@ import TextField from "../../../atoms/TextField";
 import {
   FormDefineTypeString,
   FormSaveTypeString,
+  PostGroupFormSubmitRequest,
 } from "../../../../api/dataType";
 
 const FormElementStringStyle = makeStyles((theme: Theme) =>
@@ -17,13 +18,27 @@ const FormElementStringStyle = makeStyles((theme: Theme) =>
 
 export type FormElementStringProps = FormDefineTypeString &
   FormSaveTypeString & {
-    onChangeString: (event: ChangeEvent<HTMLInputElement>) => void;
     itemId?: string;
+    editedForm?: PostGroupFormSubmitRequest;
+    setEditedForm: React.Dispatch<
+      React.SetStateAction<PostGroupFormSubmitRequest | undefined>
+    >;
   };
 
 const FormElementString = (props: FormElementStringProps): JSX.Element => {
-  const { content, onChangeString, itemId } = props;
+  const { content, itemId, editedForm, setEditedForm } = props;
   const classes = FormElementStringStyle();
+  const onChangeString = (event: ChangeEvent<HTMLInputElement>) => {
+    const targetItemId: string | undefined = event.target.dataset.itemid;
+    if (!targetItemId) return;
+    const parsedTargetItemId: number = parseInt(targetItemId, 10);
+    setEditedForm({
+      values: {
+        ...editedForm?.values,
+        [parsedTargetItemId]: ["string", { content: event.target.value }],
+      },
+    });
+  };
   return (
     <TextField
       variant="outlined"
@@ -32,7 +47,7 @@ const FormElementString = (props: FormElementStringProps): JSX.Element => {
       className={classes.field}
       onChange={onChangeString}
       inputProps={{
-        "data-itemName": itemId,
+        "data-itemId": itemId,
       }}
     />
   );
