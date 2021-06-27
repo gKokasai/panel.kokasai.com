@@ -1,8 +1,9 @@
-import React, { ChangeEvent } from "react";
+import React, { SetStateAction } from "react";
 import {
   FormDefineType,
   FormSaveType,
   mergeFormType,
+  PostGroupFormSubmitRequest,
 } from "../../../../api/dataType";
 import FormElementString from "./FormElementString";
 import FormElementCheck from "./FormElementCheck";
@@ -11,30 +12,33 @@ export type FormElementProps = {
   type: FormDefineType;
   value?: FormSaveType;
   itemId?: string;
-  onChangeString: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeCheckbox: (event: ChangeEvent<HTMLInputElement>) => void;
+  editedForm?: PostGroupFormSubmitRequest;
+  setEditedForm: React.Dispatch<
+    SetStateAction<PostGroupFormSubmitRequest | undefined>
+  >;
 };
 
 const FormElement = (props: FormElementProps): JSX.Element => {
-  const { type, value, onChangeCheckbox, onChangeString, itemId } = props;
+  const { type, value, itemId, editedForm, setEditedForm } = props;
   const data = value ? mergeFormType(type, value) : [];
   switch (data[0]) {
     case "string":
       // eslint-disable-next-line react/jsx-props-no-spreading
       return (
         <FormElementString
-          onChangeString={onChangeString}
           itemId={itemId}
-          {...data[1]}
+          editedForm={editedForm}
+          setEditedForm={setEditedForm}
+          {...data[1]} // eslint-disable-line react/jsx-props-no-spreading
         />
       );
     case "check":
-      // eslint-disable-next-line react/jsx-props-no-spreading
       return (
         <FormElementCheck
-          onChangeCheckbox={onChangeCheckbox}
           itemId={itemId}
-          {...data[1]}
+          editedForm={editedForm}
+          setEditedForm={setEditedForm}
+          {...data[1]} // eslint-disable-line react/jsx-props-no-spreading
         />
       );
     default:

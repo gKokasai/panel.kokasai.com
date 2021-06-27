@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import ControlPanelTemplate from "../../templates/ControlPanelTemplate";
 import { Pages } from "../../../pages";
@@ -10,13 +10,6 @@ import GroupNameFormContent from "../../organisms/group/GroupNameFormContent";
 const GroupNameFormName = (): JSX.Element => {
   const auth = useAuth();
   const params: { groupName: string; formName: string } = useParams();
-  const onChangeString = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.dataset);
-  };
-
-  const onChangeCheckbox = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.dataset);
-  };
 
   return (
     <ControlPanelTemplate page={Pages.groupNameFormName}>
@@ -34,9 +27,8 @@ const GroupNameFormName = (): JSX.Element => {
         }}
         LoadComponent={<LinearLoading />}
         item={auth.user?.form?.[params.formName]}
-        formName={auth.user?.formList?.formName?.name}
-        onChangeCheckbox={onChangeCheckbox}
-        onChangeString={onChangeString}
+        formName={params.formName}
+        groupName={params.groupName}
       />
     </ControlPanelTemplate>
   );
