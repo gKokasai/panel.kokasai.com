@@ -1,4 +1,4 @@
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, useState } from "react";
 import { ClassNameMap } from "@material-ui/styles";
 import WithCaptionItem from "../../WithCaptionItem";
 import Typography from "../../../atoms/Typography";
@@ -19,6 +19,7 @@ export type FormContentProps = {
   >;
   onClickSubmitButton: () => void;
   classes: ClassNameMap;
+  isEnableButton: boolean;
 };
 
 // eslint-disable-next-line consistent-return
@@ -33,9 +34,14 @@ const defaultFormSaveType = (define: FormDefineType): FormSaveType => {
 };
 
 const FormContent = (props: FormContentProps): JSX.Element => {
-  const { item, editedForm, setEditedForm, onClickSubmitButton, classes } =
-    props;
-
+  const {
+    item,
+    editedForm,
+    setEditedForm,
+    onClickSubmitButton,
+    classes,
+    isEnableButton,
+  } = props;
   const formValue = item.values;
   const initialValue: PostGroupFormSubmitRequest = {
     values: Object.keys(formValue).reduce((map, key) => {
@@ -111,6 +117,7 @@ const FormContent = (props: FormContentProps): JSX.Element => {
           color="primary"
           fullWidth
           onClick={onClickSubmitButton}
+          disabled={!isEnableButton}
         >
           保存する
         </Button>
