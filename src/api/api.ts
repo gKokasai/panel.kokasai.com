@@ -1,6 +1,7 @@
 import { Base64 } from "js-base64";
 import axios, { AxiosResponse } from "axios";
 import {
+  GetFormAssignResponse,
   GetGroupDocumentListResponse,
   GetGroupFormListResponse,
   GetGroupFormResponse,
@@ -9,6 +10,7 @@ import {
   GetSessionResponse,
   GetUserDocumentListResponse,
   GetUserGroupListResponse,
+  PostFormAssignRequest,
   PostGroupDocumentListRequest,
   PostGroupFormSubmitRequest,
   PostGroupUserListRequest,
@@ -106,6 +108,30 @@ export const postDocument = (
   headers["content-type"] = "multipart/form-data";
   return axios.post(`${URL}/document/${documentName}`, formData, { headers });
 };
+
+/**
+ * フォームが割り当てられたグループ一覧を取得する。
+ * [GET /form/assign](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-formassignname)
+ * @param formName フォーム名
+ */
+export const getFormAssign = (
+  formName: string
+): Promise<AxiosResponse<GetFormAssignResponse>> =>
+  axios.get(`${URL}/form/assign/${formName}`, { headers: defaultHeaders() });
+
+/**
+ * フォームが割り当てられたグループ一覧を変更する。
+ * [POST /form/assign](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#post-formassignname)
+ * @param formName フォーム名
+ * @param data 変更後の一覧
+ */
+export const postFormAssign = (
+  formName: string,
+  data: PostFormAssignRequest
+): Promise<AxiosResponse<never>> =>
+  axios.post(`${URL}/form/assign/${formName}`, data, {
+    headers: defaultHeaders(),
+  });
 
 /**
  * 全グループ一覧を取得する。

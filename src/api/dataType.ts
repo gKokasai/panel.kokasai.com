@@ -54,6 +54,14 @@ export type GetSessionResponse = {
   count: number;
 };
 
+export type GetFormAssignResponse = {
+  group: string[];
+};
+
+export type PostFormAssignRequest = {
+  group: string[];
+};
+
 export type GetGroupListResponse = {
   group: string[];
 };
