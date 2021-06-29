@@ -49,6 +49,7 @@ const FormElementString = (props: FormElementStringProps): JSX.Element => {
       inputProps={{
         "data-itemId": itemId,
       }}
+      multiline
     />
   );
 };
