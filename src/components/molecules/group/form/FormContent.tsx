@@ -1,4 +1,4 @@
-import React, { SetStateAction, useState } from "react";
+import React, { SetStateAction } from "react";
 import { ClassNameMap } from "@material-ui/styles";
 import WithCaptionItem from "../../WithCaptionItem";
 import Typography from "../../../atoms/Typography";
