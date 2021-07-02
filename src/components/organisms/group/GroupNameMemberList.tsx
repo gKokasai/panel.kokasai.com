@@ -57,7 +57,7 @@ const GroupNameMemberList: FC<GroupNameMemberListProps> = (
         })
         .catch((err) => {
           if (err.status === "403") {
-            alert.error("権限がありません.");
+            alert.error("権限がないか・変更に失敗しました");
           } else {
             alert.error("エラーが発生しました");
           }
