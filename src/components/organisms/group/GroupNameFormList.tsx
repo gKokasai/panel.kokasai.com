@@ -1,14 +1,9 @@
 import React, { FC } from "react";
-import { ListItem } from "@material-ui/core";
-import { FormatAlignRight } from "@material-ui/icons";
 import LoadableItem from "../../molecules/LoadableItem";
-import InternalLink from "../../molecules/InternalLink";
-import { Pages } from "../../../pages";
-import ListItemIcon from "../../atoms/ListItemIcon";
-import ListItemText from "../../atoms/ListItemText";
 import WithHeaderList from "../../molecules/WithHeaderList";
 import ListStyle from "../common/List.style";
 import { FormList } from "../../../api/dataType";
+import FormListItem from "../../molecules/form/FomListItem";
 
 export type GroupNameFormListProps = {
   item?: FormList;
@@ -29,16 +24,11 @@ const GroupNameFormList: FC<GroupNameFormListProps> = (props) => {
         onComplete={(_item) => {
           const keys = Object.keys(_item);
           return keys.map((formName) => (
-            <InternalLink
-              to={Pages.groupNameFormName.href(groupName, formName)}
-            >
-              <ListItem>
-                <ListItemIcon>
-                  <FormatAlignRight />
-                </ListItemIcon>
-                <ListItemText>{_item[formName].name}</ListItemText>
-              </ListItem>
-            </InternalLink>
+            <FormListItem
+              groupName={groupName}
+              formName={formName}
+              formList={_item}
+            />
           ));
         }}
       />
