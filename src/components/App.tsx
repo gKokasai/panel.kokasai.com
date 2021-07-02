@@ -21,6 +21,7 @@ import GroupNameFormName from "./pages/group/GroupNameFormName";
 import NotFound from "./pages/NotFound";
 import { AlertProvider } from "../contexts/AlertContext";
 import DocumentName from "./pages/document/DocumentName";
+import Form from "./pages/Form";
 
 type UseAuthRouteProps = {
   authResponse: JSX.Element;
@@ -73,6 +74,7 @@ const App = (): JSX.Element => (
             <UnAuthRoute exact path={Pages.login.href} component={Login} />
             <AuthRoute exact path={Pages.index.href} component={Index} />
             <AuthRoute exact path={Pages.document.href} component={Document} />
+            <AuthRoute exact path={Pages.form.href} component={Form} />
             <AuthRoute
               exact
               path={Pages.documentName.href}
