@@ -104,6 +104,11 @@ export type FormList = {
   };
 };
 
+export type UserList = {
+  owner: string[];
+  member: string[];
+};
+
 export type GetGroupFormListResponse = {
   form: FormList;
 };

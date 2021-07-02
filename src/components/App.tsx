@@ -21,6 +21,7 @@ import GroupNameFormName from "./pages/group/GroupNameFormName";
 import NotFound from "./pages/NotFound";
 import { AlertProvider } from "../contexts/AlertContext";
 import DocumentName from "./pages/document/DocumentName";
+import GroupNameMember from "./pages/group/GroupNameMember";
 import Form from "./pages/Form";
 
 type UseAuthRouteProps = {
@@ -85,6 +86,11 @@ const App = (): JSX.Element => (
               exact
               path={Pages.groupName.href(":groupName")}
               component={GroupName}
+            />
+            <AuthRoute
+              exact
+              path={Pages.groupNameMember.href(":groupName")}
+              component={GroupNameMember}
             />
             <AuthRoute
               exact
