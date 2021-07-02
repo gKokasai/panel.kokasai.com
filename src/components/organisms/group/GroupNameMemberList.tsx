@@ -59,7 +59,7 @@ const GroupNameMemberList: FC<GroupNameMemberListProps> = (
           if (err.status === "403") {
             alert.error("権限がありません.");
           } else {
-            alert.error("エラーが発生しました.");
+            alert.error("エラーが発生しました");
           }
         });
     }
