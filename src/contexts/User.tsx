@@ -1,4 +1,4 @@
-import { FormList, GetGroupFormResponse } from "../api/dataType";
+import { FormList, GetGroupFormResponse, UserList } from "../api/dataType";
 
 export type User = {
   documentList?: string[];
@@ -12,6 +12,7 @@ export type User = {
         [formName: string]: GetGroupFormResponse;
       };
       formList?: FormList;
+      userList?: UserList;
     };
   };
 };
