@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Add, Clear } from "@material-ui/icons";
+import { Add } from "@material-ui/icons";
 import ListStyle from "../common/List.style";
 import { UserList } from "../../../api/dataType";
 import WithHeaderList from "../../molecules/WithHeaderList";
@@ -29,7 +29,7 @@ const GroupNameMemberList: FC<GroupNameMemberListProps> = (
   const [displayTextField, setDisplayTextField] = useState(false);
 
   const onClickAddButton = () => {
-    setDisplayTextField(true);
+    setDisplayTextField(!displayTextField);
   };
 
   const onChangeTextField = (
@@ -79,7 +79,6 @@ const GroupNameMemberList: FC<GroupNameMemberListProps> = (
               <Button color="inherit" onClick={onClickAddMemberButton}>
                 追加する
               </Button>
-              <Clear onClick={onClickAddButton} />
             </>
           );
         }
