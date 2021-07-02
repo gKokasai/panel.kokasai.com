@@ -7,6 +7,7 @@ export const Pages = {
   document: { name: "資料", href: "/document/list" },
   documentName: { name: "資料", href: "/document" },
   group: { name: "グループ", href: "/group" },
+  form: { name: "フォーム", href: "/form" },
   groupName: {
     name: "グループ",
     href: (groupName: string): string => `/group/${groupName}`,
@@ -29,5 +30,6 @@ export const Pages = {
 export const SideBar = [
   { page: Pages.index, icon: <icons.Home /> },
   { page: Pages.document, icon: <icons.LibraryBooks /> },
+  { page: Pages.form, icon: <icons.FormatAlignRight /> },
   { page: Pages.group, icon: <icons.Group /> },
 ];

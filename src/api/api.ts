@@ -9,6 +9,7 @@ import {
   GetGroupUserListResponse,
   GetSessionResponse,
   GetUserDocumentListResponse,
+  GetUserFormListResponse,
   GetUserGroupListResponse,
   PostFormAssignRequest,
   PostGroupDocumentListRequest,
@@ -191,6 +192,14 @@ export const postGroupUserList = (
   axios.post(`${URL}/group/user/list/${groupName}`, data, {
     headers: defaultHeaders(),
   });
+
+/**
+ * ユーザーがアクセス可能なフォーム一覧を取得する。
+ * [GET /user/form/list](https://github.com/gKokasai/api.kokasai.com/blob/master/DOCUMENT.md#get-userformlist)
+ */
+export const getUserFormList = (): Promise<
+  AxiosResponse<GetUserFormListResponse>
+> => axios.get(`${URL}/user/form/list`, { headers: defaultHeaders() });
 
 /**
  * ユーザーがアクセスできるドキュメントファイルの一覧を取得する。

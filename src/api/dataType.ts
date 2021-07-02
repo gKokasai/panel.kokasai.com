@@ -84,6 +84,10 @@ export type PostGroupUserListRequest = {
   member: string[];
 };
 
+export type GetUserFormListResponse = {
+  group: { [groupName: string]: FormList };
+};
+
 export type GetUserDocumentListResponse = {
   document: string[];
 };
