@@ -1,38 +1,39 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
-import { Pages } from "../../../pages";
 import ControlPanelTemplate from "../../templates/ControlPanelTemplate";
-import { getGroupFormList } from "../../../api/api";
-import GroupNameFormList from "../../organisms/group/GroupNameFormList";
+import { Pages } from "../../../pages";
+import GroupNameMemberList from "../../organisms/group/GroupNameMemberList";
+import { getGroupUserList } from "../../../api/api";
 import LinearLoading from "../../molecules/LinearLoading";
 
-const GroupNameForm = (): JSX.Element => {
+const GroupNameMember = (): JSX.Element => {
   const auth = useAuth();
   const params: { groupName: string } = useParams();
   const { groupName } = params;
+
   return (
-    <ControlPanelTemplate page={Pages.groupNameForm}>
-      <GroupNameFormList
-        item={auth.user?.group?.[groupName]?.formList}
+    <ControlPanelTemplate page={Pages.groupNameMember}>
+      <GroupNameMemberList
+        item={auth.user?.group?.[groupName]?.userList}
         load={() => {
-          getGroupFormList(params.groupName).then((result) =>
-            auth?.setUser({
+          getGroupUserList(groupName).then((response) => {
+            auth.setUser({
               ...auth?.user,
               group: {
                 [groupName]: {
                   ...auth.user?.group?.[groupName],
-                  formList: result.data.form,
+                  userList: response.data,
                 },
               },
-            })
-          );
+            });
+          });
         }}
-        groupName={groupName}
         LoadComponent={<LinearLoading />}
+        groupName={groupName}
       />
     </ControlPanelTemplate>
   );
 };
 
-export default GroupNameForm;
+export default GroupNameMember;
