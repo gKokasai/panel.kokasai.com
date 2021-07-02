@@ -6,6 +6,7 @@ import LoginFormStyle from "./LoginForm.style";
 import StudentNumberTextField from "../../molecules/login/StudentNumberTextField";
 import LoginFormCard from "../../molecules/login/LoginFormCard";
 import PasswordRequestConfirmDialog from "../../molecules/login/PasswordRequestConfirmDialog";
+import { isStudentNumber } from "../../../util/studentNumber";
 
 export type PasswordRequestFormProps = {
   onChangeStudentNumber: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -26,9 +27,7 @@ const PasswordRequestForm: FC<PasswordRequestFormProps> = (
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
   const [enableSendButton, setEnableSendButton] = useState(false);
   useEffect(() => {
-    const pattern =
-      /^((m\d{2}1)|(e\d{2}2)|(j\d{2}3)|(k\d{2}4)|(c\d{2}5)|(ap\d{2}8)|(ae\d{2}9))\d{2}$/;
-    setEnableSendButton(!!id?.match(pattern));
+    setEnableSendButton(isStudentNumber(id));
   }, [id]);
   const classes = LoginFormStyle();
   return (

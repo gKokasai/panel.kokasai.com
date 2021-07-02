@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Add } from "@material-ui/icons";
 import ListStyle from "../common/List.style";
 import { UserList } from "../../../api/dataType";
@@ -9,6 +9,7 @@ import MemberListContent from "../../molecules/group/member/MemberListContent";
 import TextField from "../../atoms/TextField";
 import { postGroupUserList } from "../../../api/api";
 import { useAlert } from "../../../contexts/AlertContext";
+import { isStudentNumber } from "../../../util/studentNumber";
 
 export type GroupNameMemberListProps = {
   item?: UserList;
@@ -27,6 +28,7 @@ const GroupNameMemberList: FC<GroupNameMemberListProps> = (
   const [editedMemberList, setEditedMemberList] =
     useState<string[] | undefined>(undefined);
   const [displayTextField, setDisplayTextField] = useState(false);
+  const [allowAddMember, setAllowAddMember] = useState(false);
 
   const onClickAddButton = () => {
     setDisplayTextField(!displayTextField);
@@ -65,6 +67,13 @@ const GroupNameMemberList: FC<GroupNameMemberListProps> = (
     }
   };
 
+  useEffect(() => {
+    setAllowAddMember(
+      isStudentNumber(addMemberTextField) &&
+        !editedMemberList?.includes(addMemberTextField)
+    );
+  }, [addMemberTextField, editedMemberList]);
+
   return (
     <WithHeaderList title="メンバー一覧" listClassName={classes.list}>
       <Button color="primary" onClick={() => onClickAddButton()}>
@@ -76,7 +85,11 @@ const GroupNameMemberList: FC<GroupNameMemberListProps> = (
           return (
             <>
               <TextField onChange={(event) => onChangeTextField(event)} />
-              <Button color="inherit" onClick={onClickAddMemberButton}>
+              <Button
+                disabled={!allowAddMember}
+                color="inherit"
+                onClick={onClickAddMemberButton}
+              >
                 追加する
               </Button>
             </>
