@@ -41,6 +41,8 @@ const PasswordRequestForm: FC<PasswordRequestFormProps> = (
         <StudentNumberTextField
           onChange={onChangeStudentNumber}
           defaultValue={id}
+          enableSendButton={!enableSendButton}
+          inputId={id}
         />
       </CardContent>
       <CardActions className={classes.cardActions}>
